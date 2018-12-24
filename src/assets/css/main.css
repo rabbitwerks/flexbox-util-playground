@@ -1,0 +1,19 @@
+:root {
+  --brightGreen: #00D6A4; /* for headings and current nav class */
+  --mainTurq: #03A9AC; /* for sub-headings and non-current nav class */
+  --darkTurq: #006473; /* for background objects and onClick effect */
+  --accTeal: #03D8CB; /* for background objects and onClick effect */
+  --backgroundGrey: #212121;
+  --navbarBlack: #0a0a0a;
+  --fontColor: #f7f7f7;
+}
+
+* {
+  margin: 0;
+}
+
+html, body {
+  height: 100vh;
+  font-size: 20px;
+  font-family: sans-serif;
+}
