@@ -1,33 +1,37 @@
 <template>
   <div class="navbar flexbox">
-    <div class="nav-item--brand flex-1">
-      Flexbox Playground
-    </div>
-    <div class="nav-item flexbox flex-center">
-      <span>Home</span>
-    </div>
-    <div class="nav-item flexbox flex-center">
-      <span>Playground</span>
-    </div>
-    <div class="nav-item flexbox flex-center">
-      <span>Getting Started</span>
-    </div>
+    <navbar--nav-brand text="Flexbox Playground"></navbar--nav-brand>
+    <navbar--nav-item
+      router-link-to="/"
+      text="Home">
+    </navbar--nav-item>
+    <navbar--nav-item
+      router-link-to="/getting-started"
+      text="Getting Started">
+    </navbar--nav-item>
+    <navbar--nav-item
+      router-link-to="/playground"
+      text="Playground">
+    </navbar--nav-item>
+
   </div>
 </template>
 
 <script>
-export default {
+import NavBrand from './NavBrand'
+import NavItem from './NavItem';
 
+export default {
+  components: {
+    'navbar--nav-brand': NavBrand,
+    'navbar--nav-item': NavItem
+  }
 }
 </script>
 
-<style>
+<style scoped>
 .navbar {
   height: 4rem;
   background-color: var(--navbarBlack);
-}
-.nav-item {
-  width: 10rem;
-  border-left: 1px solid #fff;
 }
 </style>
