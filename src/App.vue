@@ -24,7 +24,7 @@ export default {
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  color: #2c3e50;
+  color: var(--fontColor);
   width: 100vw;
   height: 100vh;
 }
