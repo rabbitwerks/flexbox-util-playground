@@ -156,7 +156,7 @@
 .flex-align-baseline.align-self {
   align-self: baseline;
 }
-.flex-align-center .align-self {
+.flex-align-center.align-self {
   align-self: center;
 }
 .flex-align-flexend.align-self {
