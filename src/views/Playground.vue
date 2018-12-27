@@ -1,21 +1,21 @@
 <template>
   <div class="playground flexbox flexdir-col">
-    <pg--display :boxGroup="boxGroup"></pg--display>
+    <pg--display :flexItemGroup="flexItemGroup"></pg--display>
     <pg--control-panel></pg--control-panel>
   </div>
 </template>
 
 <script>
 import eventBus from '../eventbus.js';
-import Display from '../components/playground/Display';
-import ControlPanel from '../components/playground/ControlPanel'
+import Display from '../components/playground/display/Display';
+import ControlPanel from '../components/playground/control-panel/ControlPanel'
 export default {
   data () {
     return {
-      boxGroup: [
+      flexItemGroup: [
         {
-          name: 'Box',
           flex: 1,
+          customWidth: '',
         }
       ]
     }
@@ -24,22 +24,24 @@ export default {
     'pg--display': Display,
     'pg--control-panel': ControlPanel
   },
+  mounted() {
+    eventBus.$on('addItemToGroup', () => {
+      this.addItemToGroup()
+    });
+    eventBus.$on('removeItemFromGroup', () => {
+      this.removeItemFromGroup()
+    });
+  },
   methods: {
-    addBoxToGroup() {
-      this.boxGroup.push({ name: 'Box', flex: 1 })
+    addItemToGroup() {
+      this.flexItemGroup.push({
+        flex: 1, customWidth: ''
+      })
     },
-    removeBoxFromGroup() {
-      this.boxGroup.splice(0, 1)
+    removeItemFromGroup() {
+      this.flexItemGroup.splice(0, 1)
     }
   },
-  mounted() {
-    eventBus.$on('addBoxToGroup', () => {
-      this.addBoxToGroup()
-    });
-    eventBus.$on('removeBoxFromGroup', () => {
-      this.removeBoxFromGroup()
-    });
-  }
 }
 </script>
 
