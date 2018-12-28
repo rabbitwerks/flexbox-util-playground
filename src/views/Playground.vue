@@ -1,7 +1,7 @@
 <template>
   <div class="playground flexbox flexdir-col">
     <pg--display :flexItemGroup="flexItemGroup"></pg--display>
-    <pg--control-panel></pg--control-panel>
+    <pg--control-panel :flexItemGroup="flexItemGroup"></pg--control-panel>
   </div>
 </template>
 
@@ -31,6 +31,12 @@ export default {
     eventBus.$on('removeItemFromGroup', () => {
       this.removeItemFromGroup()
     });
+    eventBus.$on('removeSelfFromGroup', (index) => {
+      this.removeItemFromGroup(index)
+    });
+    eventBus.$on('changeFlexAmount', flexData => {
+      this.flexItemGroup[flexData.index].flex = flexData.flexAmount
+    })
   },
   methods: {
     addItemToGroup() {
@@ -38,8 +44,12 @@ export default {
         flex: 1, customWidth: ''
       })
     },
-    removeItemFromGroup() {
-      this.flexItemGroup.splice(0, 1)
+    removeItemFromGroup(index) {
+      if(index){
+        this.flexItemGroup.splice(index, 1)
+      } else {
+        this.flexItemGroup.splice(0, 1)
+      }
     }
   },
 }
