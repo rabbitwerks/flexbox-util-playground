@@ -7,7 +7,9 @@
         class="flexbox flexdir-row ">
           <disp--flex-item--basic 
             v-for="(flexItem, i) in flexItemGroup" 
-            :key="i">
+            :key="i"
+            :flexItem="flexItem"
+            :index="i">
           </disp--flex-item--basic>
       </div>
   </div>
