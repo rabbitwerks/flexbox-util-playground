@@ -23,7 +23,6 @@ export default {
 @import './assets/css/main.css';
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   color: var(--fontColor);
   width: 100vw;
   height: 100vh;
