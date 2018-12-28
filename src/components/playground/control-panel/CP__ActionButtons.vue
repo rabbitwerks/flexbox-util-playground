@@ -1,8 +1,12 @@
 <template>
-  <div class="flex-1 flexbox-space-evenly flexdir-col">
+<div class="flex-1 flexbox">
+  <div class="flex-1"></div>
+  <div class="flex-3-i flexbox-space-evenly flexdir-col">
     <cp--ab--add></cp--ab--add>
     <cp--ab--remove></cp--ab--remove>
   </div>
+  <div class="flex-1"></div>
+</div>
 </template>
 
 <script>
