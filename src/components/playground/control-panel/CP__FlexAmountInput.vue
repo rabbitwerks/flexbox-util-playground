@@ -2,7 +2,7 @@
   <div class="flex-amount-input-group">
     <label for="flex-amount">Flex Item {{ index + 1 }}</label>
     <input 
-      @input="changeFlexAmount"
+      @input="setFlexAmount(index, $event)"
       v-model="newFlexAmount"
       type="number" 
       name="flex-amount"
@@ -12,21 +12,28 @@
 </template>
 
 <script>
-import eventBus from '../../../eventbus.js'
+import { mapState, mapActions } from 'vuex';
+
 export default {
   data () {
     return {
       newFlexAmount: 1
     }
   },
-  props: ['flexItem', 'index'],
+  props: ['index'],
+  computed: {
+    flexItem_FlexAmount() {
+      return this.$store.getters.getFlexGroupItem(this.index).flex
+    }
+  },
   methods: {
-    changeFlexAmount() {
-      const flexData = {
-        index: this.index,
-        flexAmount: this.newFlexAmount
-      }
-      eventBus.$emit('changeFlexAmount', flexData)
+    ...mapActions(['setFlexAmount_STORE']),
+    setFlexAmount(index, $event) {
+      const flexItemData = {
+        index, 
+        value: $event.target.value,
+      };
+      this.setFlexAmount_STORE(flexItemData);
     }
   }
 }

@@ -38,7 +38,12 @@ const store = new Vuex.Store({
       }
     },
     setFlexDirection_MUTA(state, newDirection) {
-      state.flexGroupDirection = newDirection;
+      store.state.flexGroupDirection = newDirection;
+      console.log('New Flex Direction: ', state.flexGroupDirection);
+    },
+    setFlexAmount_MUTA(state, flexItemData) {
+      store.state.flexItemGroup[flexItemData.index].flex = flexItemData.value;
+      console.log(`Flex Item ${flexItemData.index + 1} changed to: `, state.flexItemGroup[flexItemData.index].flex);
     },
   },
   actions: {
@@ -51,6 +56,10 @@ const store = new Vuex.Store({
     },
     setFlexDirection_STORE(context, newDirection) {
       context.commit('setFlexDirection_MUTA', newDirection);
+    },
+    setFlexAmount_STORE(context, flexItemData) {
+      context.commit('setFlexAmount_MUTA', flexItemData);
+      console.log('set flex amount action', flexItemData);
     },
   },
 });
