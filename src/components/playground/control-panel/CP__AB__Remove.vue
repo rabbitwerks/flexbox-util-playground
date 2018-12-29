@@ -1,5 +1,5 @@
 <template>
-  <button @click="removeItemFromGroup_STORE(index)">Remove Flex Item</button>
+  <button @click="removeItemFromGroup_STORE">Remove Flex Item</button>
 </template>
 
 <script>
