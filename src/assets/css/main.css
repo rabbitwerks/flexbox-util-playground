@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis:300,400,500,600');
+
 :root {
   --brightGreen: #00D6A4; /* for headings and current nav class */
   --mainTurq: #03A9AC; /* for sub-headings and non-current nav class */
@@ -15,7 +17,7 @@
 html, body {
   height: 100vh;
   font-size: 20px;
-  font-family: sans-serif;
+  font-family: 'Dosis', sans-serif;
 }
 
 .border {
