@@ -1,14 +1,13 @@
 <template>
-  <button @click="addItemToGroup">Add Flex Item</button>
+  <button @click="addItemToGroup_STORE">Add Flex Item</button>
 </template>
 
 <script>
-import eventBus from '../../../eventbus.js';
+import { mapActions } from 'vuex';
+
 export default {
   methods: {
-    addItemToGroup() {
-      eventBus.$emit('addItemToGroup')
-    }
+    ...mapActions(['addItemToGroup_STORE']),
   }
 }
 </script>

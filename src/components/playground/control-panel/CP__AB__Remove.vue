@@ -1,14 +1,13 @@
 <template>
-  <button @click="removeItemFromGroup">Remove Flex Item</button>
+  <button @click="removeItemFromGroup_STORE(index)">Remove Flex Item</button>
 </template>
 
 <script>
-import eventBus from '../../../eventbus.js'
+import { mapActions } from 'vuex';
+
 export default {
   methods: {
-    removeItemFromGroup() {
-      eventBus.$emit('removeItemFromGroup')
-    }
+    ...mapActions(['removeItemFromGroup_STORE']),
   }
 }
 </script>
