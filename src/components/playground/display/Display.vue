@@ -17,11 +17,20 @@
 </template>
 
 <script>
-import Display__FlexItem_Basic from './Display__FlexItem_Basic'
+import { mapState } from 'vuex';
+
+import Display__FlexItem_Basic from './Display__FlexItem_Basic';
 export default {
-  props: ['flexItemGroup', 'flexGroupDirection'],
   components: {
     'disp--flex-item--basic': Display__FlexItem_Basic,
+  },
+  computed: {
+    flexItemGroup() {
+      return this.$store.getters.getFlexGroup;
+    },
+    flexGroupDirection() {
+      return this.$store.getters.getFlexDirection;
+    }
   }
 }
 </script>
