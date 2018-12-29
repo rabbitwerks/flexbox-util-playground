@@ -1,8 +1,7 @@
 <template>
   <select 
-    :placeholder="flexGroupDirection"
-    v-model="newFlexDirection"
-    @change="applyNewDirection"
+    :placeholder="currentDirection"
+    @change="setFlexDirection_STORE($event.target.value)"
     class="flex-direction-selection" 
     name="flexdir-select">
     <option value="flexdir-row" selected>Row (Default)</option>
@@ -13,18 +12,21 @@
 </template>
 
 <script>
-import eventBus from '../../../eventbus.js'
+import { mapState, mapActions } from 'vuex';
+
 export default {
   data () {
     return {
-      newFlexDirection: this.flexGroupDirection
+      newFlexDirection: this.currentDirection
     }
   },
-  props: ['flexGroupDirection'],
-  methods: {
-    applyNewDirection() {
-      eventBus.$emit('applyNewDirection', this.newFlexDirection)
+  computed: {
+    currentDirection() {
+      return this.$store.getters.getFlexDirection;
     }
+  },
+  methods: {
+    ...mapActions(['setFlexDirection_STORE']),
   }
 }
 </script>
