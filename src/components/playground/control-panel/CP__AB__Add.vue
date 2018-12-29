@@ -18,7 +18,7 @@ button {
   width: auto;
   background: linear-gradient(to bottom, rgb(175, 240, 184), rgb(117, 170, 159));
   border: 2px solid var(--backgroundGrey);
-  border-radius: 5px;
+  border-radius: 3px;
   padding: .5rem;
   font-family: 'Dosis', sans-serif;
   font-size: .9rem;
