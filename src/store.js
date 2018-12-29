@@ -16,16 +16,21 @@ const store = new Vuex.Store({
   getters: {
     // gets entire flex-item-group
     getFlexGroup: state => state.flexItemGroup,
+    // gets single flex item from group
     getFlexGroupItem: state => index => state.flexItemGroup[index],
+    // gets current flex direction
     getFlexDirection: state => state.flexGroupDirection,
   },
   mutations: {
+    // adds a new flex item to the flex group
     addItemToGroup_MUTA(state) {
       console.log('mutation');
       state.flexItemGroup.push({
         flex: 1, customWidth: '',
       });
     },
+    // removes flex item from group, if index,
+    // removes at the index, else removes last entry of group
     removeItemFromGroup_MUTA(state, index) {
       if (state.flexItemGroup.length === 0) {
         console.log('no flex items in the group');
@@ -37,10 +42,12 @@ const store = new Vuex.Store({
         state.flexItemGroup.splice(state.flexItemGroup.length - 1, 1);
       }
     },
+    // sets the new flex direction
     setFlexDirection_MUTA(state, newDirection) {
       store.state.flexGroupDirection = newDirection;
       console.log('New Flex Direction: ', state.flexGroupDirection);
     },
+    // sets a flex amount to an individual flex item
     setFlexAmount_MUTA(state, flexItemData) {
       store.state.flexItemGroup[flexItemData.index].flex = flexItemData.value;
       console.log(`Flex Item ${flexItemData.index + 1} changed to: `, state.flexItemGroup[flexItemData.index].flex);
