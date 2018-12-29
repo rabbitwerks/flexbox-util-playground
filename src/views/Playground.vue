@@ -1,7 +1,13 @@
-<template>
+6<template>
   <div class="playground flexbox flexdir-col">
-    <pg--display :flexItemGroup="flexItemGroup"></pg--display>
-    <pg--control-panel :flexItemGroup="flexItemGroup"></pg--control-panel>
+    <pg--display 
+      :flexItemGroup="flexItemGroup"
+      :flexGroupDirection="flexGroupDirection">
+    </pg--display>
+    <pg--control-panel 
+      :flexItemGroup="flexItemGroup"
+      :flexGroupDirection="flexGroupDirection">
+    </pg--control-panel>
   </div>
 </template>
 
@@ -17,7 +23,8 @@ export default {
           flex: 1,
           customWidth: '',
         }
-      ]
+      ],
+      flexGroupDirection: 'flexdir-row'
     }
   },
   components: {
@@ -25,6 +32,9 @@ export default {
     'pg--control-panel': ControlPanel
   },
   mounted() {
+    eventBus.$on('applyNewDirection', newFlexDirection => {
+      this.flexGroupDirection = newFlexDirection
+    })
     eventBus.$on('addItemToGroup', () => {
       this.addItemToGroup()
     });
@@ -48,7 +58,7 @@ export default {
       if(index){
         this.flexItemGroup.splice(index, 1)
       } else {
-        this.flexItemGroup.splice(0, 1)
+        this.flexItemGroup.splice(this.flexItemGroup.length - 1, 1)
       }
     }
   },
