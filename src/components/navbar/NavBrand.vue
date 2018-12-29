@@ -1,6 +1,6 @@
 <template>
   <div class="nav-item--brand flex-1 flex-align-center align-self">
-    <span>{{ text }}</span>
+    <span class="nav-item--brand-text">{{ text }}</span>
   </div>
 </template>
 
@@ -13,5 +13,9 @@ export default {
 <style scoped>
 .nav-item--brand {
   padding-left: 1rem;
+}
+.nav-item--brand-text {
+  font-size: 1.7rem;
+  font-weight: 700;
 }
 </style>
