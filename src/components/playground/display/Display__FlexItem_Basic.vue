@@ -2,7 +2,8 @@
   <div 
     :style="{ 'flex': flexItem.flex }"
     @dblclick="removeSelf"
-    class="flex-item--basic">
+    class="flex-item--basic flexbox-space-center">
+    <span>Flex: {{ flexItem.flex }}</span>
   </div>
 </template>
 
@@ -22,6 +23,6 @@ export default {
 .flex-item--basic {
   height: 100%;
   background-color: var(--mainTurq);
-  border-left: 1px solid var(--backgroundGrey)
+  border: 2px solid var(--backgroundGrey)
 }
 </style>
