@@ -4,7 +4,8 @@
     class="flex-10">
       <div 
         id="display--content"
-        class="flexbox flexdir-row ">
+        class="flexbox"
+        :class="flexGroupDirection">
           <disp--flex-item--basic 
             v-for="(flexItem, i) in flexItemGroup" 
             :key="i"
@@ -18,7 +19,7 @@
 <script>
 import Display__FlexItem_Basic from './Display__FlexItem_Basic'
 export default {
-  props: ['flexItemGroup'],
+  props: ['flexItemGroup', 'flexGroupDirection'],
   components: {
     'disp--flex-item--basic': Display__FlexItem_Basic,
   }
