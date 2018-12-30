@@ -45,12 +45,12 @@ export default {
   font-weight: 500;
 }
 .flex-amount-input-group input {
-  width: 6rem;
+  width: 6.5rem;
   padding: .1rem .25rem;
   border: 2px solid var(--backgroundGrey);
   border-radius: 3px;
   font-family: 'Dosis', sans-serif;
   font-size: .9rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 </style>
