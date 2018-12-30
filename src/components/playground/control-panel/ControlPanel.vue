@@ -1,17 +1,17 @@
 <template>
   <div class="flex-5 flexbox">
     <cp--action-buttons></cp--action-buttons>
-    <cp--flex-input-panel></cp--flex-input-panel>
+    <fp--flex-input-panel></fp--flex-input-panel>
   </div>
 </template>
 
 <script>
 import CP__ActionButtons from './CP__ActionButtons';
-import CP__FlexInputPanel from './CP__FlexInputPanel';
+import FP__FlexInputPanel from './flex-panel/FP__FlexInputPanel';
 export default {
   components: {
     'cp--action-buttons': CP__ActionButtons,
-    'cp--flex-input-panel': CP__FlexInputPanel
+    'fp--flex-input-panel': FP__FlexInputPanel
   }
 }
 </script>
