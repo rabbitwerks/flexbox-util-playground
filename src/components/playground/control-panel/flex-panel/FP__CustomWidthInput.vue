@@ -62,7 +62,9 @@ export default {
   width: 3.5rem;
   padding: .1rem .25rem;
   border: 2px solid var(--backgroundGrey);
-  border-radius: 3px;
+  border-right: 1px solid var(--backgroundGrey);
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
   font-family: 'Dosis', sans-serif;
   font-size: .9rem;
   font-weight: 600;
@@ -71,7 +73,9 @@ export default {
   width: 3rem;
   padding: .05rem;
   border: 2px solid var(--backgroundGrey);
-  border-radius: 3px;
+  border-left: 1px solid var(--backgroundGrey);
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
   font-family: 'Dosis', sans-serif;
   font-size: .9rem;
   font-weight: 600;
