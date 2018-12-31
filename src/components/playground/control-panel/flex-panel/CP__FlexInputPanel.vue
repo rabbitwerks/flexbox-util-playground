@@ -9,17 +9,15 @@
       <fp--flex-amount-input 
         :index="i">
       </fp--flex-amount-input>
-      <fp--custom-width-input 
-        :index="i">
-      </fp--custom-width-input>
+
 
     </div>
   </div>
 </template>
 
 <script>
-import FP__FlexAmountInput from '././FP__FlexAmountInput';
-import FP__CustomWIdthInput from '././FP__CustomWidthInput';
+import FP__FlexAmountInput from './FP__FlexAmountInput';
+import FP__CustomWIdthInput from './FP__CustomWidthInput';
 export default {
   components: {
     'fp--flex-amount-input': FP__FlexAmountInput,

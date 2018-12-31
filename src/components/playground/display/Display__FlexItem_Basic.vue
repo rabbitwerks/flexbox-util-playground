@@ -1,21 +1,11 @@
 <template>
   <div 
-    :style="setStyle"
+    :style="{ 'flex': flexItem.flex }"
     @dblclick="removeSelf"
     class="flex-item--basic">
     <div class="flex-item--basic--inner flexbox-space-center">
-      <span v-if="!flexItem.isCustomWidth">
+      <span>
         Flex Amount: {{ flexItem.flex }}
-      </span>
-      <span 
-        v-else-if="flexItem.measurementUnits === 'px' 
-        && flexItem.customWidth >= 100"> 
-        Width: {{ getCustomWidth }}
-      </span>
-      <span 
-        v-else-if="flexItem.measurementUnits === 'rem' 
-        && flexItem.customWidth >= 5"> 
-        Width: {{ getCustomWidth }}
       </span>
     </div>
   </div>
@@ -26,17 +16,6 @@
 import eventBus from '../../../eventbus.js'
 export default {
   props: ['flexItem', 'index'],
-  computed: {
-    getCustomWidth() {
-      return this.$store.getters.getFlexGroupItem(this.index).customWidth + this.$store.getters.getFlexGroupItem(this.index).measurementUnits
-    },
-    setStyle() {
-      if (this.flexItem.isCustomWidth) {
-        return { 'width': this.getCustomWidth }
-      }
-      return { 'flex': this.flexItem.flex }
-    }
-  },
   methods: {
     removeSelf() {
       eventBus.$emit('removeSelfFromGroup', this.index)
