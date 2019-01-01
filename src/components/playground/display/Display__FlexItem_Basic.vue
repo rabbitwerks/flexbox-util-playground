@@ -15,7 +15,12 @@
 <script>
 import eventBus from '../../../eventbus.js'
 export default {
-  props: ['flexItem', 'index'],
+  props: ['index'],
+  computed: {
+    flexItem() {
+      return this.$store.getters.getFlexGroupItem(this.index);
+    }
+  },
   methods: {
     removeSelf() {
       eventBus.$emit('removeSelfFromGroup', this.index)
