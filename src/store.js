@@ -14,6 +14,7 @@ const store = new Vuex.Store({
       },
     ],
     flexGroupDirection: 'flexdir-row',
+    flexWrapActivated: false,
   },
   getters: {
     // gets entire flex-item-group
@@ -22,6 +23,7 @@ const store = new Vuex.Store({
     getFlexGroupItem: state => index => state.flexItemGroup[index],
     // gets current flex direction
     getFlexDirection: state => state.flexGroupDirection,
+    getFlexWrapState: state => state.flexWrapActivated,
   },
   mutations: {
     // adds a new flex item to the flex group
@@ -70,6 +72,14 @@ const store = new Vuex.Store({
       store.state.flexItemGroup[customWidthData.index]
         .measurementUnits = customWidthData.measurementUnits;
     },
+    setFlexWrapON_MUTA(state) {
+      store.state.flexWrapActivated = true;
+      console.log('flexwrap: ', state.flexWrapActivated);
+    },
+    setFlexWrapOFF_MUTA(state) {
+      store.state.flexWrapActivated = false;
+      console.log('flexwrap: ', state.flexWrapActivated);
+    },
   },
   actions: {
     addItemToGroup_STORE(context) {
@@ -93,6 +103,12 @@ const store = new Vuex.Store({
     },
     setCustomWidthUnits_STORE(context, customWidthData) {
       context.commit('setCustomWidthUnits_MUTA', customWidthData);
+    },
+    switchFlexWrapON_STORE(context) {
+      context.commit('switchFlexWrapON_MUTA');
+    },
+    switchFlexWrapOFF_STORE(context) {
+      context.commit('switchFlexWrapOFF_MUTA');
     },
   },
 });
