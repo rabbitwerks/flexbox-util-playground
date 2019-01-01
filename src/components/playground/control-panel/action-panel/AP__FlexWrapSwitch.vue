@@ -1,16 +1,19 @@
 <template>
-  <div class="flexwrap-switch--outer flexbox">
-    <div 
-      @click="switchFlexWrapON_STORE"
-      class="flexwrap-switch--on flex-1 flexbox-space-center"
-      :class="{ 'not-selected': flexWrapActivated }">
-      <span>ON</span>
-    </div>
-    <div
-      @click="switchFlexWrapOFF_STORE" 
-      class="flexwrap-switch--off flex-1 flexbox-space-center"
-      :class="{ 'not-selected': !flexWrapActivated }">
-      <span>OFF</span>
+  <div class="flexwrap-switch--outer flexbox flexdir-col">
+    <label class="flexwrap-switch--label">Flex Wrap</label>
+    <div class="flexwrap-switch--inner flexbox">
+      <div 
+        @click="switchFlexWrap_STORE(payload = true)"
+        class="flexwrap-switch--on flex-1 flexbox-space-center"
+        :class="{ 'not-selected': !flexWrapActivated }">
+        <span>ON</span>
+      </div>
+      <div
+        @click="switchFlexWrap_STORE(payload = false)" 
+        class="flexwrap-switch--off flex-1 flexbox-space-center"
+        :class="{ 'not-selected': flexWrapActivated }">
+        <span>OFF</span>
+      </div>
     </div>
   </div>
 </template>
@@ -20,18 +23,24 @@ import { mapActions } from 'vuex';
 
 export default {
   computed: {
-    flexWrapActivated() {
-      return this.$store.getters.getFlexWrapState;
+    flexWrapActivated: {
+      get() { return this.$store.getters.getFlexWrapState; },
     }
   },
   methods: {
-    ...mapActions(['switchFlexWrapON_STORE', 'switchFlexWrapOFF_STORE']),
+    ...mapActions(['switchFlexWrap_STORE']),
   }
 }
 </script>
 
 <style scoped>
 .flexwrap-switch--outer {
+  height: 3rem;
+}
+.flexwrap-switch--label {
+  display: block;
+}
+.flexwrap-switch--inner {
   height: 1.5rem;
 }
 .flexwrap-switch--on {

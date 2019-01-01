@@ -5,7 +5,7 @@
       <div 
         id="display--content"
         class="flexbox"
-        :class="flexGroupDirection">
+        :class="{ 'flex-wrap': flexWrapState }">
           <disp--flex-item--basic 
             v-for="(flexItem, i) in flexItemGroup" 
             :key="i"
@@ -30,6 +30,9 @@ export default {
     },
     flexGroupDirection() {
       return this.$store.getters.getFlexDirection;
+    },
+    flexWrapState() {
+      return this.$store.getters.getFlexWrapState;
     }
   }
 }

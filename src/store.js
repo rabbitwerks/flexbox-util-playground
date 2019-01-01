@@ -28,10 +28,13 @@ const store = new Vuex.Store({
   mutations: {
     // adds a new flex item to the flex group
     addItemToGroup_MUTA(state) {
-      console.log('mutation');
-      state.flexItemGroup.push({
-        flex: 1, customWidth: '',
-      });
+      if (state.flexItemGroup.length <= 9) {
+        state.flexItemGroup.push({
+          flex: 1, customWidth: '',
+        });
+      } else {
+        console.log('max items reached');
+      }
     },
     // removes flex item from group, if index,
     // removes at the index, else removes last entry of group
@@ -72,12 +75,8 @@ const store = new Vuex.Store({
       store.state.flexItemGroup[customWidthData.index]
         .measurementUnits = customWidthData.measurementUnits;
     },
-    switchFlexWrapON_MUTA(state) {
-      store.state.flexWrapActivated = true;
-      console.log('flexwrap: ', state.flexWrapActivated);
-    },
-    switchFlexWrapOFF_MUTA(state) {
-      store.state.flexWrapActivated = false;
+    switchFlexWrap_MUTA(state, payload) {
+      store.state.flexWrapActivated = payload;
       console.log('flexwrap: ', state.flexWrapActivated);
     },
   },
@@ -104,11 +103,8 @@ const store = new Vuex.Store({
     setCustomWidthUnits_STORE(context, customWidthData) {
       context.commit('setCustomWidthUnits_MUTA', customWidthData);
     },
-    switchFlexWrapON_STORE(context) {
-      context.commit('switchFlexWrapON_MUTA');
-    },
-    switchFlexWrapOFF_STORE(context) {
-      context.commit('switchFlexWrapOFF_MUTA');
+    switchFlexWrap_STORE(context, payload) {
+      context.commit('switchFlexWrap_MUTA', payload);
     },
   },
 });
