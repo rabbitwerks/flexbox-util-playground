@@ -72,11 +72,11 @@ const store = new Vuex.Store({
       store.state.flexItemGroup[customWidthData.index]
         .measurementUnits = customWidthData.measurementUnits;
     },
-    setFlexWrapON_MUTA(state) {
+    switchFlexWrapON_MUTA(state) {
       store.state.flexWrapActivated = true;
       console.log('flexwrap: ', state.flexWrapActivated);
     },
-    setFlexWrapOFF_MUTA(state) {
+    switchFlexWrapOFF_MUTA(state) {
       store.state.flexWrapActivated = false;
       console.log('flexwrap: ', state.flexWrapActivated);
     },

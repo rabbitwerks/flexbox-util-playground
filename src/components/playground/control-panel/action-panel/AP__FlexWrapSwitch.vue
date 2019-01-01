@@ -1,13 +1,13 @@
 <template>
   <div class="flexwrap-switch--outer flexbox">
     <div 
-      @click="switchFlexWrapON"
+      @click="switchFlexWrapON_STORE"
       class="flexwrap-switch--on flex-1 flexbox-space-center"
       :class="{ 'not-selected': flexWrapActivated }">
       <span>ON</span>
     </div>
     <div
-      @click="switchFlexWrapOFF" 
+      @click="switchFlexWrapOFF_STORE" 
       class="flexwrap-switch--off flex-1 flexbox-space-center"
       :class="{ 'not-selected': !flexWrapActivated }">
       <span>OFF</span>
@@ -19,19 +19,13 @@
 import { mapActions } from 'vuex';
 
 export default {
-  ...mapActions(['switchFlexWrapON_STORE', 'switchFlexWrapOFF_STORE']),
   computed: {
     flexWrapActivated() {
       return this.$store.getters.getFlexWrapState;
     }
   },
   methods: {
-    switchFlexWrapON() {
-      this.switchFlexWrapON_STORE();
-    },
-    switchFlexWrapOFF() {
-      this.switchFlexWrapOFF_STORE();
-    },
+    ...mapActions(['switchFlexWrapON_STORE', 'switchFlexWrapOFF_STORE']),
   }
 }
 </script>
