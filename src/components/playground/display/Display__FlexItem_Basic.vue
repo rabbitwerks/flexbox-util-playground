@@ -10,15 +10,20 @@
       </span>
     </div>
   </div>
+  <custom-width-item v-else :index="index"></custom-width-item>
+
   
 
 </template>
 
 <script>
 import eventBus from '../../../eventbus.js'
+import CustomWidthItem from './Display__Flextem_CustomWidth';
 export default {
   props: ['flexItem', 'index'],
-  
+  components: {
+    'custom-width-item': CustomWidthItem
+  },
   methods: {
     removeSelf() {
       eventBus.$emit('removeSelfFromGroup', this.index)

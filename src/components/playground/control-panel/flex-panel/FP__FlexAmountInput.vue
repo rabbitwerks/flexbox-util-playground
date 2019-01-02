@@ -32,6 +32,7 @@ export default {
       const flexItemData = {
         index, 
         value: $event.target.value,
+        isCustomWidth: false
       };
       this.setFlexAmount_STORE(flexItemData);
     }

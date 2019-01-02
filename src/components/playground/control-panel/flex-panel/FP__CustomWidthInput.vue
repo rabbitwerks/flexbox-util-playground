@@ -2,14 +2,12 @@
   <div class="custom-width-input-group">
     <label for="custom-width-input">Custom Width | Units</label>
     <input 
-      @input="applyCustomWidth(index)"
       v-model="customWidth"
       type="number" 
       name="custom-width-amount" 
       class="custom-width-amount"
       placeholder="400">
     <select 
-      @change="applyUnitsChange(index)"
       v-model="measurementUnits"
       name="custom-width-unit-select"
       class="custom-width-unit-select">
@@ -25,29 +23,39 @@ import { mapActions } from 'vuex';
 export default {
   data () {
     return {
-      customWidth: '',
-      measurementUnits: 'px'
     }
   },
   props: ['index'],
+  computed: {
+    customWidth: {
+      get() {
+        return this.$store.state.flexItemGroup[this.index].customWidth;
+      },
+      set(value) {
+        const payload = {
+          value,
+          index: this.index,
+          isCustomWidth: true,
+        };
+        this.$store.commit('setFlexItemToCustomWidth_MUTA', payload)
+        this.$store.commit('setCustomWidthValue_MUTA', payload)
+      }
+    },
+    measurementUnits: {
+      get() {
+        return this.$store.state.flexItemGroup[this.index].measurementUnits;
+      },
+      set(value) {
+        const payload = {
+          value,
+          index: this.index,
+        }
+        this.$store.commit('setCustomWidthUnits_MUTA', payload)
+      }
+    }
+  },
   methods: {
     ...mapActions(['setCustomWidth_STORE', 'setCustomWidthUnits_STORE']),
-    applyCustomWidth(index) {
-      const customWidthData = {
-        index,
-        isCustomWidth: true,
-        customWidth: this.customWidth,
-        measurementUnits: this.measurementUnits
-      };
-      this.setCustomWidth_STORE(customWidthData);
-    },
-    applyUnitsChange(index) {
-      const customWidthData = {
-        index: this.index,
-        measurementUnits: this.measurementUnits,
-      };
-      this.setCustomWidthUnits_STORE(customWidthData)
-    }
   }
 }
 </script>
