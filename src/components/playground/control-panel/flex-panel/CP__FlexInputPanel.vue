@@ -3,7 +3,7 @@
     class="flex-input-panel flex-6 flexbox flex-wrap"
     :class="{ 'flexgap-2': flexItemGroup.length > 1 }">
     <div 
-      class="flex-item-group" 
+      class="flex-item-group flex-2" 
       v-for="(flexItem, i) in flexItemGroup" 
       :key="i">
       <fp--flex-amount-input 

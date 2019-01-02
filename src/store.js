@@ -12,6 +12,15 @@ const store = new Vuex.Store({
         customWidth: 0,
         measurementUnits: 'px',
         customWidthFull: '',
+        nested: {
+          hasNestedFlexbox: false,
+          nestedFlexGroup: [
+            {
+              flex: 1,
+            },
+          ],
+          nestedFlexDirection: 'flexdir-row',
+        },
       },
     ],
     flexGroupDirection: 'flexdir-row',
@@ -27,7 +36,7 @@ const store = new Vuex.Store({
   mutations: {
     // adds a new flex item to the flex group
     addItemToGroup_MUTA(state) {
-      console.log('mutation');
+      if (state.flexItemGroup.length > 4) return;
       state.flexItemGroup.push({
         flex: 1,
         isCustomWidth: false,
