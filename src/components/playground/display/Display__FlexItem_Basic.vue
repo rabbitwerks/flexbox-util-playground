@@ -1,5 +1,6 @@
 <template>
-  <div 
+  <div
+    v-if="!flexItem.isCustomWidth" 
     :style="{ 'flex': flexItem.flex }"
     @dblclick="removeSelf"
     class="flex-item--basic">
@@ -9,17 +10,19 @@
       </span>
     </div>
   </div>
+  <custom-width-item v-else :index="index"></custom-width-item>
+
+  
 
 </template>
 
 <script>
 import eventBus from '../../../eventbus.js'
+import CustomWidthItem from './Display__Flextem_CustomWidth';
 export default {
-  props: ['index'],
-  computed: {
-    flexItem() {
-      return this.$store.getters.getFlexGroupItem(this.index);
-    }
+  props: ['flexItem', 'index'],
+  components: {
+    'custom-width-item': CustomWidthItem
   },
   methods: {
     removeSelf() {

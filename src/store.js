@@ -10,7 +10,8 @@ const store = new Vuex.Store({
         flex: 1,
         isCustomWidth: false,
         customWidth: 0,
-        measurementUnits: '',
+        measurementUnits: 'px',
+        customWidthFull: '',
       },
     ],
     flexGroupDirection: 'flexdir-row',
@@ -28,7 +29,11 @@ const store = new Vuex.Store({
     addItemToGroup_MUTA(state) {
       console.log('mutation');
       state.flexItemGroup.push({
-        flex: 1, customWidth: '',
+        flex: 1,
+        isCustomWidth: false,
+        customWidth: 0,
+        measurementUnits: 'px',
+        customWidthFull: '',
       });
     },
     // removes flex item from group, if index,
@@ -47,28 +52,24 @@ const store = new Vuex.Store({
     // sets the new flex direction
     setFlexDirection_MUTA(state, newDirection) {
       store.state.flexGroupDirection = newDirection;
-      console.log('New Flex Direction: ', state.flexGroupDirection);
     },
     // sets a flex amount to an individual flex item
     setFlexAmount_MUTA(state, flexItemData) {
+      store.state.flexItemGroup[flexItemData.index].isCustomWidth = flexItemData.isCustomWidth;
       store.state.flexItemGroup[flexItemData.index].flex = flexItemData.value;
-      console.log(`Flex Item ${flexItemData.index + 1} changed to: `, state.flexItemGroup[flexItemData.index].flex);
     },
 
-    setFlexItemToCustomWidth_MUTA(state, customWidthData) {
-      store.state.flexItemGroup[customWidthData.index]
-        .isCustomWidth = customWidthData.isCustomWidth;
-      // log the boolean value of custom width
-      console.log('isCustomWidth: ', state.flexItemGroup[customWidthData.index].isCustomWidth);
+    setFlexItemToCustomWidth_MUTA(state, payload) {
+      store.state.flexItemGroup[payload.index]
+        .isCustomWidth = payload.isCustomWidth;
     },
-    setCustomWidthValue_MUTA(state, customWidthData) {
-      store.state.flexItemGroup[customWidthData.index]
-        .customWidth = customWidthData.customWidth;
-      console.log('Custom Width set to: ', state.flexItemGroup[customWidthData.index].customWidth);
+    setCustomWidthValue_MUTA(state, payload) {
+      store.state.flexItemGroup[payload.index]
+        .customWidth = payload.value;
     },
-    setCustomWidthUnits_MUTA(state, customWidthData) {
-      store.state.flexItemGroup[customWidthData.index]
-        .measurementUnits = customWidthData.measurementUnits;
+    setCustomWidthUnits_MUTA(state, payload) {
+      store.state.flexItemGroup[payload.index]
+        .measurementUnits = payload.value;
     },
   },
   actions: {
@@ -79,20 +80,23 @@ const store = new Vuex.Store({
     removeItemFromGroup_STORE(context, index) {
       context.commit('removeItemFromGroup_MUTA', index);
     },
+
     setFlexDirection_STORE(context, newDirection) {
       context.commit('setFlexDirection_MUTA', newDirection);
     },
+
     setFlexAmount_STORE(context, flexItemData) {
       context.commit('setFlexAmount_MUTA', flexItemData);
       console.log('set flex amount action', flexItemData);
     },
-    setCustomWidth_STORE(context, customWidthData) {
-      context.commit('setFlexItemToCustomWidth_MUTA', customWidthData);
-      context.commit('setCustomWidthValue_MUTA', customWidthData);
-      context.commit('setCustomWidthUnits_MUTA', customWidthData);
+
+    setCustomWidth_STORE(context, payload) {
+      context.commit('setFlexItemToCustomWidth_MUTA', payload);
+      context.commit('setCustomWidthValue_MUTA', payload);
+      context.commit('setCustomWidthUnits_MUTA', payload);
     },
-    setCustomWidthUnits_STORE(context, customWidthData) {
-      context.commit('setCustomWidthUnits_MUTA', customWidthData);
+    setCustomWidthUnits_STORE(context, payload) {
+      context.commit('setCustomWidthUnits_MUTA', payload);
     },
   },
 });
