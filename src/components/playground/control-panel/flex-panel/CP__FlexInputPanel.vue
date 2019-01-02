@@ -9,6 +9,7 @@
       <fp--flex-amount-input 
         :index="i">
       </fp--flex-amount-input>
+      <fp--custom-width-input :index="i"></fp--custom-width-input>
 
 
     </div>
