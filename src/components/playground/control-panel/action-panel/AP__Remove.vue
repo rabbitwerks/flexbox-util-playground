@@ -1,5 +1,9 @@
 <template>
-  <button @click="removeItemFromGroup_STORE">Remove Flex Item</button>
+  <button 
+    @click="removeItemFromGroup_STORE"
+    class="add-remove-btns--remove flex-1"
+    >Remove
+  </button>
 </template>
 
 <script>
@@ -13,17 +17,20 @@ export default {
 </script>
 
 <style scoped>
-button {
+.add-remove-btns--remove {
   width: auto;
   background: linear-gradient(to bottom, rgb(175, 240, 184), rgb(117, 170, 159));
   border: 2px solid var(--backgroundGrey);
   border-radius: 3px;
-  padding: .5rem;
+  border-right: 1px solid var(--backgroundGrey);
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  padding: .1rem .5rem;
   font-family: 'Dosis', sans-serif;
   font-size: .9rem;
   font-weight: 600;
 }
-button:active {
+.add-remove-btns--remove:active {
   background: linear-gradient(to top, rgb(175, 240, 184), rgb(117, 170, 159));
 }
 </style>
