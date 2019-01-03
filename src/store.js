@@ -11,7 +11,6 @@ const store = new Vuex.Store({
         isCustomWidth: false,
         customWidth: 0,
         measurementUnits: 'px',
-        customWidthFull: '',
         nested: {
           hasNestedFlexbox: false,
           nestedFlexGroup: [
@@ -24,6 +23,9 @@ const store = new Vuex.Store({
       },
     ],
     flexGroupDirection: 'flexdir-row',
+    flexgap: {
+      name: 'Flexgap 0', class: 'flexgap-0',
+    },
   },
   getters: {
     // gets entire flex-item-group
@@ -32,6 +34,7 @@ const store = new Vuex.Store({
     getFlexGroupItem: state => index => state.flexItemGroup[index],
     // gets current flex direction
     getFlexDirection: state => state.flexGroupDirection,
+    getFlexgap: state => state.flexgap,
   },
   mutations: {
     // adds a new flex item to the flex group
@@ -42,7 +45,15 @@ const store = new Vuex.Store({
         isCustomWidth: false,
         customWidth: 0,
         measurementUnits: 'px',
-        customWidthFull: '',
+        nested: {
+          hasNestedFlexbox: false,
+          nestedFlexGroup: [
+            {
+              flex: 1,
+            },
+          ],
+          nestedFlexDirection: 'flexdir-row',
+        },
       });
     },
     // removes flex item from group, if index,
@@ -80,6 +91,10 @@ const store = new Vuex.Store({
       store.state.flexItemGroup[payload.index]
         .measurementUnits = payload.value;
     },
+
+    setFlexgap_MUTA(state, payload) {
+      store.state.flexgap = payload;
+    },
   },
   actions: {
     addItemToGroup_STORE(context) {
@@ -106,6 +121,10 @@ const store = new Vuex.Store({
     },
     setCustomWidthUnits_STORE(context, payload) {
       context.commit('setCustomWidthUnits_MUTA', payload);
+    },
+
+    setFlexgap_STORE(context, payload) {
+      context.commit('setFlexgap_MUTA', payload);
     },
   },
 });
