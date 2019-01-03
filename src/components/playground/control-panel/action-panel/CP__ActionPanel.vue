@@ -5,6 +5,7 @@
     <ap--direction-selection>    </ap--direction-selection>
     <ap--add></ap--add>
     <ap--remove></ap--remove>
+    <ap--flexgap></ap--flexgap>
   </div>
   <div class="flex-1"></div>
 </div>
@@ -13,12 +14,15 @@
 <script>
 import AP__Add from './AP__Add';
 import AP__Remove from './AP__Remove';
-import AP__DirectionSelection from './AP__DirectionSelection'
+import AP__DirectionSelection from './AP__DirectionSelection';
+import AP__Flexgap from './AP__Flexgap';
+
 export default {
   components: {
     'ap--add': AP__Add,
     'ap--remove': AP__Remove,
-    'ap--direction-selection': AP__DirectionSelection
+    'ap--direction-selection': AP__DirectionSelection,
+    'ap--flexgap': AP__Flexgap,
   }
 }
 </script>

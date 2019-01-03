@@ -5,7 +5,7 @@
       <div 
         id="display--content"
         class="flexbox"
-        :class="flexGroupDirection">
+        :class="[flexGroupDirection, currentFlexgap.class]">
           <disp--flex-item--basic 
             v-for="(flexItem, i) in flexItemGroup" 
             :key="i"
@@ -30,6 +30,9 @@ export default {
     },
     flexGroupDirection() {
       return this.$store.getters.getFlexDirection;
+    },
+    currentFlexgap() {
+      return this.$store.getters.getFlexgap;
     }
   }
 }
@@ -41,6 +44,7 @@ export default {
 }
 #display--content {
   height: 100%;
+  border-bottom: 4px solid var(--brightGreen);
 }
 
 </style>
