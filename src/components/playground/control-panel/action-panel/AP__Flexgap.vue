@@ -9,32 +9,32 @@
         <transition :name="transitionDirection" type="transition" mode="out-in">
           <span v-if="flexgapAmount === 0" 
             key="0"
-            class="flexgap--label--value flex-1 text-center"
+            class="flexgap--label--value flex-1 text-right"
             >None
           </span> 
           <span v-else-if="flexgapAmount === 1"
             key="1"
-            class="flexgap--label--value flex-1 text-center"
+            class="flexgap--label--value flex-1 text-right"
             >Flexgap-1
           </span> 
           <span v-else-if="flexgapAmount === 2"
             key="2"
-            class="flexgap--label--value flex-1 text-center"
+            class="flexgap--label--value flex-1 text-right"
             >Flexgap-2
           </span> 
           <span v-else-if="flexgapAmount === 3"
             key="3"
-            class="flexgap--label--value flex-1 text-center"
+            class="flexgap--label--value flex-1 text-right"
             >Flexgap-3
           </span> 
           <span v-else-if="flexgapAmount === 4"
             key="4"
-            class="flexgap--label--value flex-1 text-center"
+            class="flexgap--label--value flex-1 text-right"
             >Flexgap-4
           </span> 
           <span v-else-if="flexgapAmount === 5"
           key="5"
-            class="flexgap--label--value flex-1 text-center"
+            class="flexgap--label--value flex-1 text-right"
             >Flexgap-5
           </span> 
         </transition>
@@ -87,7 +87,7 @@ export default {
   computed: {
     currentFlexgap() {
       return this.$store.getters.getFlexgap;
-    }
+    },
   },
   methods: {
     ...mapActions(['setFlexgap_STORE']),
