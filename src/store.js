@@ -33,6 +33,7 @@ const store = new Vuex.Store({
     // gets single flex item from group
     getFlexGroupItem: state => index => state.flexItemGroup[index],
     // gets current flex direction
+    getNestedFlexGroup: state => index => state.flexItemGroup[index].nested,
     getFlexDirection: state => state.flexGroupDirection,
     getFlexgap: state => state.flexgap,
   },

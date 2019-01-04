@@ -2,12 +2,9 @@
   <div
     v-if="!flexItem.isCustomWidth" 
     :style="{ 'flex': flexItem.flex }"
-    @dblclick="removeSelf"
     class="flex-item--basic">
-    <div class="flex-item--basic--inner flexbox-space-center">
-      <span>
-        Flex Amount: {{ flexItem.flex }}
-      </span>
+    <div class="flex-item--basic--inner">
+      <flex-item--nested></flex-item--nested>
     </div>
   </div>
   <custom-width-item v-else :index="index"></custom-width-item>
@@ -17,12 +14,13 @@
 </template>
 
 <script>
-import eventBus from '../../../eventbus.js'
 import CustomWidthItem from './Display__Flextem_CustomWidth';
+import Display__FlexItem_Nested from './Display__FlexItem_Nested';
 export default {
   props: ['index'],
   components: {
-    'custom-width-item': CustomWidthItem
+    'custom-width-item': CustomWidthItem,
+    'flex-item--nested': Display__FlexItem_Nested,
   },
   computed: {
     flexItem() {
@@ -30,9 +28,7 @@ export default {
     }
   },
   methods: {
-    removeSelf() {
-      eventBus.$emit('removeSelfFromGroup', this.index)
-    }
+
   }
 }
 </script>
