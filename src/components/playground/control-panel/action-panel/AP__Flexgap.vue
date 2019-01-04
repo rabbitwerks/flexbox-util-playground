@@ -112,9 +112,7 @@ export default {
 </script>
 
 <style scoped>
-.text-center {
-  text-align: center;
-}
+
 .flexgap--label--group {
   font-weight: 500;
   margin-bottom: 0.1rem;
