@@ -20,9 +20,14 @@
 import eventBus from '../../../eventbus.js'
 import CustomWidthItem from './Display__Flextem_CustomWidth';
 export default {
-  props: ['flexItem', 'index'],
+  props: ['index'],
   components: {
     'custom-width-item': CustomWidthItem
+  },
+  computed: {
+    flexItem() {
+      return this.$store.getters.getFlexGroupItem(this.index);
+    }
   },
   methods: {
     removeSelf() {
