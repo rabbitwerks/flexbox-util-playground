@@ -3,10 +3,24 @@
     v-if="!flexItem.isCustomWidth" 
     :style="{ 'flex': flexItem.flex }"
     class="flex-item--basic">
-    <div class="flex-item--basic--inner">
-      <flex-item--nested></flex-item--nested>
+    <div 
+      class="flex-item--basic--inner"
+      :class="{ 'flexbox-space-center': !flexItem.nested.hasNestedFlexbox }">
+
+      <!-- component for nested flexbox -->
+      <flex-item--nested 
+        v-if="flexItem.nested.hasNestedFlexbox" :index="index">
+      </flex-item--nested>
+
+      <!-- else display flex amount div -->
+      <div v-else>
+        <h3>Flex: {{ flexItem.flex }} </h3>
+      </div>
+
     </div>
   </div>
+
+  <!-- custom width div if not flex amount -->
   <custom-width-item v-else :index="index"></custom-width-item>
 
   

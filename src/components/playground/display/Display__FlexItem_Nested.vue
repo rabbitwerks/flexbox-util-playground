@@ -13,8 +13,11 @@
 
 <script>
 export default {
+  props: ['index'],
   computed: {
-    
+    nestedFlexGroup() {
+      return this.$store.getters.getNestedFlexGroup(this.index).nestedFlexGroup;
+    }
   }
 }
 </script>
