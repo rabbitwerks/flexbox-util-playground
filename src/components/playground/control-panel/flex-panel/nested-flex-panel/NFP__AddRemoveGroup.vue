@@ -1,7 +1,12 @@
 <template>
-  <div class="nfp--add-remove-group--outer flexbox">
-    <nfp--remove></nfp--remove>
-    <nfp--add></nfp--add>
+  <div class="nfp--add-remove-group--outer flexbox flexdir-col">
+    <span class="nfp--add-remove-group--label"
+    >Nested Flex
+    </span>
+    <div class="nfp--add-remove-group--inner flexbox">
+      <nfp--remove></nfp--remove>
+      <nfp--add></nfp--add>
+    </div>
   </div>
 </template>
 
@@ -16,6 +21,12 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.nfp--add-remove-group--outer {
+margin-top: .5rem;
+}
+.nfp--add-remove-group--label {
+  display: block;
+  font-weight: 500;
+}
 </style>

@@ -14,7 +14,7 @@
 
       <!-- else display flex amount div -->
       <div v-else>
-        <h3>Flex: {{ flexItem.flex }} </h3>
+        <h3>Flex: {{ flexItem.flex }}</h3>
       </div>
 
     </div>

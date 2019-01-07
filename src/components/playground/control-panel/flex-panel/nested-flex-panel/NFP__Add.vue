@@ -1,5 +1,6 @@
 <template>
-  <button 
+  <button
+    @click="addNestedItemtoFlexItem_STORE(index)" 
     class="nfp--add-remove-group--add flex-1"
     >Add
   </button>

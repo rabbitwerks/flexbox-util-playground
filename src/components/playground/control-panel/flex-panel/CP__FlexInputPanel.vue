@@ -11,10 +11,14 @@
         :index="i">
       </fp--flex-amount-input>
 
-      <fp--custom-width-input :index="i"></fp--custom-width-input>
+      <fp--custom-width-input 
+        :index="i">
+      </fp--custom-width-input>
 
       <!-- nested flex item control panel -->
-      <fp--nested-flex-panel></fp--nested-flex-panel>
+      <fp--nested-flex-panel 
+        :index="i">
+      </fp--nested-flex-panel>
 
 
     </div>
