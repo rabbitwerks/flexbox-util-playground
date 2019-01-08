@@ -1,13 +1,19 @@
 <template>
   <button 
+    @click="removeNestedItemfromFlexItem_STORE(index)"
     class="nfp--add-remove-group--remove"
     >Remove
   </button>
 </template>
 
 <script>
-export default {
+import { mapActions } from 'vuex';
 
+export default {
+  props: ['index'],
+  methods: {
+    ...mapActions(['removeNestedItemfromFlexItem_STORE'])
+  }
 }
 </script>
 

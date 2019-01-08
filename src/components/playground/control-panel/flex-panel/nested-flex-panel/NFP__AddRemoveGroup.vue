@@ -4,8 +4,16 @@
     >Nested Flex
     </span>
     <div class="nfp--add-remove-group--inner flexbox">
-      <nfp--remove></nfp--remove>
-      <nfp--add></nfp--add>
+    <!-- - - - - - - - -->
+      <nfp--remove 
+        :index="index">        
+      </nfp--remove>
+
+    <!-- - - - - - - - -->
+      <nfp--add 
+        :index="index">
+      </nfp--add>
+
     </div>
   </div>
 </template>
@@ -14,6 +22,7 @@
 import NFP__Add from './NFP__Add';
 import NFP__Remove from './NFP__Remove';
 export default {
+  props: ['index'],
   components: {
     'nfp--add': NFP__Add,
     'nfp--remove': NFP__Remove,

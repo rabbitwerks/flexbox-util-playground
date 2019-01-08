@@ -7,8 +7,13 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   props: ['index'],
+  methods: {
+    ...mapActions(['addNestedItemtoFlexItem_STORE'])
+  }
 }
 </script>
 

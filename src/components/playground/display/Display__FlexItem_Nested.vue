@@ -29,4 +29,7 @@ export default {
 .flex-item--nested--inner {
   margin: 1rem;
 }
+.nested--flex-item {
+  border: 1px solid #212121;
+}
 </style>

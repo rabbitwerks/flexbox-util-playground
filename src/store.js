@@ -13,11 +13,7 @@ const store = new Vuex.Store({
         measurementUnits: 'px',
         nested: {
           hasNestedFlexbox: false,
-          nestedFlexGroup: [
-            {
-              flex: 1,
-            },
-          ],
+          nestedFlexGroup: [],
           nestedFlexDirection: 'flexdir-row',
         },
       },
@@ -48,11 +44,7 @@ const store = new Vuex.Store({
         measurementUnits: 'px',
         nested: {
           hasNestedFlexbox: false,
-          nestedFlexGroup: [
-            {
-              flex: 1,
-            },
-          ],
+          nestedFlexGroup: [],
           nestedFlexDirection: 'flexdir-row',
         },
       });
@@ -96,7 +88,38 @@ const store = new Vuex.Store({
     setFlexgap_MUTA(state, payload) {
       store.state.flexgap = payload;
     },
+
+    // adds a nested flex item to the current parent flex item
+    // payload === index
+    addNestedItemtoFlexItem_MUTA(state, payload) {
+      if (!state.flexItemGroup[payload].nested.nestedFlexGroup.length) {
+        this.state.flexItemGroup[payload].nested.hasNestedFlexbox = true;
+      }
+      if (state.flexItemGroup[payload].nested.nestedFlexGroup.length > 3) {
+        console.log('max nested flex items reached');
+        return;
+      }
+      state.flexItemGroup[payload].nested.nestedFlexGroup.push({
+        flex: 1,
+      });
+    },
+
+    // removes a nested flex item from the current parent flex item
+    // payload === index
+    removeNestedItemfromFlexItem_MUTA(state, payload) {
+      if (!state.flexItemGroup[payload].nested.nestedFlexGroup.length) return;
+
+      state.flexItemGroup[payload].nested.nestedFlexGroup.pop();
+
+      if (!state.flexItemGroup[payload].nested.nestedFlexGroup.length) {
+        this.state.flexItemGroup[payload].nested.hasNestedFlexbox = false;
+      }
+    },
   },
+
+  // =================
+  // VUEX ACTIONS
+  // =================
   actions: {
     addItemToGroup_STORE(context) {
       console.log('action');
@@ -126,6 +149,16 @@ const store = new Vuex.Store({
 
     setFlexgap_STORE(context, payload) {
       context.commit('setFlexgap_MUTA', payload);
+    },
+
+    // payload === index
+    addNestedItemtoFlexItem_STORE(context, payload) {
+      context.commit('addNestedItemtoFlexItem_MUTA', payload);
+    },
+
+    // payload === index
+    removeNestedItemfromFlexItem_STORE(context, payload) {
+      context.commit('removeNestedItemfromFlexItem_MUTA', payload);
     },
   },
 });
