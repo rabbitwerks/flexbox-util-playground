@@ -32,6 +32,9 @@ const store = new Vuex.Store({
     // gets current flex direction
     getFlexDirection: state => state.flexGroupDirection,
     getFlexgap: state => state.flexgap,
+
+    // gets nested flexdir of current flex item
+    getNestedFlexDirection: state => index => state.flexItemGroup[index].nested.nestedFlexDirection,
   },
   mutations: {
     // adds a new flex item to the flex group
@@ -115,6 +118,12 @@ const store = new Vuex.Store({
         this.state.flexItemGroup[payload].nested.hasNestedFlexbox = false;
       }
     },
+
+    // payload === index, newDirection
+    setNestedFlexDirection_MUTA(state, { index, newDirection }) {
+      // eslint-disable-next-line
+      state.flexItemGroup[index].nested.nestedFlexDirection = newDirection;
+    },
   },
 
   // =================
@@ -159,6 +168,12 @@ const store = new Vuex.Store({
     // payload === index
     removeNestedItemfromFlexItem_STORE(context, payload) {
       context.commit('removeNestedItemfromFlexItem_MUTA', payload);
+    },
+
+    // nested flexdir selection
+    // payload === index, newDirection
+    setNestedFlexDirection_STORE({ commit }, payload) {
+      commit('setNestedFlexDirection_MUTA', payload);
     },
   },
 });

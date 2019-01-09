@@ -3,8 +3,8 @@
     <nfp--add-remove-group 
       :index="index">
     </nfp--add-remove-group>
-    <nfp--flexdir-select>
-      
+    <nfp--flexdir-select
+      :index="index">
     </nfp--flexdir-select>
   </div>
 </template>
