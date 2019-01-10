@@ -3,23 +3,26 @@
     class="flex-input-panel flex-6 flexbox flex-wrap"
     :class="{ 'flexgap-2': flexItemGroup.length > 1 }">
     <div 
-      class="flex-item-group" 
+      class="flex-item-group flexbox" 
       v-for="(flexItem, i) in flexItemGroup" 
       :key="i">
-      
-      <fp--flex-amount-input 
-        :index="i">
-      </fp--flex-amount-input>
+      <div class="fig--main-panel">
+        <fp--flex-amount-input 
+          :index="i">
+        </fp--flex-amount-input>
 
-      <fp--custom-width-input 
-        :index="i">
-      </fp--custom-width-input>
+        <fp--custom-width-input 
+          :index="i">
+        </fp--custom-width-input>
 
-      <!-- nested flex item control panel -->
-      <fp--nested-flex-panel 
-        :index="i">
-      </fp--nested-flex-panel>
-
+        <!-- nested flex item control panel -->
+        <fp--nested-flex-panel 
+          :index="i">
+        </fp--nested-flex-panel>
+      </div>
+      <div v-if="true" class="fig--nested-panel">
+        
+      </div>
 
     </div>
   </div>
@@ -48,5 +51,12 @@ export default {
 <style scoped>
 .flex-input-panel {
   padding: .5rem 1rem;
+}
+
+.fig--nested-panel {
+  margin-left: .5rem;
+  width: 4rem;
+  border-left: 2px solid #212121;
+  border-right: 2px solid #212121;
 }
 </style>
