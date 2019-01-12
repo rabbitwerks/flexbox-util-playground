@@ -124,6 +124,11 @@ const store = new Vuex.Store({
       // eslint-disable-next-line
       state.flexItemGroup[index].nested.nestedFlexDirection = newDirection;
     },
+    // es6 destructuring is amazing :)
+    setNestedFlexAmount_MUTA(state, { parentIndex, nestedIndex, newFlexAmount }) {
+      // eslint-disable-next-line
+      state.flexItemGroup[parentIndex].nested.nestedFlexGroup[nestedIndex].flex = newFlexAmount;
+    },
   },
 
   // =================
@@ -174,6 +179,10 @@ const store = new Vuex.Store({
     // payload === index, newDirection
     setNestedFlexDirection_STORE({ commit }, payload) {
       commit('setNestedFlexDirection_MUTA', payload);
+    },
+
+    setNestedFlexAmount_STORE({ commit }, payload) {
+      commit('setNestedFlexAmount_MUTA', payload);
     },
   },
 });

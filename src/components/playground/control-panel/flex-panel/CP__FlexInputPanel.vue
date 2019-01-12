@@ -4,25 +4,29 @@
     :class="{ 'flexgap-2': flexItemGroup.length > 1 }">
     <div 
       class="flex-item-group flexbox" 
-      v-for="(flexItem, i) in flexItemGroup" 
-      :key="i">
-      <div class="fig--main-panel">
+      v-for="(flexItem, parentIndex) in flexItemGroup" 
+      :key="parentIndex">
+      <div class="fig--main-panel flex-2">
         <fp--flex-amount-input 
-          :index="i">
+          :index="parentIndex">
         </fp--flex-amount-input>
 
         <fp--custom-width-input 
-          :index="i">
+          :index="parentIndex">
         </fp--custom-width-input>
 
         <!-- nested flex item control panel -->
         <fp--nested-flex-panel 
-          :index="i">
+          :index="parentIndex">
         </fp--nested-flex-panel>
       </div>
-      <div v-if="true" class="fig--nested-panel">
+      <nfp--flex-amount-panel   
+        v-if="flexItem.nested.hasNestedFlexbox" 
+        :nestedFlexGroup="flexItem.nested.nestedFlexGroup"
+        :parentIndex="parentIndex"
+        class="fig--nested-panel flex-1">
         
-      </div>
+      </nfp--flex-amount-panel>
 
     </div>
   </div>
@@ -32,12 +36,14 @@
 import FP__FlexAmountInput from './FP__FlexAmountInput';
 import FP__CustomWIdthInput from './FP__CustomWidthInput';
 import FP__NestedFlexPanel from './nested-flex-panel/FP__NestedFlexPanel';
+import NFP__FlexAmountPanel from './nested-flex-panel/NFP__FlexAmountPanel';
 
 export default {
   components: {
     'fp--flex-amount-input': FP__FlexAmountInput,
     'fp--custom-width-input': FP__CustomWIdthInput,
     'fp--nested-flex-panel': FP__NestedFlexPanel,
+    'nfp--flex-amount-panel': NFP__FlexAmountPanel,
   },
   computed: {
     flexItemGroup() {
@@ -51,12 +57,5 @@ export default {
 <style scoped>
 .flex-input-panel {
   padding: .5rem 1rem;
-}
-
-.fig--nested-panel {
-  margin-left: .5rem;
-  width: 4rem;
-  border-left: 2px solid #212121;
-  border-right: 2px solid #212121;
 }
 </style>

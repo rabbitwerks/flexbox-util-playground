@@ -9,8 +9,9 @@
       <div 
         v-for="(nestedFlexItem, index) in nestedFlexGroup"
         :key="index"
+        :style="{ 'flex': nestedFlexItem.flex }"
         class="nested--flex-item flexbox-space-center">
-        <span>Flex</span>
+        <span>Flex {{nestedFlexItem.flex}}</span>
       </div>
     </div>
   </div>
@@ -39,5 +40,6 @@ export default {
 }
 .nested--flex-item {
   border: 1px solid #212121;
+  transition: flex .1s ease-in-out;
 }
 </style>
