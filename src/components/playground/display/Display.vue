@@ -7,10 +7,10 @@
         class="flexbox"
         :class="[flexGroupDirection, currentFlexgap.class]">
           <disp--flex-item--basic 
-            v-for="(flexItem, i) in flexItemGroup" 
-            :key="i"
+            v-for="(flexItem, parentIndex) in flexItemGroup" 
+            :key="parentIndex"
             :flexItem="flexItem"
-            :index="i">
+            :parentIndex="parentIndex">
           </disp--flex-item--basic>
       </div>
   </div>

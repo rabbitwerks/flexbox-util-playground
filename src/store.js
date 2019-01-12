@@ -8,6 +8,7 @@ const store = new Vuex.Store({
     flexItemGroup: [
       {
         flex: 1,
+        customColor: '',
         isCustomWidth: false,
         customWidth: 0,
         measurementUnits: 'px',
