@@ -13,11 +13,7 @@ const store = new Vuex.Store({
         measurementUnits: 'px',
         nested: {
           hasNestedFlexbox: false,
-          nestedFlexGroup: [
-            {
-              flex: 1,
-            },
-          ],
+          nestedFlexGroup: [],
           nestedFlexDirection: 'flexdir-row',
         },
       },
@@ -32,9 +28,13 @@ const store = new Vuex.Store({
     getFlexGroup: state => state.flexItemGroup,
     // gets single flex item from group
     getFlexGroupItem: state => index => state.flexItemGroup[index],
+    getNestedFlexGroup: state => index => state.flexItemGroup[index].nested,
     // gets current flex direction
     getFlexDirection: state => state.flexGroupDirection,
     getFlexgap: state => state.flexgap,
+
+    // gets nested flexdir of current flex item
+    getNestedFlexDirection: state => index => state.flexItemGroup[index].nested.nestedFlexDirection,
   },
   mutations: {
     // adds a new flex item to the flex group
@@ -47,11 +47,7 @@ const store = new Vuex.Store({
         measurementUnits: 'px',
         nested: {
           hasNestedFlexbox: false,
-          nestedFlexGroup: [
-            {
-              flex: 1,
-            },
-          ],
+          nestedFlexGroup: [],
           nestedFlexDirection: 'flexdir-row',
         },
       });
@@ -95,7 +91,49 @@ const store = new Vuex.Store({
     setFlexgap_MUTA(state, payload) {
       store.state.flexgap = payload;
     },
+
+    // adds a nested flex item to the current parent flex item
+    // payload === index
+    addNestedItemtoFlexItem_MUTA(state, payload) {
+      if (!state.flexItemGroup[payload].nested.nestedFlexGroup.length) {
+        this.state.flexItemGroup[payload].nested.hasNestedFlexbox = true;
+      }
+      if (state.flexItemGroup[payload].nested.nestedFlexGroup.length > 3) {
+        console.log('max nested flex items reached');
+        return;
+      }
+      state.flexItemGroup[payload].nested.nestedFlexGroup.push({
+        flex: 1,
+      });
+    },
+
+    // removes a nested flex item from the current parent flex item
+    // payload === index
+    removeNestedItemfromFlexItem_MUTA(state, payload) {
+      if (!state.flexItemGroup[payload].nested.nestedFlexGroup.length) return;
+
+      state.flexItemGroup[payload].nested.nestedFlexGroup.pop();
+
+      if (!state.flexItemGroup[payload].nested.nestedFlexGroup.length) {
+        this.state.flexItemGroup[payload].nested.hasNestedFlexbox = false;
+      }
+    },
+
+    // payload === index, newDirection
+    setNestedFlexDirection_MUTA(state, { index, newDirection }) {
+      // eslint-disable-next-line
+      state.flexItemGroup[index].nested.nestedFlexDirection = newDirection;
+    },
+    // es6 destructuring is amazing :)
+    setNestedFlexAmount_MUTA(state, { parentIndex, nestedIndex, newFlexAmount }) {
+      // eslint-disable-next-line
+      state.flexItemGroup[parentIndex].nested.nestedFlexGroup[nestedIndex].flex = newFlexAmount;
+    },
   },
+
+  // =================
+  // VUEX ACTIONS
+  // =================
   actions: {
     addItemToGroup_STORE(context) {
       console.log('action');
@@ -125,6 +163,26 @@ const store = new Vuex.Store({
 
     setFlexgap_STORE(context, payload) {
       context.commit('setFlexgap_MUTA', payload);
+    },
+
+    // payload === index
+    addNestedItemtoFlexItem_STORE(context, payload) {
+      context.commit('addNestedItemtoFlexItem_MUTA', payload);
+    },
+
+    // payload === index
+    removeNestedItemfromFlexItem_STORE(context, payload) {
+      context.commit('removeNestedItemfromFlexItem_MUTA', payload);
+    },
+
+    // nested flexdir selection
+    // payload === index, newDirection
+    setNestedFlexDirection_STORE({ commit }, payload) {
+      commit('setNestedFlexDirection_MUTA', payload);
+    },
+
+    setNestedFlexAmount_STORE({ commit }, payload) {
+      commit('setNestedFlexAmount_MUTA', payload);
     },
   },
 });
