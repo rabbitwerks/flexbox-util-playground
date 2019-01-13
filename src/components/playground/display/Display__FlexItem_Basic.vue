@@ -1,13 +1,16 @@
 <template>
   <div
     v-if="!flexItem.isCustomWidth" 
+    @keydown.16="activate_ColorPicker"
+    @keyup.16="deactivate_ColorPicker"
     :style="{ 'flex': flexItem.flex }"
     class="flex-item--basic"
+    tabindex="-1"
     >
     <div 
       class="flex-item--basic--inner"
       
-      style="background-color: #a3e221;"
+      :style="{ 'background-color': flexItem.customColor }"
 
       :class="{ 'flexbox-space-center': !flexItem.nested.hasNestedFlexbox }">
 
@@ -21,6 +24,13 @@
         <h3>Flex: {{ flexItem.flex }}</h3>
       </div>
 
+      <input 
+        @input="setFlexParentColor($event)"
+        :class="{ 'active': this.colorPickerActive }"
+        class="click-color-picker--parent" 
+        type="color"
+      >
+
     </div>
   </div>
 
@@ -32,9 +42,16 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 import CustomWidthItem from './Display__Flextem_CustomWidth';
 import Display__FlexItem_Nested from './Display__FlexItem_Nested';
 export default {
+  data () {
+    return {
+      colorPickerActive: false
+    }
+  },
   props: ['parentIndex'],
   components: {
     'custom-width-item': CustomWidthItem,
@@ -46,7 +63,23 @@ export default {
     }
   },
   methods: {
-
+    ...mapActions(['setFlexParentColor_STORE']),
+    activate_ColorPicker() {
+      this.colorPickerActive = true;
+      setTimeout(() => {
+        this.colorPickerActive = false;
+      }, 2000)
+    },
+    deactivate_ColorPicker() {
+      this.colorPickerActive = false;
+    },
+    setFlexParentColor($event) {
+      const payload = {
+        parentIndex: this.parentIndex,
+        newValue: $event.target.value,
+      };
+      this.setFlexParentColor_STORE(payload);
+    }
   }
 }
 </script>
@@ -60,5 +93,16 @@ export default {
 }
 .flex-item--basic--inner {
   height: 100%;
+  position: relative;
+}
+.click-color-picker--parent {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: -1;
+}
+.click-color-picker--parent.active {
+  z-index: 5;
 }
 </style>

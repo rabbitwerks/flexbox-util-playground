@@ -13,4 +13,7 @@
   - duplicate left
   - duplicate right
   - show flexbox classes
+    - figure out how to show
+    - parse html for classes containing flex class names?
   - randomize the flex
+- mobile layout

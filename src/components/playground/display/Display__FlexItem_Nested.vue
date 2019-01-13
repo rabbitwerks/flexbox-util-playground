@@ -14,18 +14,16 @@
         :key="nestedIndex"
         
         
-        :style="
-        [
-          { 'flex': nestedFlexItem.flex , 'background-color': nestedFlexItem.customColor }
+        :style="[
+          { 'flex': nestedFlexItem.flex, 'background-color': nestedFlexItem.customColor }
         ]"
 
         class="nested--flex-item flexbox-space-center">
         <input 
           @change="setNestedFlexColor($event, nestedIndex)"
           :class="{ 'active': colorPickerActive }"
-          class="click-color-picker"
+          class="click-color-picker--nested"
           type="color" 
-          value="#00a2df"
         >
         <span class="nested--flex-item--text">Flex {{ nestedFlexItem.flex }}</span>
       </div>
@@ -87,14 +85,14 @@ export default {
   transition: flex .1s ease-in-out;
   background-color: var(--mainTurq);
 }
-.click-color-picker {
+.click-color-picker--nested {
   position: absolute;
   z-index: -1;
   width: 100%;
   height: 100%;
   opacity: 0;
 }
-.click-color-picker.active {
+.click-color-picker--nested.active {
   z-index: 10;
 }
 .nested--flex-item--text {

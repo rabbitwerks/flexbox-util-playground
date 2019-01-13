@@ -43,6 +43,7 @@ const store = new Vuex.Store({
       if (state.flexItemGroup.length > 4) return;
       state.flexItemGroup.push({
         flex: 1,
+        customColor: '',
         isCustomWidth: false,
         customWidth: 0,
         measurementUnits: 'px',
@@ -136,6 +137,11 @@ const store = new Vuex.Store({
       // eslint-disable-next-line
       state.flexItemGroup[parentIndex].nested.nestedFlexGroup[nestedIndex].customColor = newValue;
     },
+
+    setFlexParentColor_MUTA(state, { parentIndex, newValue }) {
+      // eslint-disable-next-line
+      state.flexItemGroup[parentIndex].customColor = newValue;
+    },
   },
 
   // =================
@@ -194,6 +200,10 @@ const store = new Vuex.Store({
 
     setNestedFlexColor_STORE({ commit }, payload) {
       commit('setNestedFlexColor_MUTA', payload);
+    },
+
+    setFlexParentColor_STORE({ commit }, payload) {
+      commit('setFlexParentColor_MUTA', payload);
     },
   },
 });
