@@ -1,8 +1,7 @@
 <template>
   <div
     v-if="!flexItem.isCustomWidth" 
-    @keydown.16="activate_ColorPicker"
-    @keyup.16="deactivate_ColorPicker"
+    @click="activate_ColorPicker"
     :style="{ 'flex': flexItem.flex }"
     class="flex-item--basic"
     tabindex="-1"
@@ -68,10 +67,7 @@ export default {
       this.colorPickerActive = true;
       setTimeout(() => {
         this.colorPickerActive = false;
-      }, 2000)
-    },
-    deactivate_ColorPicker() {
-      this.colorPickerActive = false;
+      }, 3000)
     },
     setFlexParentColor($event) {
       const payload = {
@@ -97,6 +93,8 @@ export default {
 }
 .click-color-picker--parent {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   opacity: 0;

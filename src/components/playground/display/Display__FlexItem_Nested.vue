@@ -1,8 +1,7 @@
 <template>
   <div class="flex-item--nested--outer flexbox">
     <div 
-      @keydown.16="activate_ColorPicker"
-      @keyup.16="deactivate_ColorPicker"
+      @click="activate_ColorPicker"
       :class="nestedFlexDirection"
       tabindex="-1"
       class="
@@ -55,7 +54,7 @@ export default {
       this.colorPickerActive = true;
       setTimeout(() => {
         this.colorPickerActive = false
-      }, 2000);
+      }, 3000);
     },
     deactivate_ColorPicker() {
       this.colorPickerActive = false;
@@ -87,6 +86,8 @@ export default {
 }
 .click-color-picker--nested {
   position: absolute;
+  top: 0;
+  left: 0;
   z-index: -1;
   width: 100%;
   height: 100%;
