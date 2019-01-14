@@ -56,16 +56,12 @@ const store = new Vuex.Store({
     },
     // removes flex item from group, if index,
     // removes at the index, else removes last entry of group
-    removeItemFromGroup_MUTA(state, index) {
+    removeItemFromGroup_MUTA(state) {
       if (state.flexItemGroup.length === 0) {
         console.log('no flex items in the group');
         return;
       }
-      if (index) {
-        state.flexItemGroup.splice(index, 1);
-      } else {
-        state.flexItemGroup.splice(state.flexItemGroup.length - 1, 1);
-      }
+      state.flexItemGroup.pop();
     },
     // sets the new flex direction
     setFlexDirection_MUTA(state, newDirection) {
@@ -96,15 +92,16 @@ const store = new Vuex.Store({
 
     // adds a nested flex item to the current parent flex item
     // payload === index
-    addNestedItemtoFlexItem_MUTA(state, payload) {
-      if (!state.flexItemGroup[payload].nested.nestedFlexGroup.length) {
-        this.state.flexItemGroup[payload].nested.hasNestedFlexbox = true;
+    addNestedItemtoFlexItem_MUTA(state, parentIndex) {
+      store.state.flexItemGroup[parentIndex].isCustomWidth = false;
+      if (!state.flexItemGroup[parentIndex].nested.nestedFlexGroup.length) {
+        this.state.flexItemGroup[parentIndex].nested.hasNestedFlexbox = true;
       }
-      if (state.flexItemGroup[payload].nested.nestedFlexGroup.length > 3) {
+      if (state.flexItemGroup[parentIndex].nested.nestedFlexGroup.length > 3) {
         console.log('max nested flex items reached');
         return;
       }
-      state.flexItemGroup[payload].nested.nestedFlexGroup.push({
+      state.flexItemGroup[parentIndex].nested.nestedFlexGroup.push({
         flex: 1,
         customColor: '',
       });
@@ -112,20 +109,21 @@ const store = new Vuex.Store({
 
     // removes a nested flex item from the current parent flex item
     // payload === index
-    removeNestedItemfromFlexItem_MUTA(state, payload) {
-      if (!state.flexItemGroup[payload].nested.nestedFlexGroup.length) return;
+    removeNestedItemfromFlexItem_MUTA(state, parentIndex) {
+      store.state.flexItemGroup[parentIndex].isCustomWidth = false;
+      if (!state.flexItemGroup[parentIndex].nested.nestedFlexGroup.length) return;
 
-      state.flexItemGroup[payload].nested.nestedFlexGroup.pop();
+      state.flexItemGroup[parentIndex].nested.nestedFlexGroup.pop();
 
-      if (!state.flexItemGroup[payload].nested.nestedFlexGroup.length) {
-        this.state.flexItemGroup[payload].nested.hasNestedFlexbox = false;
+      if (!state.flexItemGroup[parentIndex].nested.nestedFlexGroup.length) {
+        this.state.flexItemGroup[parentIndex].nested.hasNestedFlexbox = false;
       }
     },
 
     // payload === index, newDirection
-    setNestedFlexDirection_MUTA(state, { index, newDirection }) {
+    setNestedFlexDirection_MUTA(state, { parentIndex, newDirection }) {
       // eslint-disable-next-line
-      state.flexItemGroup[index].nested.nestedFlexDirection = newDirection;
+      state.flexItemGroup[parentIndex].nested.nestedFlexDirection = newDirection;
     },
     // es6 destructuring is amazing :)
     setNestedFlexAmount_MUTA(state, { parentIndex, nestedIndex, newFlexAmount }) {
@@ -149,7 +147,6 @@ const store = new Vuex.Store({
   // =================
   actions: {
     addItemToGroup_STORE(context) {
-      console.log('action');
       context.commit('addItemToGroup_MUTA');
     },
     removeItemFromGroup_STORE(context, index) {
@@ -180,6 +177,7 @@ const store = new Vuex.Store({
 
     // payload === index
     addNestedItemtoFlexItem_STORE(context, payload) {
+      console.log(payload);
       context.commit('addNestedItemtoFlexItem_MUTA', payload);
     },
 

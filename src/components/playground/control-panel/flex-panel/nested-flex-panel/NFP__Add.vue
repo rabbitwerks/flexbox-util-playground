@@ -1,6 +1,6 @@
 <template>
   <button
-    @click="addNestedItemtoFlexItem_STORE(index)" 
+    @click="addNestedItemtoFlexItem_STORE(parentIndex)" 
     class="nfp--add-remove-group--add flex-1"
     >Add
   </button>
@@ -10,7 +10,7 @@
 import { mapActions } from 'vuex';
 
 export default {
-  props: ['index'],
+  props: ['parentIndex'],
   methods: {
     ...mapActions(['addNestedItemtoFlexItem_STORE'])
   }

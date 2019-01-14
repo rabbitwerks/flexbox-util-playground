@@ -28,12 +28,12 @@
 import { mapActions } from 'vuex';
 
 export default {
-  props: ['index'],
+  props: ['parentIndex'],
   methods: {
     ...mapActions(['setNestedFlexDirection_STORE']),
     setNestedFlexDirection($event) {
       const payload = {
-        index: this.index,
+        parentIndex: this.parentIndex,
         newDirection: $event.target.value,
       };
       this.setNestedFlexDirection_STORE(payload);

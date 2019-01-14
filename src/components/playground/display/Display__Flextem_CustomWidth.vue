@@ -16,16 +16,16 @@
 
 <script>
 export default {
-  props: ['index'],
+  props: ['parentIndex'],
   computed: {
     customWidthValue() {
-      return this.$store.getters.getFlexGroupItem(this.index).customWidth;
+      return this.$store.getters.getFlexGroupItem(this.parentIndex).customWidth;
     },
     customWidthUnits() {
-      return this.$store.getters.getFlexGroupItem(this.index).measurementUnits;
+      return this.$store.getters.getFlexGroupItem(this.parentIndex).measurementUnits;
     },
     customWidthFull() {
-      return this.$store.getters.getFlexGroupItem(this.index).customWidth + this.$store.getters.getFlexGroupItem(this.index).measurementUnits
+      return this.$store.getters.getFlexGroupItem(this.parentIndex).customWidth + this.$store.getters.getFlexGroupItem(this.parentIndex).measurementUnits
     },
   },
 }

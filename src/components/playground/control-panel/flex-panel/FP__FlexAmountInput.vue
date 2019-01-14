@@ -46,7 +46,7 @@ export default {
   font-weight: 500;
 }
 .flex-amount-input-group input {
-  width: 6.5rem;
+  width: 6.8rem;
   padding: .1rem .25rem;
   border: 2px solid var(--backgroundGrey);
   border-radius: 3px;

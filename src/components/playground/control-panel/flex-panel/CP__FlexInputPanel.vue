@@ -12,12 +12,12 @@
         </fp--flex-amount-input>
 
         <fp--custom-width-input 
-          :index="parentIndex">
+          :parentIndex="parentIndex">
         </fp--custom-width-input>
 
         <!-- nested flex item control panel -->
         <fp--nested-flex-panel 
-          :index="parentIndex">
+          :parentIndex="parentIndex">
         </fp--nested-flex-panel>
       </div>
       <nfp--flex-amount-panel   

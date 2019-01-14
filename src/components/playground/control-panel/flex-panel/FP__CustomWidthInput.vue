@@ -1,6 +1,6 @@
 <template>
   <div class="custom-width-input-group">
-    <label for="custom-width-input">Custom Width | Units</label>
+    <label for="custom-width-input">Custom Width</label>
     <input 
       v-model="customWidth"
       type="number" 
@@ -25,16 +25,16 @@ export default {
     return {
     }
   },
-  props: ['index'],
+  props: ['parentIndex'],
   computed: {
     customWidth: {
       get() {
-        return this.$store.state.flexItemGroup[this.index].customWidth;
+        return this.$store.state.flexItemGroup[this.parentIndex].customWidth;
       },
       set(value) {
         const payload = {
           value,
-          index: this.index,
+          parentIndex: this.parentIndex,
           isCustomWidth: true,
         };
         this.$store.commit('setFlexItemToCustomWidth_MUTA', payload)
@@ -43,12 +43,12 @@ export default {
     },
     measurementUnits: {
       get() {
-        return this.$store.state.flexItemGroup[this.index].measurementUnits;
+        return this.$store.state.flexItemGroup[this.parentIndex].measurementUnits;
       },
       set(value) {
         const payload = {
           value,
-          index: this.index,
+          parentIndex: this.parentIndex,
         }
         this.$store.commit('setCustomWidthUnits_MUTA', payload)
       }
@@ -63,11 +63,9 @@ export default {
 <style scoped>
 .custom-width-input-group label {
   display: block;
-  font-weight: 500;
-  font-size: .85rem;
 }
 .custom-width-amount {
-  width: 3.5rem;
+  width: 4rem;
   padding: .1rem .25rem;
   border: 2px solid var(--backgroundGrey);
   border-right: 1px solid var(--backgroundGrey);
@@ -78,7 +76,7 @@ export default {
   font-weight: 600;
 }
 .custom-width-unit-select {
-  width: 3rem;
+  width: auto;
   padding: .05rem;
   border: 2px solid var(--backgroundGrey);
   border-left: 1px solid var(--backgroundGrey);

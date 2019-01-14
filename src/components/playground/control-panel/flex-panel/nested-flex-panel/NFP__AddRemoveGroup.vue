@@ -6,12 +6,12 @@
     <div class="nfp--add-remove-group--inner flexbox">
     <!-- - - - - - - - -->
       <nfp--remove 
-        :index="index">        
+        :parentIndex="parentIndex">        
       </nfp--remove>
 
     <!-- - - - - - - - -->
       <nfp--add 
-        :index="index">
+        :parentIndex="parentIndex">
       </nfp--add>
 
     </div>
@@ -22,7 +22,7 @@
 import NFP__Add from './NFP__Add';
 import NFP__Remove from './NFP__Remove';
 export default {
-  props: ['index'],
+  props: ['parentIndex'],
   components: {
     'nfp--add': NFP__Add,
     'nfp--remove': NFP__Remove,
@@ -31,9 +31,6 @@ export default {
 </script>
 
 <style scoped>
-.nfp--add-remove-group--outer {
-margin-top: .5rem;
-}
 .nfp--add-remove-group--label {
   display: block;
   font-weight: 500;

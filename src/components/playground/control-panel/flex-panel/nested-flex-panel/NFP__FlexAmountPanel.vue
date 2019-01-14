@@ -37,14 +37,11 @@ export default {
 
 <style scoped>
 .nfp--flex-amount-panel--outer {
-padding: 0 .5rem;
-}
-.nfp--flex-amount-panel--input-wrapper {
-  margin-bottom: .11rem;
+  padding: 0 .5rem;
 }
 .nfp--flex-amount-panel--input-wrapper label {
   display: block;
-  text-align: right;
+  text-align: center;
 }
 .nfp--flex-amount-panel--input-wrapper input {
   width: 2.7rem;

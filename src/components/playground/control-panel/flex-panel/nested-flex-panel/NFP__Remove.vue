@@ -1,6 +1,6 @@
 <template>
   <button 
-    @click="removeNestedItemfromFlexItem_STORE(index)"
+    @click="removeNestedItemfromFlexItem_STORE(parentIndex)"
     class="nfp--add-remove-group--remove"
     >Remove
   </button>
@@ -10,7 +10,7 @@
 import { mapActions } from 'vuex';
 
 export default {
-  props: ['index'],
+  props: ['parentIndex'],
   methods: {
     ...mapActions(['removeNestedItemfromFlexItem_STORE'])
   }
