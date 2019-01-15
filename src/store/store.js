@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import Vue from 'vue';
 import Vuex from 'vuex';
 
@@ -25,54 +26,12 @@ const store = new Vuex.Store({
     },
   },
   getters: {
-    // gets entire flex-item-group
-    getFlexGroup: state => state.flexItemGroup,
-    // gets single flex item from group
-    getFlexGroupItem: state => index => state.flexItemGroup[index],
     getNestedFlexGroup: state => index => state.flexItemGroup[index].nested,
-    // gets current flex direction
-    getFlexDirection: state => state.flexGroupDirection,
-    getFlexgap: state => state.flexgap,
 
     // gets nested flexdir of current flex item
     getNestedFlexDirection: state => index => state.flexItemGroup[index].nested.nestedFlexDirection,
   },
   mutations: {
-    // adds a new flex item to the flex group
-    addItemToGroup_MUTA(state) {
-      if (state.flexItemGroup.length > 4) return;
-      state.flexItemGroup.push({
-        flex: 1,
-        customColor: '',
-        isCustomWidth: false,
-        customWidth: 0,
-        measurementUnits: 'px',
-        nested: {
-          hasNestedFlexbox: false,
-          nestedFlexGroup: [],
-          nestedFlexDirection: 'flexdir-row',
-        },
-      });
-    },
-    // removes flex item from group, if index,
-    // removes at the index, else removes last entry of group
-    removeItemFromGroup_MUTA(state) {
-      if (state.flexItemGroup.length === 0) {
-        console.log('no flex items in the group');
-        return;
-      }
-      state.flexItemGroup.pop();
-    },
-    // sets the new flex direction
-    setFlexDirection_MUTA(state, newDirection) {
-      store.state.flexGroupDirection = newDirection;
-    },
-    // sets a flex amount to an individual flex item
-    setFlexAmount_MUTA(state, flexItemData) {
-      store.state.flexItemGroup[flexItemData.index].isCustomWidth = flexItemData.isCustomWidth;
-      store.state.flexItemGroup[flexItemData.index].flex = flexItemData.value;
-    },
-
     setFlexItemToCustomWidth_MUTA(state, payload) {
       store.state.flexItemGroup[payload.parentIndex]
         .isCustomWidth = payload.isCustomWidth;
@@ -84,10 +43,6 @@ const store = new Vuex.Store({
     setCustomWidthUnits_MUTA(state, payload) {
       store.state.flexItemGroup[payload.parentIndex]
         .measurementUnits = payload.value;
-    },
-
-    setFlexgap_MUTA(state, payload) {
-      store.state.flexgap = payload;
     },
 
     // adds a nested flex item to the current parent flex item
@@ -122,7 +77,6 @@ const store = new Vuex.Store({
 
     // payload === index, newDirection
     setNestedFlexDirection_MUTA(state, { parentIndex, newDirection }) {
-      // eslint-disable-next-line
       state.flexItemGroup[parentIndex].nested.nestedFlexDirection = newDirection;
     },
     // es6 destructuring is amazing :)
@@ -146,21 +100,6 @@ const store = new Vuex.Store({
   // VUEX ACTIONS
   // =================
   actions: {
-    addItemToGroup_STORE(context) {
-      context.commit('addItemToGroup_MUTA');
-    },
-    removeItemFromGroup_STORE(context, index) {
-      context.commit('removeItemFromGroup_MUTA', index);
-    },
-
-    setFlexDirection_STORE(context, newDirection) {
-      context.commit('setFlexDirection_MUTA', newDirection);
-    },
-
-    setFlexAmount_STORE(context, flexItemData) {
-      context.commit('setFlexAmount_MUTA', flexItemData);
-      console.log('set flex amount action', flexItemData);
-    },
 
     setCustomWidth_STORE(context, payload) {
       context.commit('setFlexItemToCustomWidth_MUTA', payload);
@@ -171,9 +110,6 @@ const store = new Vuex.Store({
       context.commit('setCustomWidthUnits_MUTA', payload);
     },
 
-    setFlexgap_STORE(context, payload) {
-      context.commit('setFlexgap_MUTA', payload);
-    },
 
     // payload === index
     addNestedItemtoFlexItem_STORE(context, payload) {
