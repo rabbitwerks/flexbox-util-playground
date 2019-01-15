@@ -1,11 +1,9 @@
 <template>
   <div 
-    id="display--wrapper" 
-    class="flex-10">
+    class="display--wrapper">
       <div 
-        id="display--content"
-        class="flexbox"
-        :class="[flexGroupDirection, currentFlexgap.class]">
+        class="display--content flexbox"
+        :class="[ flexGroupDirection, currentFlexgap.class ]">
           <disp--flex-item--basic 
             v-for="(flexItem, parentIndex) in flexItemGroup" 
             :key="parentIndex"
@@ -33,18 +31,18 @@ export default {
     },
     currentFlexgap() {
       return this.$store.getters.getFlexgap;
-    }
+    },
   }
 }
 </script>
 
 <style scoped>
-#display--wrapper {
+.display--wrapper {
+  height: calc(100% - 17rem);
   border: 1rem solid var(--darkTurq)
 }
-#display--content {
+.display--content {
   height: 100%;
-  border-bottom: 4px solid var(--brightGreen);
 }
 
 </style>

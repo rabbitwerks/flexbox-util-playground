@@ -74,15 +74,15 @@ const store = new Vuex.Store({
     },
 
     setFlexItemToCustomWidth_MUTA(state, payload) {
-      store.state.flexItemGroup[payload.index]
+      store.state.flexItemGroup[payload.parentIndex]
         .isCustomWidth = payload.isCustomWidth;
     },
     setCustomWidthValue_MUTA(state, payload) {
-      store.state.flexItemGroup[payload.index]
+      store.state.flexItemGroup[payload.parentIndex]
         .customWidth = payload.value;
     },
     setCustomWidthUnits_MUTA(state, payload) {
-      store.state.flexItemGroup[payload.index]
+      store.state.flexItemGroup[payload.parentIndex]
         .measurementUnits = payload.value;
     },
 

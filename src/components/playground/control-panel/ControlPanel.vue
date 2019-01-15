@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-5 flexbox">
+  <div class="control-panel--outer flexbox">
     <cp--action-panel></cp--action-panel>
     <cp--flex-input-panel></cp--flex-input-panel>
   </div>
@@ -16,6 +16,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.control-panel--outer {
+  height: 15rem;
+}
 </style>
