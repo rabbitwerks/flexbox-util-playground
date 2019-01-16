@@ -1,22 +1,22 @@
 /* eslint-disable no-param-reassign */
 
-
 const getters = {
   // gets entire flex-item-group
-  getFlexGroup: state => state.flexItemGroup,
+  getFlexGroup: (state, getter, rootState) => rootState.flexItemGroup,
   // gets single flex item from group
-  getFlexGroupItem: state => index => state.flexItemGroup[index],
+  getFlexGroupItem: (state, getter, rootState) => index => rootState.flexItemGroup[index],
   // gets current flex direction
-  getFlexDirection: state => state.flexGroupDirection,
+  getFlexDirection: (state, getter, rootState) => rootState.flexGroupDirection,
   // sets current flexgap
-  getFlexgap: state => state.flexgap,
+  getFlexgap: (state, getter, rootState) => rootState.flexgap,
 };
 
 const mutations = {
   // adds a new flex item to the flex group
-  addItemToGroup_MUTA(state) {
-    if (state.flexItemGroup.length > 4) return;
-    state.flexItemGroup.push({
+  addItemToGroup_MUTA(state, rootState) {
+    console.log(rootState);
+    if (rootState.flexItemGroup.length > 4) return;
+    rootState.flexItemGroup.push({
       flex: 1,
       customColor: '',
       isCustomWidth: false,
@@ -30,48 +30,48 @@ const mutations = {
     });
   },
   // removes flex item from last entry of group
-  removeItemFromGroup_MUTA(state) {
-    if (state.flexItemGroup.length === 0) {
+  removeItemFromGroup_MUTA(state, rootState) {
+    if (rootState.flexItemGroup.length === 0) {
       console.log('no flex items in the group');
       return;
     }
-    state.flexItemGroup.pop();
+    rootState.flexItemGroup.pop();
   },
   // sets the new flex direction
-  setFlexDirection_MUTA(state, newDirection) {
-    state.flexGroupDirection = newDirection;
+  setFlexDirection_MUTA(state, { rootState, newDirection }) {
+    rootState.flexGroupDirection = newDirection;
   },
   // sets a flex amount to an individual flex item
-  setFlexAmount_MUTA(state, flexItemData) {
-    state.flexItemGroup[flexItemData.index].isCustomWidth = flexItemData.isCustomWidth;
-    state.flexItemGroup[flexItemData.index].flex = flexItemData.value;
+  setFlexAmount_MUTA(state, { rootState, flexItemData }) {
+    rootState.flexItemGroup[flexItemData.index].isCustomWidth = flexItemData.isCustomWidth;
+    rootState.flexItemGroup[flexItemData.index].flex = flexItemData.value;
   },
 
   // sets flexgap class for parent flex group
   // payload = flexgap classes[selected class index]
-  setFlexgap_MUTA(state, payload) {
-    state.flexgap = payload;
+  setFlexgap_MUTA(state, { rootState, payload }) {
+    rootState.flexgap = payload;
   },
 };
 
 const actions = {
-  addItemToGroup_STORE(context) {
-    context.commit('addItemToGroup_MUTA');
+  addItemToGroup_STORE({ commit, rootState }) {
+    commit('addItemToGroup_MUTA', rootState);
   },
-  removeItemFromGroup_STORE(context, index) {
-    context.commit('removeItemFromGroup_MUTA', index);
-  },
-
-  setFlexDirection_STORE(context, newDirection) {
-    context.commit('setFlexDirection_MUTA', newDirection);
+  removeItemFromGroup_STORE({ commit, rootState }) {
+    commit('removeItemFromGroup_MUTA', rootState);
   },
 
-  setFlexAmount_STORE(context, flexItemData) {
-    context.commit('setFlexAmount_MUTA', flexItemData);
+  setFlexDirection_STORE({ commit, rootState }, newDirection) {
+    commit('setFlexDirection_MUTA', { rootState, newDirection });
   },
 
-  setFlexgap_STORE(context, payload) {
-    context.commit('setFlexgap_MUTA', payload);
+  setFlexAmount_STORE({ commit, rootState }, flexItemData) {
+    commit('setFlexAmount_MUTA', { rootState, flexItemData });
+  },
+
+  setFlexgap_STORE({ commit, rootState }, payload) {
+    commit('setFlexgap_MUTA', { rootState, payload });
   },
 };
 

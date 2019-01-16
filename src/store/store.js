@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import Vue from 'vue';
 import Vuex from 'vuex';
+import parentFlexGroupModule from './modules/ParentFlexGroup';
 
 Vue.use(Vuex);
 
@@ -139,6 +140,9 @@ const store = new Vuex.Store({
     setFlexParentColor_STORE({ commit }, payload) {
       commit('setFlexParentColor_MUTA', payload);
     },
+  },
+  modules: {
+    parentFlexGroupModule,
   },
 });
 
