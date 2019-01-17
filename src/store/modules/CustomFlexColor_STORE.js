@@ -5,7 +5,7 @@ const mutations = {
     rootState.flexItemGroup[parentIndex].customColor = newValue;
   },
   setNestedFlexColor_MUTA(state, { rootState, payload: { parentIndex, nestedIndex, newValue } }) {
-    state.flexItemGroup[parentIndex].nested.nestedFlexGroup[nestedIndex].customColor = newValue;
+    rootState.flexItemGroup[parentIndex].nested.nestedFlexGroup[nestedIndex].customColor = newValue;
   },
 
 };
