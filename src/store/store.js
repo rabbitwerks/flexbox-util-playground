@@ -1,7 +1,8 @@
 /* eslint-disable no-param-reassign */
 import Vue from 'vue';
 import Vuex from 'vuex';
-import parentFlexGroupModule from './modules/ParentFlexGroup';
+import parentFlexGroupModule from './modules/ParentFlexGroup_STORE';
+import customWidthModule from './modules/CustomWidth_STORE';
 
 Vue.use(Vuex);
 
@@ -33,23 +34,11 @@ const store = new Vuex.Store({
     getNestedFlexDirection: state => index => state.flexItemGroup[index].nested.nestedFlexDirection,
   },
   mutations: {
-    setFlexItemToCustomWidth_MUTA(state, payload) {
-      store.state.flexItemGroup[payload.parentIndex]
-        .isCustomWidth = payload.isCustomWidth;
-    },
-    setCustomWidthValue_MUTA(state, payload) {
-      store.state.flexItemGroup[payload.parentIndex]
-        .customWidth = payload.value;
-    },
-    setCustomWidthUnits_MUTA(state, payload) {
-      store.state.flexItemGroup[payload.parentIndex]
-        .measurementUnits = payload.value;
-    },
 
     // adds a nested flex item to the current parent flex item
     // payload === index
     addNestedItemtoFlexItem_MUTA(state, parentIndex) {
-      store.state.flexItemGroup[parentIndex].isCustomWidth = false;
+      state.flexItemGroup[parentIndex].isCustomWidth = false;
       if (!state.flexItemGroup[parentIndex].nested.nestedFlexGroup.length) {
         this.state.flexItemGroup[parentIndex].nested.hasNestedFlexbox = true;
       }
@@ -66,7 +55,7 @@ const store = new Vuex.Store({
     // removes a nested flex item from the current parent flex item
     // payload === index
     removeNestedItemfromFlexItem_MUTA(state, parentIndex) {
-      store.state.flexItemGroup[parentIndex].isCustomWidth = false;
+      state.flexItemGroup[parentIndex].isCustomWidth = false;
       if (!state.flexItemGroup[parentIndex].nested.nestedFlexGroup.length) return;
 
       state.flexItemGroup[parentIndex].nested.nestedFlexGroup.pop();
@@ -102,16 +91,6 @@ const store = new Vuex.Store({
   // =================
   actions: {
 
-    setCustomWidth_STORE(context, payload) {
-      context.commit('setFlexItemToCustomWidth_MUTA', payload);
-      context.commit('setCustomWidthValue_MUTA', payload);
-      context.commit('setCustomWidthUnits_MUTA', payload);
-    },
-    setCustomWidthUnits_STORE(context, payload) {
-      context.commit('setCustomWidthUnits_MUTA', payload);
-    },
-
-
     // payload === index
     addNestedItemtoFlexItem_STORE(context, payload) {
       console.log(payload);
@@ -143,6 +122,7 @@ const store = new Vuex.Store({
   },
   modules: {
     parentFlexGroupModule,
+    customWidthModule,
   },
 });
 

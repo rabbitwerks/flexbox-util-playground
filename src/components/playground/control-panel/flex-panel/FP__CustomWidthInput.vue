@@ -21,10 +21,6 @@
 import { mapActions } from 'vuex';
 
 export default {
-  data () {
-    return {
-    }
-  },
   props: ['parentIndex'],
   computed: {
     customWidth: {
@@ -36,10 +32,10 @@ export default {
           value,
           parentIndex: this.parentIndex,
           isCustomWidth: true,
+          measurementUnits: this.measurementUnits,
         };
-        this.$store.commit('setFlexItemToCustomWidth_MUTA', payload)
-        this.$store.commit('setCustomWidthValue_MUTA', payload)
-      }
+        this.$store.dispatch('setCustomWidth_STORE', payload);
+      },
     },
     measurementUnits: {
       get() {
@@ -47,16 +43,14 @@ export default {
       },
       set(value) {
         const payload = {
-          value,
+          measurementUnits: value,
           parentIndex: this.parentIndex,
         }
-        this.$store.commit('setCustomWidthUnits_MUTA', payload)
+        this.$store.dispatch('setCustomWidthUnits_STORE', payload)
       }
     }
   },
-  methods: {
-    ...mapActions(['setCustomWidth_STORE', 'setCustomWidthUnits_STORE']),
-  }
+
 }
 </script>
 
