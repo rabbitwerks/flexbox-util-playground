@@ -19,7 +19,7 @@
       </flex-item--nested>
 
       <!-- else display flex amount div -->
-      <div v-else>
+      <div v-else v-hide>
         <h3>Flex: {{ flexItem.flex }}</h3>
       </div>
 
@@ -29,6 +29,11 @@
         class="click-color-picker--parent" 
         type="color"
       >
+
+      <flex-item-highlight 
+        :flexItem="flexItem"
+        :parentIndex="parentIndex">
+      </flex-item-highlight>
 
     </div>
   </div>
@@ -45,6 +50,8 @@ import { mapActions } from 'vuex';
 
 import CustomWidthItem from './Display__Flextem_CustomWidth';
 import Display__FlexItem_Nested from './Display__FlexItem_Nested';
+import Display__FlexItem_Highlight from './Display__FlexItem_Highlight';
+
 export default {
   data () {
     return {
@@ -55,6 +62,7 @@ export default {
   components: {
     'custom-width-item': CustomWidthItem,
     'flex-item--nested': Display__FlexItem_Nested,
+    'flex-item-highlight': Display__FlexItem_Highlight,
   },
   computed: {
     flexItem() {
@@ -82,7 +90,7 @@ export default {
 
 <style scoped>
 .flex-item--basic {
-  height: 100%;
+  height: calc(100% - 4px);
   background-color: var(--mainTurq);
   border: 2px solid var(--backgroundGrey);
   transition: flex .2s ease-in-out, width .2s ease-in-out;

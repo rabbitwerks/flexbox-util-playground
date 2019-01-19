@@ -22,6 +22,7 @@ const mutations = {
       isCustomWidth: false,
       customWidth: 0,
       measurementUnits: 'px',
+      highlightActive: false,
       nested: {
         hasNestedFlexbox: false,
         nestedFlexGroup: [],
@@ -72,6 +73,10 @@ const actions = {
 
   setFlexgap_STORE({ commit, rootState }, payload) {
     commit('setFlexgap_MUTA', { rootState, payload });
+  },
+
+  activateHighlightParent_STORE({ commit, rootState }, payload) {
+    
   },
 };
 
