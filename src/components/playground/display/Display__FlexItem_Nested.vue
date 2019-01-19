@@ -11,8 +11,7 @@
       <div 
         v-for="(nestedFlexItem, nestedIndex) in nestedFlexGroup"
         :key="nestedIndex"
-        
-        
+
         :style="[
           { 'flex': nestedFlexItem.flex, 'background-color': nestedFlexItem.customColor }
         ]"
@@ -76,6 +75,8 @@ export default {
   height: 100%;
 }
 .flex-item--nested--inner {
+  position: relative;
+  z-index: 50;
   margin: 1rem;
 }
 .nested--flex-item {

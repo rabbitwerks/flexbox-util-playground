@@ -19,7 +19,7 @@
       </flex-item--nested>
 
       <!-- else display flex amount div -->
-      <div v-else v-hide>
+      <div v-else v-show="!flexItem.highlightActive">
         <h3>Flex: {{ flexItem.flex }}</h3>
       </div>
 
@@ -31,6 +31,7 @@
       >
 
       <flex-item-highlight 
+        v-show="flexItem.highlightActive"
         :flexItem="flexItem"
         :parentIndex="parentIndex">
       </flex-item-highlight>

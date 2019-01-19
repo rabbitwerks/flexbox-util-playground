@@ -43,15 +43,21 @@ const mutations = {
     rootState.flexGroupDirection = newDirection;
   },
   // sets a flex amount to an individual flex item
-  setFlexAmount_MUTA(state, { rootState, flexItemData }) {
-    rootState.flexItemGroup[flexItemData.index].isCustomWidth = flexItemData.isCustomWidth;
-    rootState.flexItemGroup[flexItemData.index].flex = flexItemData.value;
+  setFlexAmount_MUTA(state, { rootState, payload }) {
+    rootState.flexItemGroup[payload.parentIndex].isCustomWidth = payload.isCustomWidth;
+    rootState.flexItemGroup[payload.parentIndex].flex = payload.value;
   },
 
   // sets flexgap class for parent flex group
   // payload = flexgap classes[selected class index]
   setFlexgap_MUTA(state, { rootState, payload }) {
     rootState.flexgap = payload;
+  },
+
+  // activates/deactivates highlight component on mouse hover
+
+  hightlightParentItem_MUTA(state, { rootState, payload: { parentIndex, setActive } }) {
+    rootState.flexItemGroup[parentIndex].highlightActive = setActive;
   },
 };
 
@@ -67,16 +73,16 @@ const actions = {
     commit('setFlexDirection_MUTA', { rootState, newDirection });
   },
 
-  setFlexAmount_STORE({ commit, rootState }, flexItemData) {
-    commit('setFlexAmount_MUTA', { rootState, flexItemData });
+  setFlexAmount_STORE({ commit, rootState }, payload) {
+    commit('setFlexAmount_MUTA', { rootState, payload });
   },
 
   setFlexgap_STORE({ commit, rootState }, payload) {
     commit('setFlexgap_MUTA', { rootState, payload });
   },
 
-  activateHighlightParent_STORE({ commit, rootState }, payload) {
-    
+  highlightParentItem_STORE({ commit, rootState }, payload) {
+    commit('hightlightParentItem_MUTA', { rootState, payload });
   },
 };
 

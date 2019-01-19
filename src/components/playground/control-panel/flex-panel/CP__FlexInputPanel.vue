@@ -8,7 +8,7 @@
       :key="parentIndex">
       <div class="fig--main-panel flex-2">
         <fp--flex-amount-input 
-          :index="parentIndex">
+          :parentIndex="parentIndex">
         </fp--flex-amount-input>
 
         <fp--custom-width-input 

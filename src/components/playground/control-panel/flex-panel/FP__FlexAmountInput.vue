@@ -1,8 +1,12 @@
 <template>
   <div class="flex-amount-input-group">
-    <label for="flex-amount">Flex Item {{ index + 1 }}</label>
+    <label for="flex-amount"
+      >Parent Flex Item {{ parentIndex + 1 }}
+    </label>
     <input 
-      @input="setFlexAmount(index, $event)"
+      @input="setFlexAmount($event)"
+      @mouseenter="highlightParentItem($event, true)"
+      @mouseleave="highlightParentItem($event, false)"
       v-model="newFlexAmount"
       type="number" 
       name="flex-amount"
@@ -20,22 +24,30 @@ export default {
       newFlexAmount: 1
     }
   },
-  props: ['index'],
+  props: ['parentIndex'],
   computed: {
     flexItem_FlexAmount() {
-      return this.$store.getters.getFlexGroupItem(this.index).flex
+      return this.$store.getters.getFlexGroupItem(this.parentIndex).flex;
     }
   },
   methods: {
-    ...mapActions(['setFlexAmount_STORE']),
-    setFlexAmount(index, $event) {
-      const flexItemData = {
-        index, 
+    ...mapActions(['setFlexAmount_STORE', 'highlightParentItem_STORE']),
+    setFlexAmount($event) {
+      const payload = {
+        parentIndex: this.parentIndex, 
         value: $event.target.value,
         isCustomWidth: false
       };
-      this.setFlexAmount_STORE(flexItemData);
-    }
+      this.setFlexAmount_STORE(payload);
+    },
+    highlightParentItem($event, setActive) {
+      const payload = {
+        parentIndex: this.parentIndex,
+        setActive
+      };
+      this.highlightParentItem_STORE(payload);
+    },
+
   }
 }
 </script>
