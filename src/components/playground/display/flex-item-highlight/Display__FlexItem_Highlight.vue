@@ -1,5 +1,5 @@
 <template>
-  <div class="highlight--outer">
+  <div class="highlight--outer flexbox-space-center">
     <slot></slot>
   </div>
 </template>
@@ -19,10 +19,6 @@ export default {
   left: 0;
   z-index: 25;
   background-color: rgba(255, 255, 255, .4);
-}
-.highlight--outer * {
-  width: 100%;
-  height: 100%;
 }
 .highlight--inner {
   position: absolute;

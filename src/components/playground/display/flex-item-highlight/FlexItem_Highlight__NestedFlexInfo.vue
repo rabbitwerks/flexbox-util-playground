@@ -1,6 +1,6 @@
 <template>
   <div class="highlight--inner flexbox flexdir-col">
-    <h3 class="flex-center center-self">Parent Flex Item Info</h3>
+    <h3 class="flex-center center-self">Nested Flex Item Info</h3>
     <span class="flex-center center-self">
       Flex Item: {{ nestedIndex + 1 }}
     </span>

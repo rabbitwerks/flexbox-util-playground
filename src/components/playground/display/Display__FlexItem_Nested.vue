@@ -25,7 +25,9 @@
           type="color"
         >
         
-        <span class="nested--flex-item--text"
+        <span 
+          v-if="!nestedFlexItem.highlightActive"
+          class="nested--flex-item--text"
           >Flex {{ nestedFlexItem.flex }}
         </span>
 
