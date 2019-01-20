@@ -52,11 +52,11 @@
 <script>
 import { mapActions } from 'vuex';
 
-import CustomWidthItem from './Display__Flextem_CustomWidth';
+import CustomWidthItem from './Display__FlexItem_CustomWidth';
 import Display__FlexItem_Nested from './Display__FlexItem_Nested';
 
-import Display__FlexItem_Highlight from './Display__FlexItem_Highlight';
-import Highlight__ParentFlexInfo from './FlexItem_Highlight__ParentFlexInfo';
+import Display__FlexItem_Highlight from './flex-item-highlight/Display__FlexItem_Highlight';
+import Highlight__ParentFlexInfo from './flex-item-highlight/FlexItem_Highlight__ParentFlexInfo';
 
 
 export default {

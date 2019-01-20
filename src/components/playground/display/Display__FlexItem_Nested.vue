@@ -44,8 +44,8 @@
 
 <script>
 import { mapActions } from 'vuex';
-import Display__FlexItem_Highlight from './Display__FlexItem_Highlight';
-import FlexItem_Highlight__NestedFlexInfo from './FlexItem_Highlight__NestedFlexInfo';
+import Display__FlexItem_Highlight from './flex-item-highlight/Display__FlexItem_Highlight';
+import FlexItem_Highlight__NestedFlexInfo from './flex-item-highlight/FlexItem_Highlight__NestedFlexInfo';
 
 export default {
   data() {
