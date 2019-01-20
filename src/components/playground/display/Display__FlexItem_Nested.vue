@@ -17,13 +17,25 @@
         ]"
 
         class="nested--flex-item flexbox-space-center">
+
         <input 
           @change="setNestedFlexColor($event, nestedIndex)"
           :class="{ 'active': colorPickerActive }"
           class="click-color-picker--nested"
-          type="color" 
+          type="color"
         >
-        <span class="nested--flex-item--text">Flex {{ nestedFlexItem.flex }}</span>
+        
+        <span class="nested--flex-item--text"
+          >Flex {{ nestedFlexItem.flex }}
+        </span>
+
+        <flex-item-highlight 
+          v-show="nestedFlexItem.highlightActive"
+          :flexItem="flexItem"
+          :parentIndex="parentIndex"
+          :nestedFlexItem="nestedFlexItem"
+          :nestedIndex="nestedIndex">
+        </flex-item-highlight>
       </div>
     </div>
   </div>
@@ -31,6 +43,7 @@
 
 <script>
 import { mapActions } from 'vuex';
+import Display__FlexItem_Highlight from './Display__FlexItem_Highlight';
 
 export default {
   data() {
@@ -39,11 +52,17 @@ export default {
     }
   },
   props: ['parentIndex'],
+  components: {
+    'flex-item-highlight': Display__FlexItem_Highlight,
+  },
   computed: {
-    nestedFlexGroup() {
+    flexItem () {
+      return this.$store.getters.getFlexGroupItem(this.parentIndex);
+    },
+    nestedFlexGroup () {
       return this.$store.getters.getNestedFlexGroup(this.parentIndex).nestedFlexGroup;
     },
-    nestedFlexDirection() {
+    nestedFlexDirection () {
       return this.$store.getters.getNestedFlexDirection(this.parentIndex);
     }
   },

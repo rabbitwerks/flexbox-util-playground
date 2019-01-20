@@ -7,6 +7,8 @@
       <label>Nested {{ nestedIndex + 1 }}</label>
       <input 
         @input="setNestedFlexAmount(nestedIndex, $event)"
+        @mouseenter="highlightNestedItem($event, true)"
+        @mouseleave="highlightNestedItem($event, false)"
         type="number" 
         value="1"
         min="1"
@@ -22,7 +24,7 @@ import { mapActions } from 'vuex';
 export default {
   props: ['nestedFlexGroup', 'parentIndex'],
   methods: {
-    ...mapActions(['setNestedFlexAmount_STORE']),
+    ...mapActions(['setNestedFlexAmount_STORE', 'highlightNestedItem_STORE']),
     setNestedFlexAmount(nestedIndex, $event) {
       const payload = {
         parentIndex: this.parentIndex,
@@ -30,6 +32,14 @@ export default {
         newFlexAmount: $event.target.value,
       };
       this.setNestedFlexAmount_STORE(payload);
+    },
+    hightlightNestedItem(setActive) {
+      const payload = {
+        parentIndex: this.parentIndex,
+        nestedIndex,
+        setActive
+      };
+      this.hightlightNestedItem_STORE(payload);
     }
   }
 }

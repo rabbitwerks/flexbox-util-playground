@@ -1,22 +1,46 @@
 <template>
   <div class="highlight--outer">
-    <div class="highlight--inner flexbox flexdir-col">
-      <div class="flex-center center-self">
-        Flex Amount: {{ flexItem.flex }}
-      </div>
-      <div class="flex-center center-self">Group Flex Direction: {{ flexDirection }}</div>
-    </div>
+    <highlight--parent-flex-info
+      v-if="!hasNestedFlexbox"
+      :parentIndex="parentIndex"
+      :flexItem="flexItem">
+    </highlight--parent-flex-info>
+    <highlight--nested-flex-info
+      v-else
+      :nestedIndex="nestedIndex"
+      :nestedFlexItem="nestedFlexItem">
+    </highlight--nested-flex-info>
   </div>
 </template>
 
 <script>
+import Highlight__ParentFlexInfo from './FlexItem_Highlight__ParentFlexInfo';
+import Highlight__NestedFlexInfo from './FlexItem_Highlight__NestedFlexInfo';
+
 export default {
-  props: ['flexItem', 'parentIndex'],
+  props: { 
+    parentIndex: Number, 
+    flexItem: Object, 
+    nestedFlexItem: {
+      default: null, type: Object
+      }, 
+    nestedIndex: {
+      default: null, type: Number
+      },
+  },
   computed: {
-    flexDirection () {
-      return this.$store.getters.getFlexDirection;
+    hasNestedFlexbox () {
+      return this.flexItem.nested.hasNestedFlexbox;
+    },
+    nestedFlexDirection() {
+      return this.flexItem.nested.nestedFlexDirection;
     }
-  }
+  },
+  components: {
+    'highlight--parent-flex-info': Highlight__ParentFlexInfo,
+    'highlight--nested-flex-info': Highlight__NestedFlexInfo,
+  },
+  
 }
 </script>
 

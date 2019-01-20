@@ -23,6 +23,7 @@ const mutations = {
     rootState.flexItemGroup[parentIndex].nested.nestedFlexGroup.push({
       flex: 1,
       customColor: '',
+      highlightActive: false,
     });
   },
 
@@ -47,10 +48,15 @@ const mutations = {
   setNestedFlexAmount_MUTA(state, {
     rootState, payload: { parentIndex, nestedIndex, newFlexAmount },
   }) {
-    // eslint-disable-next-line
     rootState.flexItemGroup[parentIndex].nested.nestedFlexGroup[nestedIndex].flex = newFlexAmount;
   },
 
+  highlightNestedItem_MUTA(state, {
+    rootState, payload: { parentIndex, nestedIndex, setActive },
+  }) {
+    rootState.flexItemGroup[parentIndex].nested.nestedFlexGroup[nestedIndex]
+      .highlightActive = setActive;
+  },
 };
 
 const actions = {
@@ -75,6 +81,10 @@ const actions = {
 
   setNestedFlexAmount_STORE({ commit, rootState }, payload) {
     commit('setNestedFlexAmount_MUTA', { rootState, payload });
+  },
+
+  highlightNestedItem_STORE({ commit, rootState }, payload) {
+    commit('highlightNestedItem_MUTA', { rootState, payload });
   },
 };
 

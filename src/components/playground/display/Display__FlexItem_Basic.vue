@@ -33,7 +33,9 @@
       <flex-item-highlight 
         v-show="flexItem.highlightActive"
         :flexItem="flexItem"
-        :parentIndex="parentIndex">
+        :parentIndex="parentIndex"
+        :nestedFlexItem="null"
+        :nestedIndex="null">
       </flex-item-highlight>
 
     </div>

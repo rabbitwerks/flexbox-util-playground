@@ -5,8 +5,8 @@
     </label>
     <input 
       @input="setFlexAmount($event)"
-      @mouseenter="highlightParentItem($event, true)"
-      @mouseleave="highlightParentItem($event, false)"
+      @mouseenter="highlightParentItem(true)"
+      @mouseleave="highlightParentItem(false)"
       v-model="newFlexAmount"
       type="number" 
       name="flex-amount"
@@ -40,7 +40,7 @@ export default {
       };
       this.setFlexAmount_STORE(payload);
     },
-    highlightParentItem($event, setActive) {
+    highlightParentItem(setActive) {
       const payload = {
         parentIndex: this.parentIndex,
         setActive

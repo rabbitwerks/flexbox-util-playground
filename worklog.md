@@ -17,3 +17,10 @@
     - parse html for classes containing flex class names?
   - randomize the flex
 - mobile layout
+- animations for adding removing flex items
+  - animate flex from 0 to 1
+  - animate children, i.e. flex label to fade in/out
+- animate add/remove of nested flex amount inputs
+  - animate width
+  - fade opacity of label
+  - transition group (v-for)
