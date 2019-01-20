@@ -31,11 +31,12 @@
       >
 
       <flex-item-highlight 
-        v-show="flexItem.highlightActive"
-        :flexItem="flexItem"
-        :parentIndex="parentIndex"
-        :nestedFlexItem="null"
-        :nestedIndex="null">
+        v-show="flexItem.highlightActive">
+        <highlight--parent-flex-info
+          v-if="!flexItem.nested.hasNestedFlexbox"
+          :parentIndex="parentIndex"
+          :flexItem="flexItem">
+        </highlight--parent-flex-info>
       </flex-item-highlight>
 
     </div>
@@ -53,7 +54,10 @@ import { mapActions } from 'vuex';
 
 import CustomWidthItem from './Display__Flextem_CustomWidth';
 import Display__FlexItem_Nested from './Display__FlexItem_Nested';
+
 import Display__FlexItem_Highlight from './Display__FlexItem_Highlight';
+import Highlight__ParentFlexInfo from './FlexItem_Highlight__ParentFlexInfo';
+
 
 export default {
   data () {
@@ -66,11 +70,12 @@ export default {
     'custom-width-item': CustomWidthItem,
     'flex-item--nested': Display__FlexItem_Nested,
     'flex-item-highlight': Display__FlexItem_Highlight,
+    'highlight--parent-flex-info': Highlight__ParentFlexInfo,
   },
   computed: {
     flexItem() {
       return this.$store.getters.getFlexGroupItem(this.parentIndex);
-    }
+    },
   },
   methods: {
     ...mapActions(['setFlexParentColor_STORE']),

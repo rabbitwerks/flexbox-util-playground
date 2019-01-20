@@ -7,8 +7,8 @@
       <label>Nested {{ nestedIndex + 1 }}</label>
       <input 
         @input="setNestedFlexAmount(nestedIndex, $event)"
-        @mouseenter="highlightNestedItem($event, true)"
-        @mouseleave="highlightNestedItem($event, false)"
+        @mouseenter="highlightNestedItem(nestedIndex, true)"
+        @mouseleave="highlightNestedItem(nestedIndex, false)"
         type="number" 
         value="1"
         min="1"
@@ -33,13 +33,13 @@ export default {
       };
       this.setNestedFlexAmount_STORE(payload);
     },
-    hightlightNestedItem(setActive) {
+    highlightNestedItem(nestedIndex, setActive) {
       const payload = {
         parentIndex: this.parentIndex,
         nestedIndex,
         setActive
       };
-      this.hightlightNestedItem_STORE(payload);
+      this.highlightNestedItem_STORE(payload);
     }
   }
 }

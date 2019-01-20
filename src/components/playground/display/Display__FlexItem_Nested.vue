@@ -30,11 +30,12 @@
         </span>
 
         <flex-item-highlight 
-          v-show="nestedFlexItem.highlightActive"
-          :flexItem="flexItem"
-          :parentIndex="parentIndex"
-          :nestedFlexItem="nestedFlexItem"
-          :nestedIndex="nestedIndex">
+          v-show="nestedFlexItem.highlightActive">
+          <highlight--nested-flex-info
+            :nestedIndex="nestedIndex"
+            :nestedFlexItem="nestedFlexItem"
+            :nestedFlexDirection="nestedFlexDirection">
+          </highlight--nested-flex-info>
         </flex-item-highlight>
       </div>
     </div>
@@ -44,6 +45,7 @@
 <script>
 import { mapActions } from 'vuex';
 import Display__FlexItem_Highlight from './Display__FlexItem_Highlight';
+import FlexItem_Highlight__NestedFlexInfo from './FlexItem_Highlight__NestedFlexInfo';
 
 export default {
   data() {
@@ -54,6 +56,7 @@ export default {
   props: ['parentIndex'],
   components: {
     'flex-item-highlight': Display__FlexItem_Highlight,
+    'highlight--nested-flex-info': FlexItem_Highlight__NestedFlexInfo
   },
   computed: {
     flexItem () {
