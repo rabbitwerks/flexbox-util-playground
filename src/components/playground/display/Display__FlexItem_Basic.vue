@@ -35,7 +35,8 @@
         <highlight--parent-flex-info
           v-if="!flexItem.nested.hasNestedFlexbox"
           :parentIndex="parentIndex"
-          :flexItem="flexItem">
+          :flexItem="flexItem"
+          :pixelWidth="calc_PixelWidth">
         </highlight--parent-flex-info>
       </flex-item-highlight>
 
@@ -62,7 +63,8 @@ import Highlight__ParentFlexInfo from './flex-item-highlight/FlexItem_Highlight_
 export default {
   data () {
     return {
-      colorPickerActive: false
+      colorPickerActive: false,
+      calc_PixelWidth: 0,
     }
   },
   props: ['parentIndex'],
@@ -73,9 +75,27 @@ export default {
     'highlight--parent-flex-info': Highlight__ParentFlexInfo,
   },
   computed: {
+    flexItemCount () {
+      return this.$store.getters.getFlexGroup.length;
+    },
     flexItem() {
       return this.$store.getters.getFlexGroupItem(this.parentIndex);
     },
+    flexItemFlex() {
+      return this.$store.getters.getFlexGroupItem(this.parentIndex).flex;
+    },
+  },
+  watch: {
+    flexItemFlex () {
+      setTimeout(() => {
+        this.calculatePixelWidth()
+      }, 300)
+    },
+    parentFlexGroup () {
+      setTimeout(() => {
+        this.calculatePixelWidth()
+      }, 300)
+    }
   },
   methods: {
     ...mapActions(['setFlexParentColor_STORE']),
@@ -91,7 +111,17 @@ export default {
         newValue: $event.target.value,
       };
       this.setFlexParentColor_STORE(payload);
+    },
+    calculatePixelWidth() {
+      const flexItem = window.getComputedStyle(this.$el);
+      const width = flexItem.getPropertyValue('width');
+      this.calc_PixelWidth = width;
+      console.log(width, this.calc_PixelWidth)
+      return width;
     }
+  },
+  mounted () {
+    this.calculatePixelWidth()
   }
 }
 </script>
