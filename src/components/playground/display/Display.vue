@@ -39,12 +39,13 @@ export default {
       handler() {
         setTimeout(() => {
           this.calculateFlexWidths()
+          this.calculateFlexHeights()
         }, 50)
       }
     }
   },
   methods: {
-    ...mapActions(['setPixelValue_STORE']),
+    ...mapActions(['setPixelWidth_STORE', 'setPixelHeight_STORE']),
     calculateFlexWidths() {
       const flexGroupHTML = this.$el.children[0].children;
       const tempFlexItemArray = Array.from(flexGroupHTML)
@@ -55,12 +56,26 @@ export default {
           parentIndex,
           pixelWidth
         };
-        this.setPixelValue_STORE(payload)
+        this.setPixelWidth_STORE(payload)
       })
-    }
+    },
+    calculateFlexHeights() {
+      const flexGroupHTML = this.$el.children[0].children;
+      const tempFlexItemArray = Array.from(flexGroupHTML)
+      tempFlexItemArray.forEach((flexItem, parentIndex) => {
+        const itemHTML = window.getComputedStyle(flexItem)
+        const pixelHeight = itemHTML.getPropertyValue('height');
+        const payload = {
+          parentIndex,
+          pixelHeight
+        };
+        this.setPixelHeight_STORE(payload)
+      })
+    },
   },
   mounted() {
-    this.calculateFlexWidths()
+    this.calculateFlexWidths();
+    this.calculateFlexHeights();
   }
 }
 </script>

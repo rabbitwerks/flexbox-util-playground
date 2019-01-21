@@ -77,12 +77,13 @@ export default {
       handler() {
         setTimeout(() => {
           this.calculateNestedItemWidths();
+          this.calculateNestedItemHeights();
         }, 50)
       }
     }
   },
   methods: {
-    ...mapActions(['setNestedFlexColor_STORE', 'setNestedPixelValue_STORE']),
+    ...mapActions(['setNestedFlexColor_STORE', 'setNestedPixelWidth_STORE', 'setNestedPixelHeight_STORE']),
     activate_ColorPicker() {
       this.colorPickerActive = true;
       setTimeout(() => {
@@ -111,12 +112,27 @@ export default {
           nestedIndex,
           pixelWidth,
         };
-        this.setNestedPixelValue_STORE(payload);
+        this.setNestedPixelWidth_STORE(payload);
       })
-    }
+    },
+    calculateNestedItemHeights() {
+      const nestedGroupHTML = this.$el.children[0].children;
+      const tempNestedArray = Array.from(nestedGroupHTML);
+      tempNestedArray.forEach((nestedItem, nestedIndex) => {
+        const itemHTML = window.getComputedStyle(nestedItem);
+        const pixelHeight = itemHTML.getPropertyValue('height');
+        const payload = {
+          parentIndex: this.parentIndex,
+          nestedIndex,
+          pixelHeight,
+        };
+        this.setNestedPixelHeight_STORE(payload);
+      })
+    },
   },
   mounted() {
     this.calculateNestedItemWidths();
+    this.calculateNestedItemHeights();
   }
 }
 </script>

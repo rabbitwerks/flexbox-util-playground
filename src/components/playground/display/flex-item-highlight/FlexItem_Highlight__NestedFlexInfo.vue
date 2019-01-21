@@ -8,7 +8,8 @@
       Flex Amount: {{ nestedFlexItem.flex }}
     </span>
     <span class="flex-center center-self">Flex Direction: {{ nestedFlexDirection }}</span>
-    <span class="flex-center center-self">Flex Direction: {{ nestedFlexItem.pixelWidth }}</span>
+    <span class="flex-center center-self">Pixel Width: {{ nestedFlexItem.pixelWidth }}</span>
+    <span class="flex-center center-self">Pixel Height: {{ nestedFlexItem.pixelHeight }}</span>
   </div>
 </template>
 

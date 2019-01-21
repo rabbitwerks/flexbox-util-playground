@@ -13,6 +13,9 @@
     <span class="flex-center center-self"
       >Pixel Width: {{ flexItem.pixelWidth }}
     </span>
+    <span class="flex-center center-self"
+      >Pixel Height: {{ flexItem.pixelHeight }}
+    </span>
   </div>
 </template>
 

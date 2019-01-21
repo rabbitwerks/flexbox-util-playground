@@ -69,8 +69,12 @@ const mutations = {
     rootState.flexItemGroup[parentIndex].highlightActive = setActive;
   },
 
-  setPixelValue_MUTA(state, { rootState, payload: { parentIndex, pixelWidth } }) {
+  setPixelWidth_MUTA(state, { rootState, payload: { parentIndex, pixelWidth } }) {
     rootState.flexItemGroup[parentIndex].pixelWidth = pixelWidth;
+  },
+
+  setPixelHeight_MUTA(state, { rootState, payload: { parentIndex, pixelHeight } }) {
+    rootState.flexItemGroup[parentIndex].pixelHeight = pixelHeight;
   },
 };
 
@@ -102,8 +106,12 @@ const actions = {
     commit('hightlightParentItem_MUTA', { rootState, payload });
   },
 
-  setPixelValue_STORE({ commit, rootState }, payload) {
-    commit('setPixelValue_MUTA', { rootState, payload });
+  setPixelWidth_STORE({ commit, rootState }, payload) {
+    commit('setPixelWidth_MUTA', { rootState, payload });
+  },
+
+  setPixelHeight_STORE({ commit, rootState }, payload) {
+    commit('setPixelHeight_MUTA', { rootState, payload });
   },
 };
 

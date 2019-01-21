@@ -19,6 +19,7 @@ const store = new Vuex.Store({
         customWidth: 0,
         measurementUnits: 'px',
         pixelWidth: 0,
+        pixelHeight: 0,
         nested: {
           hasNestedFlexbox: false,
           nestedFlexGroup: [],

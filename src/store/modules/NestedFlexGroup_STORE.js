@@ -33,6 +33,7 @@ const mutations = {
       flex: 1,
       customColor: '',
       pixelWidth: 0,
+      pixelHeight: 0,
     });
   },
 
@@ -68,9 +69,15 @@ const mutations = {
   },
 
   // eslint-disable-next-line max-len
-  setNestedPixelValue_MUTA(state, { rootState, payload: { parentIndex, nestedIndex, pixelWidth } }) {
+  setNestedPixelWidth_MUTA(state, { rootState, payload: { parentIndex, nestedIndex, pixelWidth } }) {
     rootState.flexItemGroup[parentIndex]
       .nested.nestedFlexGroup[nestedIndex].pixelWidth = pixelWidth;
+  },
+
+  // eslint-disable-next-line max-len
+  setNestedPixelHeight_MUTA(state, { rootState, payload: { parentIndex, nestedIndex, pixelHeight } }) {
+    rootState.flexItemGroup[parentIndex]
+      .nested.nestedFlexGroup[nestedIndex].pixelHeight = pixelHeight;
   },
 };
 
@@ -106,8 +113,12 @@ const actions = {
     commit('highlightNestedItem_MUTA', { rootState, payload });
   },
 
-  setNestedPixelValue_STORE({ commit, rootState }, payload) {
-    commit('setNestedPixelValue_MUTA', { rootState, payload });
+  setNestedPixelWidth_STORE({ commit, rootState }, payload) {
+    commit('setNestedPixelWidth_MUTA', { rootState, payload });
+  },
+
+  setNestedPixelHeight_STORE({ commit, rootState }, payload) {
+    commit('setNestedPixelHeight_MUTA', { rootState, payload });
   },
 };
 
