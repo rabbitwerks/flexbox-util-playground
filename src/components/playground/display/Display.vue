@@ -32,6 +32,28 @@ export default {
     currentFlexgap() {
       return this.$store.getters.getFlexgap;
     },
+  },
+  watch: {
+    flexItemGroup () {
+      setTimeout(() => {
+        this.calculateFlexWidths()
+      }, 50)
+    }
+  },
+  methods: {
+    calculateFlexWidths() {
+      const flexGroupHTML = this.$el.children[0].children;
+      const tempflexarr = Array.from(flexGroupHTML)
+      tempflexarr.forEach((flexItem, index) => {
+        console.log(flexItem.style)
+        const item = window.getComputedStyle(flexItem)
+        console.log(item.getPropertyValue('width'), index)
+        this.setPixelValue_STORE()
+      })
+    }
+  },
+  mounted() {
+    this.calculateFlexWidths()
   }
 }
 </script>

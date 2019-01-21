@@ -17,12 +17,13 @@ const mutations = {
     console.log(rootState);
     if (rootState.flexItemGroup.length > 4) return;
     rootState.flexItemGroup.push({
+      isCustomWidth: false,
+      highlightActive: false,
       flex: 1,
       customColor: '',
-      isCustomWidth: false,
       customWidth: 0,
       measurementUnits: 'px',
-      highlightActive: false,
+      pixelWidth: 0,
       nested: {
         hasNestedFlexbox: false,
         nestedFlexGroup: [],

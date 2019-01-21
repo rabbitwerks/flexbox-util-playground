@@ -12,12 +12,13 @@ const store = new Vuex.Store({
   state: {
     flexItemGroup: [
       {
+        isCustomWidth: false,
+        highlightActive: false,
         flex: 1,
         customColor: '',
-        isCustomWidth: false,
         customWidth: 0,
         measurementUnits: 'px',
-        highlightActive: false,
+        pixelWidth: 0,
         nested: {
           hasNestedFlexbox: false,
           nestedFlexGroup: [],

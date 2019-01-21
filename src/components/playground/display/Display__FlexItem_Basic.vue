@@ -81,22 +81,22 @@ export default {
     flexItem() {
       return this.$store.getters.getFlexGroupItem(this.parentIndex);
     },
-    flexItemFlex() {
-      return this.$store.getters.getFlexGroupItem(this.parentIndex).flex;
-    },
+  //   flexItemFlex() {
+  //     return this.$store.getters.getFlexGroupItem(this.parentIndex).flex;
+  //   },
   },
-  watch: {
-    flexItemFlex () {
-      setTimeout(() => {
-        this.calculatePixelWidth()
-      }, 300)
-    },
-    parentFlexGroup () {
-      setTimeout(() => {
-        this.calculatePixelWidth()
-      }, 300)
-    }
-  },
+  // watch: {
+  //   flexItemFlex () {
+  //     setTimeout(() => {
+  //       this.calculatePixelWidth()
+  //     }, 300)
+  //   },
+  //   parentFlexGroup () {
+  //     setTimeout(() => {
+  //       this.calculatePixelWidth()
+  //     }, 300)
+  //   }
+  // },
   methods: {
     ...mapActions(['setFlexParentColor_STORE']),
     activate_ColorPicker() {
@@ -112,17 +112,17 @@ export default {
       };
       this.setFlexParentColor_STORE(payload);
     },
-    calculatePixelWidth() {
-      const flexItem = window.getComputedStyle(this.$el);
-      const width = flexItem.getPropertyValue('width');
-      this.calc_PixelWidth = width;
-      console.log(width, this.calc_PixelWidth)
-      return width;
-    }
+    // calculatePixelWidth() {
+    //   const flexItem = window.getComputedStyle(this.$el);
+    //   const width = flexItem.getPropertyValue('width');
+    //   this.calc_PixelWidth = width;
+    //   console.log(width, this.calc_PixelWidth)
+    //   return width;
+    // }
   },
-  mounted () {
-    this.calculatePixelWidth()
-  }
+  // mounted () {
+  //   this.calculatePixelWidth()
+  // }
 }
 </script>
 
