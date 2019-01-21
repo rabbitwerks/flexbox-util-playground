@@ -11,9 +11,9 @@
           :parentIndex="parentIndex">
         </fp--flex-amount-input>
 
-        <fp--custom-width-input 
+        <fp--custom-flex-size-input 
           :parentIndex="parentIndex">
-        </fp--custom-width-input>
+        </fp--custom-flex-size-input>
 
         <!-- nested flex item control panel -->
         <fp--nested-flex-panel 
@@ -34,14 +34,14 @@
 
 <script>
 import FP__FlexAmountInput from './FP__FlexAmountInput';
-import FP__CustomWIdthInput from './FP__CustomWidthInput';
+import FP__CustomFlexSizeInput from './FP__CustomFlexSizeInput';
 import FP__NestedFlexPanel from './nested-flex-panel/FP__NestedFlexPanel';
 import NFP__FlexAmountPanel from './nested-flex-panel/NFP__FlexAmountPanel';
 
 export default {
   components: {
     'fp--flex-amount-input': FP__FlexAmountInput,
-    'fp--custom-width-input': FP__CustomWIdthInput,
+    'fp--custom-flex-size-input': FP__CustomFlexSizeInput,
     'fp--nested-flex-panel': FP__NestedFlexPanel,
     'nfp--flex-amount-panel': NFP__FlexAmountPanel,
   },

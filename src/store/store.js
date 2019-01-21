@@ -3,7 +3,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import parentFlexGroupModule from './modules/ParentFlexGroup_STORE';
 import nestedFlexGroupModule from './modules/NestedFlexGroup_STORE';
-import customWidthModule from './modules/CustomWidth_STORE';
+import customFlexSizeModule from './modules/CustomFlexSize_STORE';
 import customFlexColorModule from './modules/CustomFlexColor_STORE';
 
 Vue.use(Vuex);
@@ -12,11 +12,11 @@ const store = new Vuex.Store({
   state: {
     flexItemGroup: [
       {
-        isCustomWidth: false,
-        highlightActive: false,
         flex: 1,
+        highlightActive: false,
+        isCustomFlexSize: false,
         customColor: '',
-        customWidth: 0,
+        customFlexSize: 0,
         measurementUnits: 'px',
         pixelWidth: 0,
         pixelHeight: 0,
@@ -36,7 +36,7 @@ const store = new Vuex.Store({
   modules: {
     parentFlexGroupModule,
     nestedFlexGroupModule,
-    customWidthModule,
+    customFlexSizeModule,
     customFlexColorModule,
   },
 });

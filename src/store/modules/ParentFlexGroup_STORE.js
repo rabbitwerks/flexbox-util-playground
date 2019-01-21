@@ -26,11 +26,11 @@ const mutations = {
     console.log(rootState);
     if (rootState.flexItemGroup.length > 4) return;
     rootState.flexItemGroup.push({
-      isCustomWidth: false,
-      highlightActive: false,
       flex: 1,
+      highlightActive: false,
+      isCustomFlexSize: false,
       customColor: '',
-      customWidth: 0,
+      customFlexSize: 0,
       measurementUnits: 'px',
       pixelWidth: 0,
       nested: {
@@ -54,7 +54,7 @@ const mutations = {
   },
   // sets a flex amount to an individual flex item
   setFlexAmount_MUTA(state, { rootState, payload }) {
-    rootState.flexItemGroup[payload.parentIndex].isCustomWidth = payload.isCustomWidth;
+    rootState.flexItemGroup[payload.parentIndex].isCustomFlexSize = payload.isCustomFlexSize;
     rootState.flexItemGroup[payload.parentIndex].flex = payload.value;
   },
 

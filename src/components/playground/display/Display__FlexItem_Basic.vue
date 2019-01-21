@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="!flexItem.isCustomWidth" 
+    v-if="!flexItem.isCustomFlexSize" 
     @click="activate_ColorPicker"
     :style="{ 'flex': flexItem.flex }"
     class="flex-item--basic"
@@ -45,14 +45,14 @@
   </div>
 
   <!-- custom width div if not flex amount -->
-  <custom-width-item v-else :parentIndex="parentIndex"></custom-width-item>
+  <custom-flex-size-item v-else :parentIndex="parentIndex"></custom-flex-size-item>
 
 </template>
 
 <script>
 import { mapActions } from 'vuex';
 
-import CustomWidthItem from './Display__FlexItem_CustomWidth';
+import CustomFlexSizeItem from './Display__FlexItem_CustomFlexSize';
 import Display__FlexItem_Nested from './Display__FlexItem_Nested';
 
 import Display__FlexItem_Highlight from './flex-item-highlight/Display__FlexItem_Highlight';
@@ -67,7 +67,7 @@ export default {
   },
   props: ['parentIndex'],
   components: {
-    'custom-width-item': CustomWidthItem,
+    'custom-flex-size-item': CustomFlexSizeItem,
     'flex-item--nested': Display__FlexItem_Nested,
     'flex-item-highlight': Display__FlexItem_Highlight,
     'highlight--parent-flex-info': Highlight__ParentFlexInfo,
