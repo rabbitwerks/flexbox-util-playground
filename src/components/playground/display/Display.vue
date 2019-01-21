@@ -38,44 +38,32 @@ export default {
       deep: true,
       handler() {
         setTimeout(() => {
-          this.calculateFlexWidths()
-          this.calculateFlexHeights()
+          this.calculateFlexDimensions()
         }, 50)
       }
     }
   },
   methods: {
     ...mapActions(['setPixelWidth_STORE', 'setPixelHeight_STORE']),
-    calculateFlexWidths() {
+    calculateFlexDimensions() {
       const flexGroupHTML = this.$el.children[0].children;
       const tempFlexItemArray = Array.from(flexGroupHTML)
       tempFlexItemArray.forEach((flexItem, parentIndex) => {
         const itemHTML = window.getComputedStyle(flexItem)
         const pixelWidth = itemHTML.getPropertyValue('width');
-        const payload = {
-          parentIndex,
-          pixelWidth
-        };
-        this.setPixelWidth_STORE(payload)
-      })
-    },
-    calculateFlexHeights() {
-      const flexGroupHTML = this.$el.children[0].children;
-      const tempFlexItemArray = Array.from(flexGroupHTML)
-      tempFlexItemArray.forEach((flexItem, parentIndex) => {
-        const itemHTML = window.getComputedStyle(flexItem)
         const pixelHeight = itemHTML.getPropertyValue('height');
         const payload = {
           parentIndex,
+          pixelWidth,
           pixelHeight
         };
+        this.setPixelWidth_STORE(payload)
         this.setPixelHeight_STORE(payload)
       })
     },
   },
   mounted() {
-    this.calculateFlexWidths();
-    this.calculateFlexHeights();
+    this.calculateFlexDimensions();
   }
 }
 </script>

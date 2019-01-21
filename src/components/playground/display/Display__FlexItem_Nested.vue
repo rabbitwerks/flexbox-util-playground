@@ -76,8 +76,7 @@ export default {
       deep: true,
       handler() {
         setTimeout(() => {
-          this.calculateNestedItemWidths();
-          this.calculateNestedItemHeights();
+          this.calculateNestedItemDimensions();
         }, 50)
       }
     }
@@ -101,38 +100,27 @@ export default {
       };
       this.setNestedFlexColor_STORE(payload);
     },
-    calculateNestedItemWidths() {
+    calculateNestedItemDimensions() {
       const nestedGroupHTML = this.$el.children[0].children;
       const tempNestedArray = Array.from(nestedGroupHTML);
       tempNestedArray.forEach((nestedItem, nestedIndex) => {
         const itemHTML = window.getComputedStyle(nestedItem);
         const pixelWidth = itemHTML.getPropertyValue('width');
-        const payload = {
-          parentIndex: this.parentIndex,
-          nestedIndex,
-          pixelWidth,
-        };
-        this.setNestedPixelWidth_STORE(payload);
-      })
-    },
-    calculateNestedItemHeights() {
-      const nestedGroupHTML = this.$el.children[0].children;
-      const tempNestedArray = Array.from(nestedGroupHTML);
-      tempNestedArray.forEach((nestedItem, nestedIndex) => {
-        const itemHTML = window.getComputedStyle(nestedItem);
         const pixelHeight = itemHTML.getPropertyValue('height');
         const payload = {
           parentIndex: this.parentIndex,
           nestedIndex,
+          pixelWidth,
           pixelHeight,
         };
+        this.setNestedPixelWidth_STORE(payload);
         this.setNestedPixelHeight_STORE(payload);
       })
     },
+
   },
   mounted() {
-    this.calculateNestedItemWidths();
-    this.calculateNestedItemHeights();
+    this.calculateNestedItemDimensions();
   }
 }
 </script>
