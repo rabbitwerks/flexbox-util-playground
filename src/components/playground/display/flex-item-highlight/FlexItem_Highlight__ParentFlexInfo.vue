@@ -11,14 +11,14 @@
       >Flex Direction: {{ flexDirection }}
     </span>
     <span class="flex-center center-self"
-      >Pixel Width: {{ pixelWidth }}
+      >Pixel Width: {{ flexItem.pixelWidth }}
     </span>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['parentIndex', 'flexItem', 'pixelWidth'],
+  props: ['parentIndex', 'flexItem'],
   computed: {
     flexDirection () {
       return this.$store.getters.getFlexDirection

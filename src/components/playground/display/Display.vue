@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 import Display__FlexItem_Basic from './Display__FlexItem_Basic';
 export default {
@@ -34,21 +34,29 @@ export default {
     },
   },
   watch: {
-    flexItemGroup () {
-      setTimeout(() => {
-        this.calculateFlexWidths()
-      }, 50)
+    flexItemGroup: {
+      deep: true,
+      handler() {
+        setTimeout(() => {
+          this.calculateFlexWidths()
+        }, 50)
+      }
     }
   },
   methods: {
+    ...mapActions(['setPixelValue_STORE']),
     calculateFlexWidths() {
       const flexGroupHTML = this.$el.children[0].children;
       const tempflexarr = Array.from(flexGroupHTML)
-      tempflexarr.forEach((flexItem, index) => {
+      tempflexarr.forEach((flexItem, parentIndex) => {
         console.log(flexItem.style)
         const item = window.getComputedStyle(flexItem)
-        console.log(item.getPropertyValue('width'), index)
-        this.setPixelValue_STORE()
+        const itemWidth = item.getPropertyValue('width');
+        const payload = {
+          parentIndex,
+          itemWidth
+        };
+        this.setPixelValue_STORE(payload)
       })
     }
   },

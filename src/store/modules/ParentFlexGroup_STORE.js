@@ -9,6 +9,8 @@ const getters = {
   getFlexDirection: (state, getter, rootState) => rootState.flexGroupDirection,
   // sets current flexgap
   getFlexgap: (state, getter, rootState) => rootState.flexgap,
+  getPixelWidth: (state, getter, rootState) => parentIndex => rootState
+    .flexItemGroup[parentIndex].pixelWidth,
 };
 
 const mutations = {
@@ -56,9 +58,13 @@ const mutations = {
   },
 
   // activates/deactivates highlight component on mouse hover
-
   hightlightParentItem_MUTA(state, { rootState, payload: { parentIndex, setActive } }) {
     rootState.flexItemGroup[parentIndex].highlightActive = setActive;
+  },
+
+  setPixelValue_MUTA(state, { rootState, payload: { parentIndex, itemWidth } }) {
+    rootState.flexItemGroup[parentIndex].pixelWidth = itemWidth;
+    console.log('muta', rootState.flexItemGroup[parentIndex].pixelWidth);
   },
 };
 
@@ -84,6 +90,10 @@ const actions = {
 
   highlightParentItem_STORE({ commit, rootState }, payload) {
     commit('hightlightParentItem_MUTA', { rootState, payload });
+  },
+
+  setPixelValue_STORE({ commit, rootState }, payload) {
+    commit('setPixelValue_MUTA', { rootState, payload });
   },
 };
 
