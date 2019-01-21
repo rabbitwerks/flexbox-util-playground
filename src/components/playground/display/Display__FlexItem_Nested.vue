@@ -71,8 +71,18 @@ export default {
       return this.$store.getters.getNestedFlexDirection(this.parentIndex);
     }
   },
+  watch: {
+    nestedFlexGroup: {
+      deep: true,
+      handler() {
+        setTimeout(() => {
+          this.calculateNestedItemWidths();
+        }, 50)
+      }
+    }
+  },
   methods: {
-    ...mapActions(['setNestedFlexColor_STORE']),
+    ...mapActions(['setNestedFlexColor_STORE', 'setNestedPixelValue_STORE']),
     activate_ColorPicker() {
       this.colorPickerActive = true;
       setTimeout(() => {
@@ -89,8 +99,25 @@ export default {
         newValue: $event.target.value
       };
       this.setNestedFlexColor_STORE(payload);
+    },
+    calculateNestedItemWidths() {
+      const nestedGroupHTML = this.$el.children[0].children;
+      const tempNestedArray = Array.from(nestedGroupHTML);
+      tempNestedArray.forEach((nestedItem, nestedIndex) => {
+        const itemHTML = window.getComputedStyle(nestedItem);
+        const pixelWidth = itemHTML.getPropertyValue('width');
+        const payload = {
+          parentIndex: this.parentIndex,
+          nestedIndex,
+          pixelWidth,
+        };
+        this.setNestedPixelValue_STORE(payload);
+      })
     }
   },
+  mounted() {
+    this.calculateNestedItemWidths();
+  }
 }
 </script>
 

@@ -47,14 +47,13 @@ export default {
     ...mapActions(['setPixelValue_STORE']),
     calculateFlexWidths() {
       const flexGroupHTML = this.$el.children[0].children;
-      const tempflexarr = Array.from(flexGroupHTML)
-      tempflexarr.forEach((flexItem, parentIndex) => {
-        console.log(flexItem.style)
-        const item = window.getComputedStyle(flexItem)
-        const itemWidth = item.getPropertyValue('width');
+      const tempFlexItemArray = Array.from(flexGroupHTML)
+      tempFlexItemArray.forEach((flexItem, parentIndex) => {
+        const itemHTML = window.getComputedStyle(flexItem)
+        const pixelWidth = itemHTML.getPropertyValue('width');
         const payload = {
           parentIndex,
-          itemWidth
+          pixelWidth
         };
         this.setPixelValue_STORE(payload)
       })

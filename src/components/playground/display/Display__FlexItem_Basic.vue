@@ -23,6 +23,7 @@
         <h3>Flex: {{ flexItem.flex }}</h3>
       </div>
 
+      <!-- color picker input for custom color -->
       <input 
         @input="setFlexParentColor($event)"
         :class="{ 'active': this.colorPickerActive }"
@@ -30,13 +31,13 @@
         type="color"
       >
 
+      <!-- flex-item highlight component -->
       <flex-item-highlight 
         v-show="flexItem.highlightActive">
         <highlight--parent-flex-info
           v-if="!flexItem.nested.hasNestedFlexbox"
           :parentIndex="parentIndex"
-          :flexItem="flexItem"
-          :pixelWidth="calc_PixelWidth">
+          :flexItem="flexItem">
         </highlight--parent-flex-info>
       </flex-item-highlight>
 
@@ -45,8 +46,6 @@
 
   <!-- custom width div if not flex amount -->
   <custom-width-item v-else :parentIndex="parentIndex"></custom-width-item>
-
-  
 
 </template>
 
@@ -64,7 +63,6 @@ export default {
   data () {
     return {
       colorPickerActive: false,
-      calc_PixelWidth: 0,
     }
   },
   props: ['parentIndex'],

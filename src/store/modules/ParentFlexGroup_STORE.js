@@ -1,5 +1,9 @@
 /* eslint-disable no-param-reassign */
 
+
+// ==================
+// GETTERS
+// ==================
 const getters = {
   // gets entire flex-item-group
   getFlexGroup: (state, getter, rootState) => rootState.flexItemGroup,
@@ -9,10 +13,13 @@ const getters = {
   getFlexDirection: (state, getter, rootState) => rootState.flexGroupDirection,
   // sets current flexgap
   getFlexgap: (state, getter, rootState) => rootState.flexgap,
-  getPixelWidth: (state, getter, rootState) => parentIndex => rootState
-    .flexItemGroup[parentIndex].pixelWidth,
+
 };
 
+
+// ==================
+// MUTATIONS
+// ==================
 const mutations = {
   // adds a new flex item to the flex group
   addItemToGroup_MUTA(state, rootState) {
@@ -62,12 +69,15 @@ const mutations = {
     rootState.flexItemGroup[parentIndex].highlightActive = setActive;
   },
 
-  setPixelValue_MUTA(state, { rootState, payload: { parentIndex, itemWidth } }) {
-    rootState.flexItemGroup[parentIndex].pixelWidth = itemWidth;
-    console.log('muta', rootState.flexItemGroup[parentIndex].pixelWidth);
+  setPixelValue_MUTA(state, { rootState, payload: { parentIndex, pixelWidth } }) {
+    rootState.flexItemGroup[parentIndex].pixelWidth = pixelWidth;
   },
 };
 
+
+// ==================
+// ACTIONS
+// ==================
 const actions = {
   addItemToGroup_STORE({ commit, rootState }) {
     commit('addItemToGroup_MUTA', rootState);

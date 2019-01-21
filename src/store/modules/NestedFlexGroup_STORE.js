@@ -1,5 +1,9 @@
 /* eslint-disable no-param-reassign */
 
+
+// ==================
+// GETTERS
+// ==================
 const getters = {
   getNestedFlexGroup: (state, getter, rootState) => index => rootState.flexItemGroup[index].nested,
 
@@ -8,6 +12,10 @@ const getters = {
     .nested.nestedFlexDirection,
 };
 
+
+// ==================
+// MUTATIONS
+// ==================
 const mutations = {
   // adds a nested flex item to the current parent flex item
   // payload === index
@@ -21,9 +29,10 @@ const mutations = {
       return;
     }
     rootState.flexItemGroup[parentIndex].nested.nestedFlexGroup.push({
+      highlightActive: false,
       flex: 1,
       customColor: '',
-      highlightActive: false,
+      pixelWidth: 0,
     });
   },
 
@@ -57,8 +66,18 @@ const mutations = {
     rootState.flexItemGroup[parentIndex].nested.nestedFlexGroup[nestedIndex]
       .highlightActive = setActive;
   },
+
+  // eslint-disable-next-line max-len
+  setNestedPixelValue_MUTA(state, { rootState, payload: { parentIndex, nestedIndex, pixelWidth } }) {
+    rootState.flexItemGroup[parentIndex]
+      .nested.nestedFlexGroup[nestedIndex].pixelWidth = pixelWidth;
+  },
 };
 
+
+// ==================
+// ACTIONS
+// ==================
 const actions = {
 
   // payload === parentIndex
@@ -85,6 +104,10 @@ const actions = {
 
   highlightNestedItem_STORE({ commit, rootState }, payload) {
     commit('highlightNestedItem_MUTA', { rootState, payload });
+  },
+
+  setNestedPixelValue_STORE({ commit, rootState }, payload) {
+    commit('setNestedPixelValue_MUTA', { rootState, payload });
   },
 };
 
