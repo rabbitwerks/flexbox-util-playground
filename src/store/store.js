@@ -28,6 +28,7 @@ const store = new Vuex.Store({
       },
     ],
     flexGroupDirection: 'flexdir-row',
+    isFlexDirectionRow: true,
     flexgap: {
       name: 'Flexgap 0', class: 'flexgap-0',
     },

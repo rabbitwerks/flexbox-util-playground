@@ -1,6 +1,6 @@
 <template>
   <div 
-    :style="{ 'width': customWidthFull }"
+    :style="[ isFlexDirectionRow ? { 'width': customWidthFull } : { 'height': customWidthFull }]"
     class="flex-item--basic">
     <div class="flex-item--basic--inner flexbox-space-center">
       <h3 v-if="customWidthValue > 100 && customWidthUnits === 'px'">
@@ -18,6 +18,12 @@
 export default {
   props: ['parentIndex'],
   computed: {
+    isFlexDirectionRow() {
+      if (this.$store.getters.getFlexDirection === 'flexdir-row' || this.$store.getters.getFlexDirection === 'flexdir-rowrev') {
+        return true 
+      }
+      return false
+    },
     customWidthValue() {
       return this.$store.getters.getFlexGroupItem(this.parentIndex).customWidth;
     },
