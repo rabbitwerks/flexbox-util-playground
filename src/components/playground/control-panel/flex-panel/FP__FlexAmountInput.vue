@@ -1,22 +1,44 @@
 <template>
-  <div class="flex-amount-input-group">
-    <label for="flex-amount"
+  <div class="flex-amount-group--outer">
+    <label 
+      class="flex-amount-group--label"
+      for="flex-amount"
       >Parent Flex Item {{ parentIndex + 1 }}
     </label>
-    <input 
-      @input="setFlexAmount($event)"
+    <div 
       @mouseenter="highlightParentItem(true)"
       @mouseleave="highlightParentItem(false)"
+      class="flex-amount-group--inner flexbox">
+
+        <decrease-button :parentIndex="parentIndex">
+        </decrease-button>
+
+        <amount-display-input :parentIndex="parentIndex">
+        </amount-display-input>
+
+        <increase-button 
+          :parentIndex="parentIndex"
+          :increaseFlexAmount="increaseFlexAmount_STORE">
+        </increase-button>
+        
+    </div>
+    <!-- <input 
+      @input="setFlexAmount($event)"
+      
       v-model="newFlexAmount"
       type="number" 
       name="flex-amount"
       min="1"
-      max="20">
+      max="20"> -->
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
+
+import FA__AmountDisplayInput from './flex-amount-group/FA__AmountDisplay_Input';
+import FA__DecreaseButton from './flex-amount-group/FA__DecreaseButton';
+import FA__IncreaseButton from './flex-amount-group/FA__IncreaseButton';
 
 export default {
   data () {
@@ -25,13 +47,18 @@ export default {
     }
   },
   props: ['parentIndex'],
+  components: {
+    'amount-display-input': FA__AmountDisplayInput,
+    'decrease-button': FA__DecreaseButton,
+    'increase-button': FA__IncreaseButton
+  },
   computed: {
     flexItem_FlexAmount() {
       return this.$store.getters.getFlexGroupItem(this.parentIndex).flex;
     }
   },
   methods: {
-    ...mapActions(['setFlexAmount_STORE', 'highlightParentItem_STORE']),
+    ...mapActions(['setFlexAmount_STORE', 'increaseFlexAmount_STORE', 'highlightParentItem_STORE']),
     setFlexAmount($event) {
       const payload = {
         parentIndex: this.parentIndex, 
@@ -53,11 +80,11 @@ export default {
 </script>
 
 <style>
-.flex-amount-input-group label {
+.flex-amount-group--label {
   display: block;
   font-weight: 500;
 }
-.flex-amount-input-group input {
+.flex-amount-group input {
   width: 6.8rem;
   padding: .1rem .25rem;
   border: 2px solid var(--backgroundGrey);
