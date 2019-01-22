@@ -58,4 +58,7 @@ export default {
 .flex-input-panel {
   padding: .5rem 1rem;
 }
+.flex-item-group {
+  width: 7.5rem;
+}
 </style>

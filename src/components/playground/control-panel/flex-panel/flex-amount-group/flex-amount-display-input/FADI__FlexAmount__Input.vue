@@ -1,28 +1,38 @@
 <template>
-  <input 
-  @keypress="validateNumber($event)"
   
+  <input 
+  @blur="checkAndSetFlexAmount($event)"
   v-model="newFlexAmount"
-  class="amount-display-input"
+  class="amount-display-input flex-4"
   type="number" 
   name="flex-amount"
   >
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   data () {
     return {
-      newFlexAmount: '',
+      newFlexAmount: 1,
     }
   },
   methods: {
-    validateNumber($event) {
-      if($event.target.value >= 1 || $event.target.value <= 20) {
-        return $event.target.value
-      }
-      console.log('number not within range, range: 1 - 10')
+    ...mapActions(['setFlexAmount_STORE']),
+    changeDisplay () {
+      this.$emit('update:showDisplay', true)
+    },
+    checkAndSetFlexAmount ($event) {
+      const payload = {
+        //iscustomflexsize
+      };
+      this.setFlexAmount_STORE(this.newFlexAmount)
+      this.changeDisplay()
     }
+  },
+  mounted() {
+    this.$el.focus();
   }
 }
 </script>
@@ -37,7 +47,7 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 .amount-display-input {
-  width: 4rem;
+  width: inherit;
   padding: .1rem .25rem;
   border-top: 2px solid var(--backgroundGrey);
   border-bottom: 2px solid var(--backgroundGrey);

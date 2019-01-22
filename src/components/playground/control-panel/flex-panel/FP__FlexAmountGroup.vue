@@ -14,8 +14,9 @@
         :decreaseFlexAmount="decreaseFlexAmount_STORE">
         </decrease-button>
 
-        <amount-display-input :parentIndex="parentIndex">
-        </amount-display-input>
+        <display-input-group
+          :parentIndex="parentIndex">
+        </display-input-group>
 
         <increase-button 
           :parentIndex="parentIndex"
@@ -23,33 +24,24 @@
         </increase-button>
         
     </div>
-    <!-- <input 
-      @input="setFlexAmount($event)"
-      
-      v-model="newFlexAmount"
-      type="number" 
-      name="flex-amount"
-      min="1"
-      max="20"> -->
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
 
-import FA__AmountDisplayInput from './flex-amount-group/FA__AmountDisplay_Input';
+import FA__DisplayInputGroup from './flex-amount-group/flex-amount-display-input/FA__Display_Input_Group';
 import FA__DecreaseButton from './flex-amount-group/FA__DecreaseButton';
 import FA__IncreaseButton from './flex-amount-group/FA__IncreaseButton';
 
 export default {
   data () {
     return {
-      newFlexAmount: 1
     }
   },
   props: ['parentIndex'],
   components: {
-    'amount-display-input': FA__AmountDisplayInput,
+    'display-input-group': FA__DisplayInputGroup,
     'decrease-button': FA__DecreaseButton,
     'increase-button': FA__IncreaseButton
   },
@@ -60,14 +52,14 @@ export default {
   },
   methods: {
     ...mapActions(['decreaseFlexAmount_STORE','increaseFlexAmount_STORE', 'highlightParentItem_STORE']),
-    setFlexAmount($event) {
-      const payload = {
-        parentIndex: this.parentIndex, 
-        value: $event.target.value,
-        isCustomWidth: false
-      };
-      this.setFlexAmount_STORE(payload);
-    },
+    // setFlexAmount($event) {
+    //   const payload = {
+    //     parentIndex: this.parentIndex, 
+    //     value: $event.target.value,
+    //     isCustomWidth: false
+    //   };
+    //   this.setFlexAmount_STORE(payload);
+    // },
     highlightParentItem(setActive) {
       const payload = {
         parentIndex: this.parentIndex,
@@ -85,13 +77,8 @@ export default {
   display: block;
   font-weight: 500;
 }
-.flex-amount-group input {
-  width: 6.8rem;
-  padding: .1rem .25rem;
-  border: 2px solid var(--backgroundGrey);
-  border-radius: 3px;
-  font-family: 'Dosis', sans-serif;
-  font-size: .9rem;
-  font-weight: 600;
+.flex-amount-group--inner {
+  width: 100%;
 }
+
 </style>
