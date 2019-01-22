@@ -1,6 +1,6 @@
 <template>
   <div 
-    @click="increaseFlexAmount"
+    @click="increaseFlexAmount(parentIndex)"
     class="increase-button flex-1 flexbox-space-center">
     <span class="increase-button--icon">+</span>
   </div>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  props: ['increaseFlexAmount']
+  props: ['parentIndex', 'increaseFlexAmount']
 }
 </script>
 

@@ -10,7 +10,8 @@
       @mouseleave="highlightParentItem(false)"
       class="flex-amount-group--inner flexbox">
 
-        <decrease-button :parentIndex="parentIndex">
+        <decrease-button :parentIndex="parentIndex"
+        :decreaseFlexAmount="decreaseFlexAmount_STORE">
         </decrease-button>
 
         <amount-display-input :parentIndex="parentIndex">
@@ -58,7 +59,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setFlexAmount_STORE', 'increaseFlexAmount_STORE', 'highlightParentItem_STORE']),
+    ...mapActions(['decreaseFlexAmount_STORE','increaseFlexAmount_STORE', 'highlightParentItem_STORE']),
     setFlexAmount($event) {
       const payload = {
         parentIndex: this.parentIndex, 

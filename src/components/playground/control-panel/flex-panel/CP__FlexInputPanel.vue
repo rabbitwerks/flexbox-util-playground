@@ -7,9 +7,9 @@
       v-for="(flexItem, parentIndex) in flexItemGroup" 
       :key="parentIndex">
       <div class="fig--main-panel flex-2">
-        <fp--flex-amount-input 
+        <fp--flex-amount-group 
           :parentIndex="parentIndex">
-        </fp--flex-amount-input>
+        </fp--flex-amount-group>
 
         <fp--custom-flex-size-input 
           :parentIndex="parentIndex">
@@ -33,14 +33,14 @@
 </template>
 
 <script>
-import FP__FlexAmountInput from './FP__FlexAmountInput';
+import FP__FlexAmountGroup from './FP__FlexAmountGroup';
 import FP__CustomFlexSizeInput from './FP__CustomFlexSizeInput';
 import FP__NestedFlexPanel from './nested-flex-panel/FP__NestedFlexPanel';
 import NFP__FlexAmountPanel from './nested-flex-panel/NFP__FlexAmountPanel';
 
 export default {
   components: {
-    'fp--flex-amount-input': FP__FlexAmountInput,
+    'fp--flex-amount-group': FP__FlexAmountGroup,
     'fp--custom-flex-size-input': FP__CustomFlexSizeInput,
     'fp--nested-flex-panel': FP__NestedFlexPanel,
     'nfp--flex-amount-panel': NFP__FlexAmountPanel,
