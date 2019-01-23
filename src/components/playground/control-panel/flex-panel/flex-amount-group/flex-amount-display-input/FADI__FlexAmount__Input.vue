@@ -2,7 +2,7 @@
   
   <input 
   @blur="checkAndSetFlexAmount($event)"
-  v-model="newFlexAmount"
+  v-model="userInputFlexAmount"
   class="amount-display-input flex-4"
   type="number" 
   name="flex-amount"
@@ -15,9 +15,10 @@ import { mapActions } from 'vuex';
 export default {
   data () {
     return {
-      newFlexAmount: 1,
+      userInputFlexAmount: 1,
     }
   },
+  props: ['parentIndex'],
   methods: {
     ...mapActions(['setFlexAmount_STORE']),
     changeDisplay () {
@@ -25,9 +26,11 @@ export default {
     },
     checkAndSetFlexAmount ($event) {
       const payload = {
-        //iscustomflexsize
+        parentIndex: this.parentIndex,
+        isCustomFlexSize: false,
+        newFlexAmount: this.userInputFlexAmount,
       };
-      this.setFlexAmount_STORE(this.newFlexAmount)
+      this.setFlexAmount_STORE(payload)
       this.changeDisplay()
     }
   },

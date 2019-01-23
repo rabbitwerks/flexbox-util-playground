@@ -6,6 +6,7 @@
   </flex-amount--display>
   <flex-amount--input
     v-else
+    :parentIndex="parentIndex"
     :showDisplay="showDisplay"
     v-on:update:showDisplay="showDisplay = $event">
   </flex-amount--input>
@@ -21,6 +22,7 @@ export default {
       showDisplay: true,
     }
   },
+  props: ['parentIndex'],
   components: {
     'flex-amount--display': FADI__FlexAmount__Display,
     'flex-amount--input': FADI__FlexAmount__Input,

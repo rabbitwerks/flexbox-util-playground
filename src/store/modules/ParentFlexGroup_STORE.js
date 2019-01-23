@@ -52,6 +52,14 @@ const mutations = {
   setFlexDirection_MUTA(state, { rootState, newDirection }) {
     rootState.flexGroupDirection = newDirection;
   },
+
+  increaseFlexAmount_MUTA(state, {
+    rootState, parentIndex, isCustomFlexSize, newFlexAmount,
+  }) {
+    rootState.flexItemGroup[parentIndex].isCustomFlexSize = isCustomFlexSize;
+    rootState.flexItemGroup[parentIndex].flex = newFlexAmount;
+  },
+
   // sets a flex amount to an individual flex item
   setFlexAmount_MUTA(state, { rootState, payload }) {
     rootState.flexItemGroup[payload.parentIndex].isCustomFlexSize = payload.isCustomFlexSize;
@@ -94,7 +102,11 @@ const actions = {
     commit('setFlexDirection_MUTA', { rootState, newDirection });
   },
 
+  increaseFlexAmount_STORE({ commit, rootState }, payload) {
+    commit('increaseFlexAmount', { rootState, payload });
+  },
   setFlexAmount_STORE({ commit, rootState }, payload) {
+    console.log(payload)
     commit('setFlexAmount_MUTA', { rootState, payload });
   },
 
