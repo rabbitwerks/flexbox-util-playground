@@ -1,32 +1,35 @@
 <template>
   <div 
-    class="flex-input-panel flex-6 flexbox flex-wrap"
+    class="flex-input-panel flex-6 flexbox"
     :class="{ 'flexgap-2': flexItemGroup.length > 1 }">
     <div 
       class="flex-item-group flexbox" 
       v-for="(flexItem, parentIndex) in flexItemGroup" 
       :key="parentIndex">
-      <div class="fig--main-panel flex-2">
-        <fp--flex-amount-group 
-          :parentIndex="parentIndex">
-        </fp--flex-amount-group>
+      <div class="flex-item-group--panel flexbox-space-between">
 
-        <fp--custom-flex-size-input 
-          :parentIndex="parentIndex">
-        </fp--custom-flex-size-input>
+        <div class="fig--main-panel flex-2">
+          <fp--flex-amount-group 
+            :parentIndex="parentIndex">
+          </fp--flex-amount-group>
 
-        <!-- nested flex item control panel -->
-        <fp--nested-flex-panel 
-          :parentIndex="parentIndex">
-        </fp--nested-flex-panel>
+          <fp--custom-flex-size-input 
+            :parentIndex="parentIndex">
+          </fp--custom-flex-size-input>
+
+          <!-- nested flex item control panel -->
+          <fp--nested-flex-panel 
+            :parentIndex="parentIndex">
+          </fp--nested-flex-panel>
+        </div>
+        <nfp--flex-amount-panel   
+          v-if="flexItem.nested.hasNestedFlexbox" 
+          :nestedFlexGroup="flexItem.nested.nestedFlexGroup"
+          :parentIndex="parentIndex"
+          class="fig--nested-panel flex-1">
+          
+        </nfp--flex-amount-panel>
       </div>
-      <nfp--flex-amount-panel   
-        v-if="flexItem.nested.hasNestedFlexbox" 
-        :nestedFlexGroup="flexItem.nested.nestedFlexGroup"
-        :parentIndex="parentIndex"
-        class="fig--nested-panel flex-1">
-        
-      </nfp--flex-amount-panel>
 
     </div>
   </div>
@@ -58,7 +61,5 @@ export default {
 .flex-input-panel {
   padding: .5rem 1rem;
 }
-.flex-item-group {
-  width: 7.5rem;
-}
+
 </style>

@@ -1,5 +1,4 @@
 <template>
-  
   <input 
     @blur="validateNumber($event)"
     @keypress.enter="validateNumber($event)"
