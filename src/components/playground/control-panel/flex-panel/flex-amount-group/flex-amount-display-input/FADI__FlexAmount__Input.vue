@@ -1,11 +1,14 @@
 <template>
   
   <input 
-  @blur="checkAndSetFlexAmount($event)"
-  v-model="userInputFlexAmount"
-  class="amount-display-input flex-4"
-  type="number" 
-  name="flex-amount"
+    @blur="validateNumber($event)"
+    @keypress.enter="validateNumber($event)"
+    class="amount-display-input flex-4"
+    type="number" 
+    name="flex-amount"
+    min="1"
+    max="20"
+    :value="currentFlexAmount"
   >
 </template>
 
@@ -13,22 +16,41 @@
 import { mapActions } from 'vuex';
 
 export default {
-  data () {
-    return {
-      userInputFlexAmount: 1,
+  props: ['parentIndex'],
+  computed: {
+    currentFlexAmount () {
+      return this.$store.getters.getFlexGroupItem(this.parentIndex).flex;
     }
   },
-  props: ['parentIndex'],
   methods: {
     ...mapActions(['setFlexAmount_STORE']),
     changeDisplay () {
       this.$emit('update:showDisplay', true)
     },
-    checkAndSetFlexAmount ($event) {
+    // checks if entered number is within range, 1-20
+    // if higher than 20, default to 20
+    // if lower than 1, default to 1
+    // setFlexAmount with valid number
+    validateNumber ($event) {
+      const enteredNumber = Math.floor($event.target.value);
+      if (enteredNumber > 20) {
+        console.log(`number entered is over max range: 20, enteredNumber: ${enteredNumber}, number defaulted to 20`);
+        const validNumber = 20;
+        this.setFlexAmount(validNumber);
+      } else if (enteredNumber < 1) {
+        console.log(`number entered is under min range: 1, enteredNumber: ${enteredNumber}, number defaulted to 1`);
+        const validNumber = 1;
+        this.setFlexAmount(validNumber);
+      } else if (enteredNumber > 0 && enteredNumber < 21) {
+        console.log(`number within range: 1-20, enteredNumber: ${enteredNumber}`);
+        this.setFlexAmount(enteredNumber);
+      }
+    },
+    setFlexAmount (validNumber) {
       const payload = {
         parentIndex: this.parentIndex,
         isCustomFlexSize: false,
-        newFlexAmount: this.userInputFlexAmount,
+        newFlexAmount: validNumber,
       };
       this.setFlexAmount_STORE(payload)
       this.changeDisplay()

@@ -35,7 +35,6 @@ const store = new Vuex.Store({
   },
   mutations: {
     setCustomFlexSizeAs(state, { parentIndex, isCustomFlexSize }) {
-      console.log(isCustomFlexSize, parentIndex)
       state.flexItemGroup[parentIndex].isCustomFlexSize = isCustomFlexSize;
     },
   },
