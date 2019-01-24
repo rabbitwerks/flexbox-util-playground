@@ -19,12 +19,18 @@
         <fp--nested-flex-panel 
           :parentIndex="parentIndex">
         </fp--nested-flex-panel>
+
+        <div class="more-options--outer flexbox flex-justify-end">
+          <div class="more-options--button flexbox flex-center">
+            <span class="">...</span>
+          </div>
+        </div>
       </div>
       <nfp--flex-amount-panel   
         v-if="flexItem.nested.hasNestedFlexbox" 
         :nestedFlexGroup="flexItem.nested.nestedFlexGroup"
         :parentIndex="parentIndex"
-        class="fig--nested-panel flex-1">
+        class="fig--nested-panel ">
         
       </nfp--flex-amount-panel>
 
@@ -57,5 +63,18 @@ export default {
 <style scoped>
 .flex-input-panel {
   padding: .5rem 1rem;
+}
+.more-options--outer {
+  margin-top: .5rem;
+
+}
+.more-options--button {
+  width: 2rem;
+  background: linear-gradient(to bottom, var(--mainTurq), var(--darkTurq));
+  border: 2px solid var(--backgroundGrey);
+  border-radius: 3px;
+}
+.more-options--button:active {
+  background: linear-gradient(to top, var(--mainTurq), var(--darkTurq));
 }
 </style>
