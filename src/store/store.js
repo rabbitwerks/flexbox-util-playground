@@ -33,6 +33,12 @@ const store = new Vuex.Store({
       name: 'Flexgap 0', class: 'flexgap-0',
     },
   },
+  mutations: {
+    setCustomFlexSizeAs(state, { parentIndex, isCustomFlexSize }) {
+      console.log(isCustomFlexSize, parentIndex)
+      state.flexItemGroup[parentIndex].isCustomFlexSize = isCustomFlexSize;
+    },
+  },
   modules: {
     parentFlexGroupModule,
     nestedFlexGroupModule,

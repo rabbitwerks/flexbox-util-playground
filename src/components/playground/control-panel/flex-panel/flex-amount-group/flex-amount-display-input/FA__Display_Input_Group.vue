@@ -1,6 +1,7 @@
 <template>
   <flex-amount--display
     v-if="showDisplay"
+    :parentIndex="parentIndex"
     :showDisplay="showDisplay"
     v-on:update:showDisplay="showDisplay = $event">
   </flex-amount--display>

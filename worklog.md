@@ -3,6 +3,7 @@
 
 
 ### Todo
+-rename customflexsize stuff to custom [pixel] size
 - remove flexgap for single item
 - transition for flex items label value
 - getting started route

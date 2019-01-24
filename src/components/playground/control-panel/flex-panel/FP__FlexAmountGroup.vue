@@ -52,14 +52,7 @@ export default {
   },
   methods: {
     ...mapActions(['decreaseFlexAmount_STORE','increaseFlexAmount_STORE', 'highlightParentItem_STORE']),
-    // setFlexAmount($event) {
-    //   const payload = {
-    //     parentIndex: this.parentIndex, 
-    //     value: $event.target.value,
-    //     isCustomWidth: false
-    //   };
-    //   this.setFlexAmount_STORE(payload);
-    // },
+
     highlightParentItem(setActive) {
       const payload = {
         parentIndex: this.parentIndex,

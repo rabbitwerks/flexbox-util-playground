@@ -23,7 +23,7 @@ const getters = {
 const mutations = {
   // adds a new flex item to the flex group
   addItemToGroup_MUTA(state, rootState) {
-    console.log(rootState);
+    // console.log(rootState);
     if (rootState.flexItemGroup.length > 4) return;
     rootState.flexItemGroup.push({
       flex: 1,
@@ -33,6 +33,7 @@ const mutations = {
       customFlexSize: 0,
       measurementUnits: 'px',
       pixelWidth: 0,
+      pixelHeight: 0,
       nested: {
         hasNestedFlexbox: false,
         nestedFlexGroup: [],
@@ -53,17 +54,22 @@ const mutations = {
     rootState.flexGroupDirection = newDirection;
   },
 
-  increaseFlexAmount_MUTA(state, {
-    rootState, parentIndex, isCustomFlexSize, newFlexAmount,
-  }) {
-    rootState.flexItemGroup[parentIndex].isCustomFlexSize = isCustomFlexSize;
-    rootState.flexItemGroup[parentIndex].flex = newFlexAmount;
+  // setCustomFlexSizeAs(state, { rootState, payload: { parentIndex, isCustomFlexSize } }) {
+  //   rootState.flexItemGroup[parentIndex].isCustomFlexSize = isCustomFlexSize;
+  // },
+
+  increaseFlexAmount_MUTA(state, { rootState, parentIndex }) {
+    const currentFlex = rootState.flexItemGroup[parentIndex].flex;
+    const newFlex = currentFlex + 1;
+    console.log(newFlex);
   },
 
   // sets a flex amount to an individual flex item
-  setFlexAmount_MUTA(state, { rootState, payload }) {
-    rootState.flexItemGroup[payload.parentIndex].isCustomFlexSize = payload.isCustomFlexSize;
-    rootState.flexItemGroup[payload.parentIndex].flex = payload.value;
+  setFlexAmount_MUTA(state, {
+    rootState, payload: { parentIndex, isCustomFlexSize, newFlexAmount },
+  }) {
+    rootState.flexItemGroup[parentIndex].isCustomFlexSize = isCustomFlexSize;
+    rootState.flexItemGroup[parentIndex].flex = newFlexAmount;
   },
 
   // sets flexgap class for parent flex group
@@ -103,10 +109,11 @@ const actions = {
   },
 
   increaseFlexAmount_STORE({ commit, rootState }, payload) {
-    commit('increaseFlexAmount', { rootState, payload });
+    commit('setCustomFlexSizeAs', { rootState, payload });
+    commit('increaseFlexAmount_MUTA', { rootState, payload });
   },
   setFlexAmount_STORE({ commit, rootState }, payload) {
-    console.log(payload)
+    commit('setCustomFlexSizeAs', payload, { root: true });
     commit('setFlexAmount_MUTA', { rootState, payload });
   },
 

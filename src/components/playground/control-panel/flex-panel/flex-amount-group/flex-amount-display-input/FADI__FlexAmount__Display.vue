@@ -1,14 +1,22 @@
 <template>
   <div 
-    @dblclick="changeDisplay"
-    class="amount-display--outer flex-4">
-    <span class="amount-display--inner">1</span>
+    @click="changeDisplay"
+    class="amount-display--outer flex-4 pointer">
+    <span 
+      class="amount-display--inner"
+      >{{ currentFlexAmount }}
+    </span>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['showDisplay'],
+  props: ['showDisplay', 'parentIndex'],
+  computed: {
+    currentFlexAmount () {
+      return this.$store.getters.getFlexGroupItem(this.parentIndex).flex;
+    }
+  },
   methods: {
     changeDisplay () {
       this.$emit('update:showDisplay', false)
