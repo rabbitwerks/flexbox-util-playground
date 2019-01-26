@@ -7,22 +7,32 @@
       v-for="(flexItem, parentIndex) in flexItemGroup" 
       :key="parentIndex">
       <div class="fig--main-panel flex-2">
-        <fp--flex-amount-input 
-          :index="parentIndex">
-        </fp--flex-amount-input>
+        
+          <div 
+            v-if="!toggleMoreOptionsGroup[parentIndex].moreOptionsToggled"
+            class="fig--main-panel--controller">
+            <fp--flex-amount-input 
+              :index="parentIndex">
+            </fp--flex-amount-input>
 
-        <fp--custom-width-input 
-          :parentIndex="parentIndex">
-        </fp--custom-width-input>
+            <fp--custom-width-input 
+              :parentIndex="parentIndex">
+            </fp--custom-width-input>
 
-        <!-- nested flex item control panel -->
-        <fp--nested-flex-panel 
-          :parentIndex="parentIndex">
-        </fp--nested-flex-panel>
+            <!-- nested flex item control panel -->
+            <fp--nested-flex-panel 
+              :parentIndex="parentIndex">
+            </fp--nested-flex-panel>
+          </div>
+        
+
+        <div v-else class="fig--main-panel--options">
+          More Options
+        </div>
 
         <div class="more-options--outer flexbox flex-justify-end">
-          <div class="more-options--button flexbox flex-center">
-            <span class="">...</span>
+          <div class="more-options--button flexbox flex-center" @click="toggleMoreOptionsGroup[parentIndex].moreOptionsToggled = !toggleMoreOptionsGroup[parentIndex].moreOptionsToggled">
+            <img src="../../../../assets/svg/icon__more_dots.svg">
           </div>
         </div>
       </div>
@@ -40,20 +50,33 @@
 
 <script>
 import FP__FlexAmountInput from './FP__FlexAmountInput';
-import FP__CustomWIdthInput from './FP__CustomWidthInput';
+import FP__CustomWidthInput from './FP__CustomWidthInput';
 import FP__NestedFlexPanel from './nested-flex-panel/FP__NestedFlexPanel';
 import NFP__FlexAmountPanel from './nested-flex-panel/NFP__FlexAmountPanel';
 
 export default {
+  data () {
+    return {
+      toggleMoreOptionsGroup: [{ moreOptionsToggled: false }],
+    }
+  },
   components: {
     'fp--flex-amount-input': FP__FlexAmountInput,
-    'fp--custom-width-input': FP__CustomWIdthInput,
+    'fp--custom-width-input': FP__CustomWidthInput,
     'fp--nested-flex-panel': FP__NestedFlexPanel,
     'nfp--flex-amount-panel': NFP__FlexAmountPanel,
   },
   computed: {
     flexItemGroup() {
       return this.$store.getters.getFlexGroup
+    }
+  },
+  watch: {
+    flexItemGroup: function(value) {
+      this.toggleMoreOptionsGroup = [];
+      value.forEach((item, index) => {
+        this.toggleMoreOptionsGroup.push({ moreOptionsToggled: false })
+      });
     }
   }
 
@@ -73,8 +96,12 @@ export default {
   background: linear-gradient(to bottom, var(--mainTurq), var(--darkTurq));
   border: 2px solid var(--backgroundGrey);
   border-radius: 3px;
+  padding: .2rem;
 }
 .more-options--button:active {
   background: linear-gradient(to top, var(--mainTurq), var(--darkTurq));
+}
+.more-options--button img {
+  width: 1.5rem;
 }
 </style>
