@@ -3,12 +3,17 @@
 
 
 ### Todo
--rename customflexsize stuff to custom [pixel] size
+- rename customflexsize stuff to custom [pixel] size
 - remove flexgap for single item
 - transition for flex items label value
 - getting started route
 - home route
-- refactor to plus/minus with value in middle button/display group
+
+- refactor to plus/minus with value in middle button/display group [DONE]
+  - do same to nested flex add/remove
+    - parent flex item add/remove?
+    - flexgap?
+
 - more option button?
   - duplicate left
   - duplicate right
@@ -16,10 +21,13 @@
     - figure out how to show
     - parse html for classes containing flex class names?
   - randomize the flex
+
 - mobile layout
+
 - animations for adding removing flex items
   - animate flex from 0 to 1
   - animate children, i.e. flex label to fade in/out
+
 - animate add/remove of nested flex amount inputs
   - animate width
   - fade opacity of label
