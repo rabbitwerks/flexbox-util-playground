@@ -54,13 +54,11 @@ const mutations = {
     rootState.flexGroupDirection = newDirection;
   },
 
-  // setCustomFlexSizeAs(state, { rootState, payload: { parentIndex, isCustomFlexSize } }) {
-  //   rootState.flexItemGroup[parentIndex].isCustomFlexSize = isCustomFlexSize;
-  // },
 
   increaseFlexAmount_MUTA(state, { rootState, payload: { parentIndex } }) {
     if (rootState.flexItemGroup[parentIndex].flex < 20) {
       rootState.flexItemGroup[parentIndex].flex += 1;
+      return;
     }
     console.log('max flex amount reached');
   },
@@ -68,6 +66,7 @@ const mutations = {
   decreaseFlexAmount_MUTA(state, { rootState, payload: { parentIndex } }) {
     if (rootState.flexItemGroup[parentIndex].flex > 1) {
       rootState.flexItemGroup[parentIndex].flex -= 1;
+      return;
     }
     console.log('minimum flex reached');
   },
@@ -116,17 +115,17 @@ const actions = {
   },
 
   increaseFlexAmount_STORE({ commit, rootState }, payload) {
-    commit('setCustomFlexSizeAs', payload, { root: true });
+    commit('setCustomPixelSizeAs', payload, { root: true });
     commit('increaseFlexAmount_MUTA', { rootState, payload });
   },
 
   decreaseFlexAmount_STORE({ commit, rootState }, payload) {
-    commit('setCustomFlexSizeAs', payload, { root: true });
+    commit('setCustomPixelSizeAs', payload, { root: true });
     commit('decreaseFlexAmount_MUTA', { rootState, payload });
   },
 
   setFlexAmount_STORE({ commit, rootState }, payload) {
-    commit('setCustomFlexSizeAs', payload, { root: true });
+    commit('setCustomPixelSizeAs', payload, { root: true });
     commit('setFlexAmount_MUTA', { rootState, payload });
   },
 

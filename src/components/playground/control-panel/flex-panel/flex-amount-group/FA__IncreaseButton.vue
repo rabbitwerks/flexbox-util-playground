@@ -1,6 +1,6 @@
 <template>
   <div 
-    @click="increaseFlexAmount({parentIndex, isCustomFlexSize: false})"
+    @click="increaseFlexAmount({parentIndex, isCustomPixelSize: false})"
     class="increase-button flex-1 flexbox-space-center pointer">
     <span class="increase-button--icon">+</span>
   </div>

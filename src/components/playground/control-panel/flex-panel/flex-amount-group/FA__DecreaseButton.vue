@@ -1,6 +1,6 @@
 <template>
   <div 
-    @click="decreaseFlexAmount({parentIndex, isCustomFlexSize: false})"
+    @click="decreaseFlexAmount({parentIndex, isCustomPixelSize: false})"
     class="decrease-button flex-1 flexbox-space-center pointer">
     <span class="decrease-button--icon">-</span>
   </div>
