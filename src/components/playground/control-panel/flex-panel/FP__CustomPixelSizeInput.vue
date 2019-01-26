@@ -1,17 +1,17 @@
 <template>
-  <div class="custom-flex-size-input-group">
-    <label v-if="isFlexDirectionRow" for="custom-flex-size-input">Custom Width</label>
-    <label v-else for="custom-flex-size-input">Custom Height</label>
+  <div class="custom-pixel-size-input-group">
+    <label v-if="isFlexDirectionRow" for="custom-pixel-size-input">Custom Width</label>
+    <label v-else for="custom-pixel-size-input">Custom Height</label>
     <input 
-      v-model="customFlexSize"
+      v-model="customPixelSize"
       type="number" 
-      name="custom-flex-size-amount" 
-      class="custom-flex-size-amount"
+      name="custom-pixel-size-amount" 
+      class="custom-pixel-size-amount"
       placeholder="400">
     <select 
       v-model="measurementUnits"
-      name="custom-flex-size-unit-select"
-      class="custom-flex-size-unit-select">
+      name="custom-pixel-size-unit-select"
+      class="custom-pixel-size-unit-select">
       <option value="px">px</option>
       <option value="rem">rem</option>
     </select>
@@ -30,7 +30,7 @@ export default {
       }
       return false
     },
-    customFlexSize: {
+    customPixelSize: {
       get() {
         return this.$store.state.flexItemGroup[this.parentIndex].customWidth;
       },
@@ -38,10 +38,10 @@ export default {
         const payload = {
           value,
           parentIndex: this.parentIndex,
-          isCustomFlexSize: true,
+          isCustomPixelSize: true,
           measurementUnits: this.measurementUnits,
         };
-        this.$store.dispatch('setCustomFlexSize_STORE', payload);
+        this.$store.dispatch('setCustomPixelSize_STORE', payload);
       },
     },
     measurementUnits: {
@@ -53,7 +53,7 @@ export default {
           measurementUnits: value,
           parentIndex: this.parentIndex,
         };
-        this.$store.dispatch('setCustomFlexSizeUnits_STORE', payload);
+        this.$store.dispatch('setCustomPixelSizeUnits_STORE', payload);
       }
     }
   },
@@ -62,10 +62,10 @@ export default {
 </script>
 
 <style scoped>
-.custom-flex-size-input-group label {
+.custom-pixel-size-input-group label {
   display: block;
 }
-.custom-flex-size-amount {
+.custom-pixel-size-amount {
   width: 4rem;
   padding: .1rem .25rem;
   border: 2px solid var(--backgroundGrey);
@@ -76,7 +76,7 @@ export default {
   font-size: .9rem;
   font-weight: 600;
 }
-.custom-flex-size-unit-select {
+.custom-pixel-size-unit-select {
   width: auto;
   padding: .05rem;
   border: 2px solid var(--backgroundGrey);

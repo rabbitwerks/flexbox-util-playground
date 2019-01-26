@@ -15,9 +15,9 @@
               :parentIndex="parentIndex">
             </fp--flex-amount-group>
 
-            <fp--custom-flexsize-input 
+            <fp--custom-pixel-size-input 
               :parentIndex="parentIndex">
-            </fp--custom-flexsize-input>
+            </fp--custom-pixel-size-input>
 
             <!-- nested flex item control panel -->
             <fp--nested-flex-panel 
@@ -49,7 +49,7 @@
 
 <script>
 import FP__FlexAmountGroup from './FP__FlexAmountGroup';
-import FP__CustomFlexSizeInput from './FP__CustomFlexSizeInput';
+import FP__CustomPixelSizeInput from './FP__CustomPixelSizeInput';
 import FP__NestedFlexPanel from './nested-flex-panel/FP__NestedFlexPanel';
 import FP__MoreOptions_Button from './more-option-panel/FP__MoreOptions_Button';
 import NFP__FlexAmountPanel from './nested-flex-panel/NFP__FlexAmountPanel';
@@ -62,7 +62,7 @@ export default {
   },
   components: {
     'fp--flex-amount-group': FP__FlexAmountGroup,
-    'fp--custom-flexsize-input': FP__CustomFlexSizeInput,
+    'fp--custom-pixel-size-input': FP__CustomPixelSizeInput,
     'fp--nested-flex-panel': FP__NestedFlexPanel,
     'fp--more-options--button': FP__MoreOptions_Button,
     'nfp--flex-amount-panel': NFP__FlexAmountPanel,

@@ -3,7 +3,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import parentFlexGroupModule from './modules/ParentFlexGroup_STORE';
 import nestedFlexGroupModule from './modules/NestedFlexGroup_STORE';
-import customFlexSizeModule from './modules/CustomFlexSize_STORE';
+import customPixelSizeModule from './modules/CustomPixelSize_STORE';
 import customFlexColorModule from './modules/CustomFlexColor_STORE';
 
 Vue.use(Vuex);
@@ -14,9 +14,9 @@ const store = new Vuex.Store({
       {
         flex: 1,
         highlightActive: false,
-        isCustomFlexSize: false,
+        isCustomPixelSize: false,
         customColor: '',
-        customFlexSize: 0,
+        customPixelSize: 0,
         measurementUnits: 'px',
         pixelWidth: 0,
         pixelHeight: 0,
@@ -34,14 +34,14 @@ const store = new Vuex.Store({
     },
   },
   mutations: {
-    setCustomFlexSizeAs(state, { parentIndex, isCustomFlexSize }) {
-      state.flexItemGroup[parentIndex].isCustomFlexSize = isCustomFlexSize;
+    setCustomPixelSizeAs(state, { parentIndex, isCustomPixelSize }) {
+      state.flexItemGroup[parentIndex].isCustomPixelSize = isCustomPixelSize;
     },
   },
   modules: {
     parentFlexGroupModule,
     nestedFlexGroupModule,
-    customFlexSizeModule,
+    customPixelSizeModule,
     customFlexColorModule,
   },
 });

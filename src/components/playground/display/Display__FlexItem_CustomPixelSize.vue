@@ -1,26 +1,26 @@
 <template>
   <div 
-    :style="[ isFlexDirectionRow ? { 'width': customFlexSize_Full } : { 'height': customFlexSize_Full }]"
+    :style="[ isFlexDirectionRow ? { 'width': customPixelSize_Full } : { 'height': customPixelSize_Full }]"
     class="flex-item--basic">
     <div 
       v-if="isFlexDirectionRow"
       class="flex-item--basic--inner flexbox-space-center">
-      <h3 v-if="customFlexSize_Value > 100 && customFlexSize_Units === 'px'">
-        Width: {{ customFlexSize_Full }}
+      <h3 v-if="customPixelSize_Value > 100 && customPixelSize_Units === 'px'">
+        Width: {{ customPixelSize_Full }}
       </h3>
-      <h3 v-else-if=" customFlexSize_Value > 5 && customFlexSize_Units === 'rem' ">
-        Width: {{ customFlexSize_Full }}
+      <h3 v-else-if=" customPixelSize_Value > 5 && customPixelSize_Units === 'rem' ">
+        Width: {{ customPixelSize_Full }}
       </h3>
       
     </div>
     <div 
       v-else
       class="flex-item--basic--inner flexbox-space-center">
-      <h3 v-if="customFlexSize_Value > 50 && customFlexSize_Units === 'px'">
-        Height: {{ customFlexSize_Full }}
+      <h3 v-if="customPixelSize_Value > 50 && customPixelSize_Units === 'px'">
+        Height: {{ customPixelSize_Full }}
       </h3>
-      <h3 v-else-if=" customFlexSize_Value > 2 && customFlexSize_Units === 'rem' ">
-        Height: {{ customFlexSize_Full }}
+      <h3 v-else-if=" customPixelSize_Value > 2 && customPixelSize_Units === 'rem' ">
+        Height: {{ customPixelSize_Full }}
       </h3>
       
     </div>
@@ -37,14 +37,14 @@ export default {
       }
       return false
     },
-    customFlexSize_Value() {
-      return this.$store.getters.getFlexGroupItem(this.parentIndex).customFlexSize;
+    customPixelSize_Value() {
+      return this.$store.getters.getFlexGroupItem(this.parentIndex).customPixelSize;
     },
-    customFlexSize_Units() {
+    customPixelSize_Units() {
       return this.$store.getters.getFlexGroupItem(this.parentIndex).measurementUnits;
     },
-    customFlexSize_Full() {
-      return this.$store.getters.getFlexGroupItem(this.parentIndex).customFlexSize + this.$store.getters.getFlexGroupItem(this.parentIndex).measurementUnits
+    customPixelSize_Full() {
+      return this.$store.getters.getFlexGroupItem(this.parentIndex).customPixelSize + this.$store.getters.getFlexGroupItem(this.parentIndex).measurementUnits
     },
   },
 }
