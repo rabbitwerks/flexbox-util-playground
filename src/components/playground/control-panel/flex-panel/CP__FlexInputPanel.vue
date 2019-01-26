@@ -6,30 +6,42 @@
       class="flex-item-group flexbox" 
       v-for="(flexItem, parentIndex) in flexItemGroup" 
       :key="parentIndex">
-      <div class="flex-item-group--panel flexbox-space-between">
+      <div class="fig--main-panel flex-2">
+        
+          <div 
+            v-if="!toggleMoreOptionsGroup[parentIndex].moreOptionsToggled"
+            class="fig--main-panel--controller">
+            <fp--flex-amount-group 
+              :parentIndex="parentIndex">
+            </fp--flex-amount-group>
 
-        <div class="fig--main-panel flex-2">
-          <fp--flex-amount-group 
-            :parentIndex="parentIndex">
-          </fp--flex-amount-group>
+            <fp--custom-flexsize-input 
+              :parentIndex="parentIndex">
+            </fp--custom-flexsize-input>
 
-          <fp--custom-flex-size-input 
-            :parentIndex="parentIndex">
-          </fp--custom-flex-size-input>
+            <!-- nested flex item control panel -->
+            <fp--nested-flex-panel 
+              :parentIndex="parentIndex">
+            </fp--nested-flex-panel>
+          </div>
+        
 
-          <!-- nested flex item control panel -->
-          <fp--nested-flex-panel 
-            :parentIndex="parentIndex">
-          </fp--nested-flex-panel>
+        <div v-else class="fig--main-panel--options">
+          More Options
         </div>
-        <nfp--flex-amount-panel   
-          v-if="flexItem.nested.hasNestedFlexbox" 
-          :nestedFlexGroup="flexItem.nested.nestedFlexGroup"
+
+        <fp--more-options--button
           :parentIndex="parentIndex"
-          class="fig--nested-panel flex-1">
-          
-        </nfp--flex-amount-panel>
+          :toggleMoreOptions="toggleMoreOptionsGroup[parentIndex]">
+        </fp--more-options--button>
       </div>
+      <nfp--flex-amount-panel   
+        v-if="flexItem.nested.hasNestedFlexbox" 
+        :nestedFlexGroup="flexItem.nested.nestedFlexGroup"
+        :parentIndex="parentIndex"
+        class="fig--nested-panel ">
+        
+      </nfp--flex-amount-panel>
 
     </div>
   </div>
@@ -39,18 +51,33 @@
 import FP__FlexAmountGroup from './FP__FlexAmountGroup';
 import FP__CustomFlexSizeInput from './FP__CustomFlexSizeInput';
 import FP__NestedFlexPanel from './nested-flex-panel/FP__NestedFlexPanel';
+import FP__MoreOptions_Button from './more-option-panel/FP__MoreOptions_Button';
 import NFP__FlexAmountPanel from './nested-flex-panel/NFP__FlexAmountPanel';
 
 export default {
+  data () {
+    return {
+      toggleMoreOptionsGroup: [{ moreOptionsToggled: false }],
+    }
+  },
   components: {
     'fp--flex-amount-group': FP__FlexAmountGroup,
-    'fp--custom-flex-size-input': FP__CustomFlexSizeInput,
+    'fp--custom-flexsize-input': FP__CustomFlexSizeInput,
     'fp--nested-flex-panel': FP__NestedFlexPanel,
+    'fp--more-options--button': FP__MoreOptions_Button,
     'nfp--flex-amount-panel': NFP__FlexAmountPanel,
   },
   computed: {
     flexItemGroup() {
       return this.$store.getters.getFlexGroup
+    }
+  },
+  watch: {
+    flexItemGroup: function(value) {
+      this.toggleMoreOptionsGroup = [];
+      value.forEach((item, index) => {
+        this.toggleMoreOptionsGroup.push({ moreOptionsToggled: false })
+      });
     }
   }
 
@@ -61,5 +88,7 @@ export default {
 .flex-input-panel {
   padding: .5rem 1rem;
 }
-
+.more-options--outer {
+  margin-top: .5rem;
+}
 </style>

@@ -24,3 +24,6 @@
   - animate width
   - fade opacity of label
   - transition group (v-for)
+
+- refactor flex-input-group to child component of flex-input-panel, each flex item panel will render as own component tree
+  = renders all inputs together inside flex-input-panel, becoming unmaintainable
