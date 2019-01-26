@@ -30,11 +30,10 @@
           More Options
         </div>
 
-        <div class="more-options--outer flexbox flex-justify-end">
-          <div class="more-options--button flexbox flex-center" @click="toggleMoreOptionsGroup[parentIndex].moreOptionsToggled = !toggleMoreOptionsGroup[parentIndex].moreOptionsToggled">
-            <img src="../../../../assets/svg/icon__more_dots.svg">
-          </div>
-        </div>
+        <fp--more-options--button
+          :parentIndex="parentIndex"
+          :toggleMoreOptions="toggleMoreOptionsGroup[parentIndex]">
+        </fp--more-options--button>
       </div>
       <nfp--flex-amount-panel   
         v-if="flexItem.nested.hasNestedFlexbox" 
@@ -52,6 +51,7 @@
 import FP__FlexAmountInput from './FP__FlexAmountInput';
 import FP__CustomWidthInput from './FP__CustomWidthInput';
 import FP__NestedFlexPanel from './nested-flex-panel/FP__NestedFlexPanel';
+import FP__MoreOptions_Button from './more-option-panel/FP__MoreOptions_Button';
 import NFP__FlexAmountPanel from './nested-flex-panel/NFP__FlexAmountPanel';
 
 export default {
@@ -64,6 +64,7 @@ export default {
     'fp--flex-amount-input': FP__FlexAmountInput,
     'fp--custom-width-input': FP__CustomWidthInput,
     'fp--nested-flex-panel': FP__NestedFlexPanel,
+    'fp--more-options--button': FP__MoreOptions_Button,
     'nfp--flex-amount-panel': NFP__FlexAmountPanel,
   },
   computed: {
