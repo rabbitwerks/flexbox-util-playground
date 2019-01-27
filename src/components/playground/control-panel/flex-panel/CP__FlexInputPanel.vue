@@ -6,8 +6,8 @@
       class="flex-item-group flexbox" 
       v-for="(flexItem, parentIndex) in flexItemGroup" 
       :key="parentIndex">
+
       <div class="fig--main-panel flex-2">
-        
         <div 
           v-if="!toggleMoreOptionsGroup[parentIndex].moreOptionsToggled"
           class="fig--main-panel--controller">
@@ -25,7 +25,6 @@
           </fp--nested-flex-panel>
         </div>
         
-
         <fp--more-options--panel v-else
         :parentIndex="parentIndex">
         </fp--more-options--panel>

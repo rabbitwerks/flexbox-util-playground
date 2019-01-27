@@ -7,12 +7,12 @@
         v-model="customPixelSize"
         type="number" 
         name="custom-pixel-size-amount" 
-        class="custom-pixel-size-amount flex-3"
+        class="custom-pixel-size-amount"
         placeholder="0">
       <select 
         v-model="measurementUnits"
         name="custom-pixel-size-unit-select"
-        class="custom-pixel-size-unit-select flex-2">
+        class="custom-pixel-size-unit-select">
         <option value="px">px</option>
         <option value="rem">rem</option>
       </select>
@@ -69,7 +69,8 @@ export default {
   display: block;
 }
 .custom-pixel-size-amount {
-  width: 100%;
+  width: 4.5rem;
+  box-sizing: border-box;
   padding: .1rem .25rem;
   border: 2px solid var(--backgroundGrey);
   border-right: 1px solid var(--backgroundGrey);
