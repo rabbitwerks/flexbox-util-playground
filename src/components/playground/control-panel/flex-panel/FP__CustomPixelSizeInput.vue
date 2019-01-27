@@ -2,19 +2,22 @@
   <div class="custom-pixel-size-input-group">
     <label v-if="isFlexDirectionRow" for="custom-pixel-size-input">Custom Width</label>
     <label v-else for="custom-pixel-size-input">Custom Height</label>
-    <input 
-      v-model="customPixelSize"
-      type="number" 
-      name="custom-pixel-size-amount" 
-      class="custom-pixel-size-amount"
-      placeholder="400">
-    <select 
-      v-model="measurementUnits"
-      name="custom-pixel-size-unit-select"
-      class="custom-pixel-size-unit-select">
-      <option value="px">px</option>
-      <option value="rem">rem</option>
-    </select>
+    <div class="flexbox">
+      <input 
+        v-model="customPixelSize"
+        type="number" 
+        name="custom-pixel-size-amount" 
+        class="custom-pixel-size-amount flex-3"
+        placeholder="0">
+      <select 
+        v-model="measurementUnits"
+        name="custom-pixel-size-unit-select"
+        class="custom-pixel-size-unit-select flex-2">
+        <option value="px">px</option>
+        <option value="rem">rem</option>
+      </select>
+
+    </div>
   </div>
 </template>
 
@@ -66,7 +69,7 @@ export default {
   display: block;
 }
 .custom-pixel-size-amount {
-  width: 4rem;
+  width: 100%;
   padding: .1rem .25rem;
   border: 2px solid var(--backgroundGrey);
   border-right: 1px solid var(--backgroundGrey);
@@ -77,7 +80,7 @@ export default {
   font-weight: 600;
 }
 .custom-pixel-size-unit-select {
-  width: auto;
+  width: 100%;
   padding: .05rem;
   border: 2px solid var(--backgroundGrey);
   border-left: 1px solid var(--backgroundGrey);
