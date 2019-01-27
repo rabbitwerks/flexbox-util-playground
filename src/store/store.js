@@ -3,6 +3,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import parentFlexGroupModule from './modules/ParentFlexGroup_STORE';
 import nestedFlexGroupModule from './modules/NestedFlexGroup_STORE';
+import moreOptionsModule from './modules/MoreOptions_STORE';
 import customPixelSizeModule from './modules/CustomPixelSize_STORE';
 import customFlexColorModule from './modules/CustomFlexColor_STORE';
 
@@ -41,6 +42,7 @@ const store = new Vuex.Store({
   modules: {
     parentFlexGroupModule,
     nestedFlexGroupModule,
+    moreOptionsModule,
     customPixelSizeModule,
     customFlexColorModule,
   },

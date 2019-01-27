@@ -3,10 +3,13 @@
     <h4 class="more-options-panel--label">More Options</h4>
     <div class="more-options-panel--inner flexdir-col flexbox-space-between">
       <mo--options-panel--button
-        text="Copy Left"
-        :passedInFunction="duplicateFlexItemLeft">
+        :text=" isFlexDirectionRow ? 'Copy Left' : 'Copy Before' "
+        @click.native="duplicateFlexItem_AtPrevIndex_STORE(parentIndex)">
       </mo--options-panel--button>
-      <div class="button">Copy Right</div>
+      <mo--options-panel--button
+        :text=" isFlexDirectionRow ? 'Copy Right' : 'Copy After' "
+        @click.native="duplicateFlexItem_AtNextIndex_STORE(parentIndex)">
+      </mo--options-panel--button>
       <div class="button">Randomize</div>
       <div class="button">Nested Margin</div>
     </div>
@@ -15,19 +18,29 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 import MO__OptionsPanel_Button from './MO__OptionsPanel_Button';
 
 export default {
+  props: ['parentIndex'],
   components: {
     'mo--options-panel--button': MO__OptionsPanel_Button,
   },
+  computed: {
+    isFlexDirectionRow() {
+      if (this.$store.getters.getFlexDirection === 'flexdir-row' || this.$store.getters.getFlexDirection === 'flexdir-rowrev') {
+        return true 
+      }
+      return false
+    },
+  },
   methods: {
-    duplicateFlexItemLeft() {
-      console.log('hello')
-    }
+    ...mapActions(['duplicateFlexItem_AtPrevIndex_STORE', 'duplicateFlexItem_AtNextIndex_STORE']),
   }
 }
 </script>
+
 
 <style scoped>
 .more-options-panel--outer {
@@ -43,18 +56,4 @@ export default {
   margin: .2rem 0;
 }
 
-
-.button {
-  padding: .1rem .5rem;
-  border: 2px solid var(--backgroundGrey);
-  border-radius: 3px;
-  font-size: .9rem;
-  background: linear-gradient(to bottom, var(--mainTurq), var(--darkTurq));
-  color: var(--fontColor);
-}
-
-.button:active {
-  background: linear-gradient(to top, var(--mainTurq), var(--darkTurq));
-  color: var(--fontColorActive);
-}
 </style>
