@@ -11,7 +11,12 @@
         @click.native="duplicateFlexItem_AtNextIndex_STORE(parentIndex)">
       </mo--options-panel--button>
       <div class="button">Randomize</div>
-      <div class="button">Nested Margin</div>
+      <mo--options-panel--button
+        text="Nested Margin"
+        :toggledOff="!hasNestedFlexMargin"
+        @click.native="toggleNestedFlexMargin_STORE(parentIndex)">
+      </mo--options-panel--button>
+      
     </div>
 
   </div>
@@ -34,9 +39,12 @@ export default {
       }
       return false
     },
+    hasNestedFlexMargin() {
+      return this.$store.getters.getFlexGroupItem(this.parentIndex).nested.nestedFlexMargin;
+    }
   },
   methods: {
-    ...mapActions(['duplicateFlexItem_AtPrevIndex_STORE', 'duplicateFlexItem_AtNextIndex_STORE']),
+    ...mapActions(['duplicateFlexItem_AtPrevIndex_STORE', 'duplicateFlexItem_AtNextIndex_STORE', 'toggleNestedFlexMargin_STORE']),
   }
 }
 </script>
@@ -45,7 +53,8 @@ export default {
 <style scoped>
 .more-options-panel--outer {
   background-color: #f7f7f7;
-  height: calc(100% - 64px);
+  height: calc(100% - 68px);
+  border: 2px solid var(--backgroundGrey);
   border-radius: 3px;
   color: var(--backgroundGrey);
   padding: 0 .5rem .5rem .5rem;

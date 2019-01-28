@@ -1,13 +1,14 @@
 <template>
   <div 
-    class="more-options-panel--button"
+    :class="{ 'toggled-off': toggledOff }"
+    class="more-options-panel--button pointer"
     >{{ text }}
   </div>
 </template>
 
 <script>
 export default {
-  props: ['text']
+  props: ['text', 'toggledOff']
 }
 </script>
 
@@ -24,5 +25,13 @@ export default {
 .more-options-panel--button:active {
   background: linear-gradient(to top, var(--mainTurq), var(--darkTurq));
   color: var(--fontColorActive);
+}
+
+.more-options-panel--button.toggled-off {
+  background: #666;
+  color: #ccc;
+}
+.more-options-panel--button.toggled-off:active {
+  background: #555;
 }
 </style>

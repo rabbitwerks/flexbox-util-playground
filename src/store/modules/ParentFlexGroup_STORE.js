@@ -36,6 +36,7 @@ const mutations = {
       pixelHeight: 0,
       nested: {
         hasNestedFlexbox: false,
+        nestedFlexMargin: true,
         nestedFlexGroup: [],
         nestedFlexDirection: 'flexdir-row',
       },

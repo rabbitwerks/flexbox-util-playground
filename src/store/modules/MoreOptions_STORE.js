@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 
 const mutations = {
   duplicateFlexItem_AtPrevIndex_MUTA(state, { rootState, parentIndex }) {
@@ -20,6 +21,11 @@ const mutations = {
     const duplicatedFlexItem = JSON.parse(JSON.stringify(rootState.flexItemGroup[parentIndex]));
     rootState.flexItemGroup.splice(parentIndex + 1, 0, duplicatedFlexItem);
   },
+
+  toggleNestedFlexMargin_MUTA(state, { rootState, parentIndex }) {
+    rootState.flexItemGroup[parentIndex].nested.nestedFlexMargin = !rootState
+      .flexItemGroup[parentIndex].nested.nestedFlexMargin;
+  },
 };
 
 const actions = {
@@ -30,6 +36,11 @@ const actions = {
   duplicateFlexItem_AtNextIndex_STORE({ commit, rootState }, payload) {
     const parentIndex = payload;
     commit('duplicateFlexItem_AtNextIndex_MUTA', { rootState, parentIndex });
+  },
+
+  toggleNestedFlexMargin_STORE({ commit, rootState }, payload) {
+    const parentIndex = payload;
+    commit('toggleNestedFlexMargin_MUTA', { rootState, parentIndex });
   },
 };
 

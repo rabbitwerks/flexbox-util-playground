@@ -2,12 +2,9 @@
   <div class="flex-item--nested--outer flexbox">
     <div 
       @click="activate_ColorPicker"
-      :class="nestedFlexDirection"
+      :class="[nestedFlexDirection, { 'nested-margin': nestedFlexMargin }]"
       tabindex="-1"
-      class="
-        flex-item--nested--inner 
-        flex-1 flexbox border
-      ">
+      class="flex-item--nested--inner flex-1 flexbox">
       <div 
         v-for="(nestedFlexItem, nestedIndex) in nestedFlexGroup"
         :key="nestedIndex"
@@ -15,7 +12,7 @@
         :style="[
           { 'flex': nestedFlexItem.flex, 'background-color': nestedFlexItem.customColor }
         ]"
-
+        :class="{'nested-flex-item--border': nestedIndex < nestedFlexGroup.length - 1}"
         class="nested--flex-item flexbox-space-center">
 
         <input 
@@ -63,6 +60,9 @@ export default {
   computed: {
     flexItem () {
       return this.$store.getters.getFlexGroupItem(this.parentIndex);
+    },
+    nestedFlexMargin () {
+      return this.$store.getters.getFlexGroupItem(this.parentIndex).nested.nestedFlexMargin;
     },
     nestedFlexGroup () {
       return this.$store.getters.getNestedFlexGroup(this.parentIndex).nestedFlexGroup;
@@ -132,13 +132,21 @@ export default {
 .flex-item--nested--inner {
   position: relative;
   z-index: 50;
+  border: 0px solid var(--backgroundGrey);
+  transition: margin .2s ease-in-out, border 0s ease-in 0.2s;
+}
+.flex-item--nested--inner.nested-margin {
+  border: 2px solid var(--backgroundGrey);
   margin: 1rem;
+  transition: margin .2s ease-in-out;
 }
 .nested--flex-item {
   position: relative;
-  border: 1px solid #212121;
   transition: flex .1s ease-in-out;
   background-color: var(--mainTurq);
+}
+.nested-flex-item--border {
+  border-right: 2px solid var(--backgroundGrey);
 }
 .click-color-picker--nested {
   position: absolute;
