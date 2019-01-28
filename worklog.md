@@ -17,10 +17,17 @@
 - more option button?
   - duplicate left
   - duplicate right
+		- refactor to side-by-side btns
   - show flexbox classes
     - figure out how to show
-    - parse html for classes containing flex class names?
+    - parse html for classes containing flex class names????
   - randomize the flex
+    - parent flex amount
+    - nested flex items
+      - nested flex amounts
+			- nested flex direction
+		- parent flex color using rgb randomize
+		- nested flex color using rgb randomize
 
 - mobile layout
 

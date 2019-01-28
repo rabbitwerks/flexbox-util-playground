@@ -4,17 +4,23 @@
     <div class="more-options-panel--inner flexdir-col flexbox-space-between">
       <mo--options-panel--button
         :text=" isFlexDirectionRow ? 'Copy Left' : 'Copy Before' "
+        :toggledOff="null"
         @click.native="duplicateFlexItem_AtPrevIndex_STORE(parentIndex)">
       </mo--options-panel--button>
       <mo--options-panel--button
         :text=" isFlexDirectionRow ? 'Copy Right' : 'Copy After' "
+        :toggledOff="null"
         @click.native="duplicateFlexItem_AtNextIndex_STORE(parentIndex)">
       </mo--options-panel--button>
-      <div class="button">Randomize</div>
       <mo--options-panel--button
         text="Nested Margin"
         :toggledOff="!hasNestedFlexMargin"
         @click.native="toggleNestedFlexMargin_STORE(parentIndex)">
+      </mo--options-panel--button>
+      <mo--options-panel--button
+        text="Randomize"
+        :toggledOff="null"
+        @click.native="randomizeFlexItem_STORE(parentIndex)">
       </mo--options-panel--button>
       
     </div>
