@@ -26,6 +26,10 @@ const mutations = {
     rootState.flexItemGroup[parentIndex].nested.nestedFlexMargin = !rootState
       .flexItemGroup[parentIndex].nested.nestedFlexMargin;
   },
+
+  randomizeFlexItem_MUTA(state, { rootState, parentIndex }) {
+    alert('randomize: ', parentIndex);
+  },
 };
 
 const actions = {
@@ -41,6 +45,11 @@ const actions = {
   toggleNestedFlexMargin_STORE({ commit, rootState }, payload) {
     const parentIndex = payload;
     commit('toggleNestedFlexMargin_MUTA', { rootState, parentIndex });
+  },
+
+  randomizeFlexItem_STORE({ commit, rootState }, payload) {
+    const parentIndex = payload;
+    commit('randomizeFlexItem_MUTA', { rootState, parentIndex });
   },
 };
 
