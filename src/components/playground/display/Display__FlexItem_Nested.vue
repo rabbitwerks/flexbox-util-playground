@@ -12,7 +12,9 @@
         :style="[
           { 'flex': nestedFlexItem.flex, 'background-color': nestedFlexItem.customColor }
         ]"
-        :class="{'nested-flex-item--border': nestedIndex < nestedFlexGroup.length - 1}"
+        :class="isNestedFlexDirectionRow ? 
+          {'nested-flex-item--border-row': nestedIndex < nestedFlexGroup.length - 1} : {'nested-flex-item--border-col': nestedIndex < nestedFlexGroup.length - 1}"
+          
         class="nested--flex-item flexbox-space-center">
 
         <input 
@@ -69,6 +71,12 @@ export default {
     },
     nestedFlexDirection () {
       return this.$store.getters.getNestedFlexDirection(this.parentIndex);
+    },
+    isNestedFlexDirectionRow () {
+      if (this.nestedFlexDirection === 'flexdir-row' || this.nestedFlexDirection === 'flexdir-rowrev') {
+        return true
+      }
+      return false
     }
   },
   watch: {
@@ -145,8 +153,11 @@ export default {
   transition: flex .1s ease-in-out;
   background-color: var(--mainTurq);
 }
-.nested-flex-item--border {
+.nested-flex-item--border-row {
   border-right: 2px solid var(--backgroundGrey);
+}
+.nested-flex-item--border-col {
+  border-bottom: 2px solid var(--backgroundGrey);
 }
 .click-color-picker--nested {
   position: absolute;
