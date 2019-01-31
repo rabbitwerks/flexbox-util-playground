@@ -42,3 +42,6 @@
 
 - refactor flex-input-group to child component of flex-input-panel, each flex item panel will render as own component tree
   = renders all inputs together inside flex-input-panel, becoming unmaintainable
+
+
+- adjust border classes, rev layouts need left/top border
