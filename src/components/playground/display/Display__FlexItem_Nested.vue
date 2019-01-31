@@ -12,9 +12,15 @@
         :style="[
           { 'flex': nestedFlexItem.flex, 'background-color': nestedFlexItem.customColor }
         ]"
-        :class="isNestedFlexDirectionRow ? 
-          {'nested-flex-item--border-row': nestedIndex < nestedFlexGroup.length - 1} : {'nested-flex-item--border-col': nestedIndex < nestedFlexGroup.length - 1}"
-          
+        :class="
+        isNestedFlexDirectionRow ? 
+          flexdirRow_Rowrev ? 
+            {'nested-flex-item--border-row': nestedIndex < nestedFlexGroup.length - 1} : {'nested-flex-item--border-rowrev': nestedIndex < nestedFlexGroup.length - 1}
+          :
+          flexdirCol_Colrev ?
+            {'nested-flex-item--border-col': nestedIndex < nestedFlexGroup.length - 1} :
+            {'nested-flex-item--border-colrev': nestedIndex < nestedFlexGroup.length - 1}"
+
         class="nested--flex-item flexbox-space-center">
 
         <input 
@@ -74,9 +80,21 @@ export default {
     },
     isNestedFlexDirectionRow () {
       if (this.nestedFlexDirection === 'flexdir-row' || this.nestedFlexDirection === 'flexdir-rowrev') {
-        return true
+        return true;
       }
-      return false
+      return false;
+    },
+    flexdirRow_Rowrev () {
+      if (this.nestedFlexDirection === 'flexdir-row') {
+        return true;
+      }
+      return false;
+    },
+    flexdirCol_Colrev () {
+      if (this.nestedFlexDirection === 'flexdir-col') {
+        return true;
+      }
+      return false;
     }
   },
   watch: {
@@ -158,6 +176,12 @@ export default {
 }
 .nested-flex-item--border-col {
   border-bottom: 2px solid var(--backgroundGrey);
+}
+.nested-flex-item--border-rowrev {
+  border-left: 2px solid var(--backgroundGrey);
+}
+.nested-flex-item--border-colrev {
+  border-top: 2px solid var(--backgroundGrey);
 }
 .click-color-picker--nested {
   position: absolute;
