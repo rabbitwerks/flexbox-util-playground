@@ -1,0 +1,30 @@
+/* ANIMATION */
+.fade-left-enter {
+  opacity: 0;
+  transform: translateX(1rem);
+}
+.fade-left-enter-active {
+  transition: all .2s ease-in-out;
+}
+.fade-left-leave-active {
+  transition: all .2s ease-in-out;
+}
+.fade-left-leave-to {
+  opacity: 0;
+  transform: translateX(-1rem);
+}
+
+.fade-right-enter {
+  opacity: 0;
+  transform: translateX(-1rem);
+}
+.fade-right-enter-active {
+  transition: all .2s ease-in-out;
+}
+.fade-right-leave-active {
+  transition: all .2s ease-in-out;
+}
+.fade-right-leave-to {
+  opacity: 0;
+  transform: translateX(1rem);
+}

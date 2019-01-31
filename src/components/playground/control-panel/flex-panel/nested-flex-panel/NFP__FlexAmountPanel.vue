@@ -10,7 +10,7 @@
         @mouseenter="highlightNestedItem(nestedIndex, true)"
         @mouseleave="highlightNestedItem(nestedIndex, false)"
         type="number" 
-        value="1"
+        :value="nestedItem.flex"
         min="1"
         max="20"
       >

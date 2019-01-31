@@ -50,7 +50,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['duplicateFlexItem_AtPrevIndex_STORE', 'duplicateFlexItem_AtNextIndex_STORE', 'toggleNestedFlexMargin_STORE']),
+    ...mapActions(['duplicateFlexItem_AtPrevIndex_STORE', 'duplicateFlexItem_AtNextIndex_STORE', 'toggleNestedFlexMargin_STORE', 'randomizeFlexItem_STORE']),
   }
 }
 </script>

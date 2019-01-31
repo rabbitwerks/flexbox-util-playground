@@ -5,7 +5,8 @@
 
       <select 
         @input="setNestedFlexDirection($event)"
-        class="nfp--flexdir-select--input flex-1">
+        class="nfp--flexdir-select--input flex-1"
+        :value="currentNestedFlexDirection">
           <option 
             value="flexdir-row">Row (Default)
           </option>
@@ -29,6 +30,11 @@ import { mapActions } from 'vuex';
 
 export default {
   props: ['parentIndex'],
+  computed: {
+    currentNestedFlexDirection() {
+      return this.$store.getters.getFlexGroupItem(this.parentIndex).nested.nestedFlexDirection;
+    }
+  },
   methods: {
     ...mapActions(['setNestedFlexDirection_STORE']),
     setNestedFlexDirection($event) {
