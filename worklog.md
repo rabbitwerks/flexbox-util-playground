@@ -3,7 +3,7 @@
 
 
 ### Todo
-- rename customflexsize stuff to custom [pixel] size
+- rename customflexsize stuff to custom [pixel] size [DONE] 
 - remove flexgap for single item
 - transition for flex items label value
 - getting started route
@@ -15,13 +15,14 @@
     - flexgap?
 
 - more option button?
-  - duplicate left
-  - duplicate right
+  - duplicate left [DONE]
+  - duplicate right [DONE]
 		- refactor to side-by-side btns
   - show flexbox classes
     - figure out how to show
     - parse html for classes containing flex class names????
-  - randomize the flex
+
+  - randomize the flex [DONE]
     - parent flex amount
     - nested flex items
       - nested flex amounts
@@ -44,4 +45,4 @@
   = renders all inputs together inside flex-input-panel, becoming unmaintainable
 
 
-- adjust border classes, rev layouts need left/top border
+- adjust border classes, rev layouts need left/top border [DONE]
