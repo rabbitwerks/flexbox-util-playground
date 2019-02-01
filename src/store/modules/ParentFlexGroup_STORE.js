@@ -50,11 +50,16 @@ const mutations = {
     }
     rootState.flexItemGroup.pop();
   },
+
+  // removes self from flex item group
+  removeSelf_MUTA(state, { rootState, parentIndex }) {
+    rootState.flexItemGroup.splice(parentIndex, 1);
+  },
+
   // sets the new flex direction
   setFlexDirection_MUTA(state, { rootState, newDirection }) {
     rootState.flexGroupDirection = newDirection;
   },
-
 
   increaseFlexAmount_MUTA(state, { rootState, payload: { parentIndex } }) {
     if (rootState.flexItemGroup[parentIndex].flex < 20) {
@@ -109,6 +114,11 @@ const actions = {
   },
   removeItemFromGroup_STORE({ commit, rootState }) {
     commit('removeItemFromGroup_MUTA', rootState);
+  },
+
+  removeSelf_STORE({ commit, rootState }, payload) {
+    const parentIndex = payload;
+    commit('removeSelf_MUTA', { rootState, parentIndex })
   },
 
   setFlexDirection_STORE({ commit, rootState }, newDirection) {

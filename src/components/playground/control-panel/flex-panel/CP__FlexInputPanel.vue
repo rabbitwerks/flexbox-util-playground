@@ -29,10 +29,17 @@
         :parentIndex="parentIndex">
         </fp--more-options--panel>
 
-        <fp--more-options--button
-          :parentIndex="parentIndex"
-          :toggleMoreOptions="toggleMoreOptionsGroup[parentIndex]">
-        </fp--more-options--button>
+        <div class="fp--options-group flexbox">
+          
+          <fp--remove-self-button
+            :parentIndex="parentIndex">
+          </fp--remove-self-button>
+
+          <fp--more-options--button
+            :parentIndex="parentIndex"
+            :toggleMoreOptions="toggleMoreOptionsGroup[parentIndex]">
+          </fp--more-options--button>
+        </div>
 
       </div>
 
@@ -52,9 +59,10 @@
 import FP__FlexAmountGroup from './FP__FlexAmountGroup';
 import FP__CustomPixelSizeInput from './FP__CustomPixelSizeInput';
 import FP__NestedFlexPanel from './nested-flex-panel/FP__NestedFlexPanel';
+import NFP__FlexAmountPanel from './nested-flex-panel/NFP__FlexAmountPanel';
 import FP__MoreOptions_Panel from './more-option-panel/FP__MoreOptions_Panel';
 import FP__MoreOptions_Button from './more-option-panel/FP__MoreOptions_Button';
-import NFP__FlexAmountPanel from './nested-flex-panel/NFP__FlexAmountPanel';
+import FP__RemoveSelfButton from './FP__RemoveSelfButton';
 
 export default {
   data () {
@@ -66,9 +74,10 @@ export default {
     'fp--flex-amount-group': FP__FlexAmountGroup,
     'fp--custom-pixel-size-input': FP__CustomPixelSizeInput,
     'fp--nested-flex-panel': FP__NestedFlexPanel,
+    'nfp--flex-amount-panel': NFP__FlexAmountPanel,
     'fp--more-options--panel': FP__MoreOptions_Panel,
     'fp--more-options--button': FP__MoreOptions_Button,
-    'nfp--flex-amount-panel': NFP__FlexAmountPanel,
+    'fp--remove-self-button': FP__RemoveSelfButton,
   },
   computed: {
     flexItemGroup() {
