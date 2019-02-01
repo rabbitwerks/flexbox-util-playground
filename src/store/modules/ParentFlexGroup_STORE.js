@@ -118,7 +118,7 @@ const actions = {
 
   removeSelf_STORE({ commit, rootState }, payload) {
     const parentIndex = payload;
-    commit('removeSelf_MUTA', { rootState, parentIndex })
+    commit('removeSelf_MUTA', { rootState, parentIndex });
   },
 
   setFlexDirection_STORE({ commit, rootState }, newDirection) {
