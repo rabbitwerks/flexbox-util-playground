@@ -29,7 +29,7 @@
         :parentIndex="parentIndex">
         </fp--more-options--panel>
 
-        <div class="fp--options-group flexbox">
+        <div class="fp--options-group flexbox flexgap-1">
           
           <fp--remove-self-button
             :parentIndex="parentIndex">
@@ -103,7 +103,7 @@ export default {
 .fig--main-panel {
   width: 7.5rem;
 }
-.more-options--outer {
+.fp--options-group {
   margin-top: .5rem;
 }
 </style>
