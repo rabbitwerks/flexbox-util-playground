@@ -58,6 +58,7 @@ export default {
 
 <style scoped>
 .more-options-panel--outer {
+  width: 6.3rem;
   background-color: #f7f7f7;
   height: calc(100% - 68px);
   border: 2px solid var(--backgroundGrey);

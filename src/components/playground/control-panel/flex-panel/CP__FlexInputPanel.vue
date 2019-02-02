@@ -2,67 +2,21 @@
   <div 
     class="flex-input-panel flex-6 flexbox"
     :class="{ 'flexgap-2': flexItemGroup.length > 1 }">
-    <div 
+    <cp--flex-item-group 
       class="flex-item-group flexbox" 
       v-for="(flexItem, parentIndex) in flexItemGroup" 
-      :key="parentIndex">
+      :key="parentIndex"
+      :parentIndex="parentIndex"
+      :flexItem="flexItem"
+      :toggleMoreOptionsGroup="toggleMoreOptionsGroup">
 
-      <div class="fig--main-panel flex-2">
-        <div 
-          v-if="!toggleMoreOptionsGroup[parentIndex].moreOptionsToggled"
-          class="fig--main-panel--controller">
-          <fp--flex-amount-group 
-            :parentIndex="parentIndex">
-          </fp--flex-amount-group>
-
-          <fp--custom-pixel-size-input 
-            :parentIndex="parentIndex">
-          </fp--custom-pixel-size-input>
-
-          <!-- nested flex item control panel -->
-          <fp--nested-flex-panel 
-            :parentIndex="parentIndex">
-          </fp--nested-flex-panel>
-        </div>
-        
-        <fp--more-options--panel v-else
-        :parentIndex="parentIndex">
-        </fp--more-options--panel>
-
-        <div class="fp--options-group flexbox flexgap-1">
-          
-          <fp--remove-self-button
-            :parentIndex="parentIndex">
-          </fp--remove-self-button>
-
-          <fp--more-options--button
-            :parentIndex="parentIndex"
-            :toggleMoreOptions="toggleMoreOptionsGroup[parentIndex]">
-          </fp--more-options--button>
-        </div>
-
-      </div>
-
-      <nfp--flex-amount-panel   
-        v-if="flexItem.nested.hasNestedFlexbox" 
-        :nestedFlexGroup="flexItem.nested.nestedFlexGroup"
-        :parentIndex="parentIndex"
-        class="fig--nested-panel ">
-        
-      </nfp--flex-amount-panel>
-
-    </div>
+      
+    </cp--flex-item-group>
   </div>
 </template>
 
 <script>
-import FP__FlexAmountGroup from './FP__FlexAmountGroup';
-import FP__CustomPixelSizeInput from './FP__CustomPixelSizeInput';
-import FP__NestedFlexPanel from './nested-flex-panel/FP__NestedFlexPanel';
-import NFP__FlexAmountPanel from './nested-flex-panel/NFP__FlexAmountPanel';
-import FP__MoreOptions_Panel from './more-option-panel/FP__MoreOptions_Panel';
-import FP__MoreOptions_Button from './more-option-panel/FP__MoreOptions_Button';
-import FP__RemoveSelfButton from './FP__RemoveSelfButton';
+import CP__FlexItemGroup from './CP__FlexItemGroup';
 
 export default {
   data () {
@@ -71,13 +25,7 @@ export default {
     }
   },
   components: {
-    'fp--flex-amount-group': FP__FlexAmountGroup,
-    'fp--custom-pixel-size-input': FP__CustomPixelSizeInput,
-    'fp--nested-flex-panel': FP__NestedFlexPanel,
-    'nfp--flex-amount-panel': NFP__FlexAmountPanel,
-    'fp--more-options--panel': FP__MoreOptions_Panel,
-    'fp--more-options--button': FP__MoreOptions_Button,
-    'fp--remove-self-button': FP__RemoveSelfButton,
+    'cp--flex-item-group': CP__FlexItemGroup
   },
   computed: {
     flexItemGroup() {
@@ -100,10 +48,5 @@ export default {
 .flex-input-panel {
   padding: .5rem 1rem;
 }
-.fig--main-panel {
-  width: 7.5rem;
-}
-.fp--options-group {
-  margin-top: .5rem;
-}
+
 </style>
