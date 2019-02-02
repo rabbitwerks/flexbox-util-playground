@@ -3,7 +3,7 @@
     <div class="hero--inner flex-1 flexbox flexdir-col">
       <div class="flex-3 empty"></div>
       <h1 class="hero--title flex-3 flex-center center-self">Flexbox Utility Playground</h1>
-      <h3 class="hero--subtitle flex-1">a better way to use flexbox</h3>
+      <h3 class="hero--subtitle flex-1">a better way to flexbox</h3>
         <div class="empty flex-2"></div>
       <div class="hero--action-btn-group flex-2 flexbox-space-evenly">
         <div class="empty"></div>
