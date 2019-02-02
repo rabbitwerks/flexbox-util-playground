@@ -2,7 +2,18 @@
   <div class="more-options--outer flexbox flex-justify-end">
     <div 
       class="more-options--button flexbox flex-center" @click="toggleMoreOptions.moreOptionsToggled = !toggleMoreOptions.moreOptionsToggled">
-      <img src="../../../../../assets/svg/icon__more_dots.svg">
+      <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        width="50px" height="20px" viewBox="0 0 500 300" enable-background="new 0 0 500 300" xml:space="preserve" :fill="setAsActiveColor()">
+      <g>
+        <circle cx="61.167" cy="150" r="60"/>
+      </g>
+      <g>
+        <circle cx="249.833" cy="150" r="60"/>
+      </g>
+      <g>
+        <circle cx="440.834" cy="150" r="60"/>
+      </g>
+      </svg>
     </div>
   </div>
 </template>
@@ -10,6 +21,14 @@
 <script>
 export default {
   props: ['toggleMoreOptions'],
+  methods: {
+    setAsActiveColor () {
+      const activeColor = '#eeeeee';
+      const inactiveColor = '#0a0a0a';
+      if (this.toggleMoreOptions.moreOptionsToggled) return activeColor;
+      return inactiveColor;
+    }
+  }
 }
 </script>
 
@@ -23,8 +42,5 @@ export default {
 }
 .more-options--button:active {
   background: linear-gradient(to top, var(--mainTurq), var(--darkTurq));
-}
-.more-options--button img {
-  width: 1.5rem;
 }
 </style>
