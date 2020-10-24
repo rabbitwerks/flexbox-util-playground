@@ -1,4 +1,8 @@
-# flexbox-util-playground
+# Flexbox Utility Playground
+
+## Author: Sean Becker : RabbitWerks.js
+
+This project is a frontend application that demostrates the power of my Flexbox Utility Library. The basic concept that runs the app is class-based flexbox rules. Instead of writing your own most-of-the-time general use styles using Flexbox, the majority of work is abstracted away into basic changeable classes. Harnessing the power of Vue.js, dynamic changes can be applied on the fly. Check it out! 
 
 ## Project setup
 ```
